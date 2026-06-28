@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bizvitals — Telecall Scripts</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#0f0e0c;--ink2:#3a3835;--ink3:#6b6860;--bg:#f7f5f0;--bg2:#eeeae2;--bg3:#e4dfd5;--white:#ffffff;--teal:#0d7a5f;--teal-light:#d6f0e8;--teal-mid:#1d9e75;--blue:#1a56a0;--blue-light:#dceeff;--amber:#b86a00;--amber-light:#fdefd3;--red:#c0392b;--red-light:#fde8e6;--purple:#5b3fa6;--purple-light:#ede9fc;--accent:#e85d2a;--accent2:#f0a500;--serif:'DM Serif Display',Georgia,serif;--sans:'DM Sans',sans-serif;--mono:'JetBrains Mono',monospace;--radius:10px;--radius-lg:16px;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:var(--sans);background:var(--bg);color:var(--ink);font-size:14px;line-height:1.6;min-width:320px;}
+nav{position:sticky;top:0;z-index:100;background:var(--ink);display:flex;align-items:stretch;border-bottom:1px solid #2a2826;overflow-x:auto;-webkit-overflow-scrolling:touch;}
+nav::-webkit-scrollbar{height:0;}
+.nav-logo{padding:0 20px;font-family:var(--serif);font-size:17px;color:var(--bg);border-right:1px solid #2a2826;letter-spacing:0.01em;white-space:nowrap;display:flex;align-items:center;flex-shrink:0;}
+.nav-logo span{color:var(--accent2);}
+.nav-tabs{display:flex;flex:1;}
+.nav-tab{padding:14px 16px;font-size:11px;font-weight:500;color:#888;cursor:pointer;border-right:1px solid #2a2826;transition:all 0.2s;letter-spacing:0.04em;text-transform:uppercase;user-select:none;white-space:nowrap;flex-shrink:0;display:flex;align-items:center;gap:6px;text-decoration:none;}
+.nav-tab:hover{color:var(--bg);background:#1a1816;}
+.nav-tab.active{color:var(--accent2);background:#1a1816;}
+.nav-badge{display:inline-block;font-size:9px;font-family:var(--mono);padding:2px 6px;border-radius:3px;background:#2a2826;color:#888;flex-shrink:0;}
+.nav-tab.active .nav-badge{background:var(--accent);color:#fff;}
+.page-header{background:var(--ink);padding:40px 24px 36px;position:relative;overflow:hidden;}
+.page-header::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent) 0%,var(--accent2) 60%,transparent 100%);}
+.page-header-eyebrow{font-family:var(--mono);font-size:10px;color:var(--accent2);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:10px;}
+.page-header h1{font-family:var(--serif);font-size:clamp(26px,4vw,38px);color:var(--bg);line-height:1.15;max-width:600px;}
+.page-header h1 em{color:var(--accent2);font-style:italic;}
+.page-header p{color:#888;font-size:13px;margin-top:10px;max-width:520px;line-height:1.65;}
+.container{max-width:1100px;margin:0 auto;padding:32px 24px;}
+.section-label{font-family:var(--mono);font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink3);margin-bottom:14px;display:flex;align-items:center;gap:10px;}
+.section-label::after{content:'';flex:1;height:1px;background:var(--bg3);}
+
+/* Person section */
+.person-header{display:flex;align-items:center;gap:16px;margin-bottom:20px;padding:18px 22px;background:var(--ink);border-radius:var(--radius-lg);}
+.person-avatar{width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:22px;color:#fff;flex-shrink:0;}
+.person-name{font-family:var(--serif);font-size:22px;color:var(--bg);}
+.person-sub{font-size:11px;color:#888;margin-top:2px;}
+.person-pitches{font-family:var(--mono);font-size:10px;color:var(--accent2);margin-top:4px;}
+
+/* Script card */
+.script-card{background:var(--white);border:1px solid var(--bg3);border-radius:var(--radius-lg);margin-bottom:14px;overflow:hidden;}
+.script-card-header{padding:12px 18px;display:flex;align-items:center;gap:12px;border-bottom:1px solid var(--bg2);}
+.pitch-badge{font-family:var(--mono);font-size:10px;font-weight:700;padding:3px 10px;border-radius:20px;flex-shrink:0;}
+.script-card-title{font-size:13px;font-weight:600;color:var(--ink);flex:1;}
+.script-card-body{padding:16px 18px;display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.script-step-block{background:var(--bg);border-radius:var(--radius);padding:12px 14px;}
+.step-label{font-family:var(--mono);font-size:9px;text-transform:uppercase;letter-spacing:0.08em;color:var(--ink3);margin-bottom:6px;}
+.step-say{font-size:12px;color:var(--ink);line-height:1.7;font-style:italic;}
+.step-say .k{color:var(--teal);font-weight:600;font-style:normal;}
+.step-say .w{color:var(--red);font-weight:600;font-style:normal;}
+.step-note{font-size:10px;color:var(--ink3);margin-top:6px;line-height:1.5;}
+.step-note::before{content:"💡 ";}
+.pitch-used{background:rgba(13,122,95,0.06);border-left:3px solid var(--teal);border-radius:0 var(--radius) var(--radius) 0;padding:8px 12px;font-size:11px;color:var(--teal);font-style:italic;line-height:1.6;margin-bottom:10px;}
+.pitch-used::before{content:"Pitch used: ";}
+
+/* Tags */
+.tag-pain{background:var(--red-light);color:var(--red);}
+.tag-hook{background:var(--teal-light);color:var(--teal);}
+.tag-question{background:var(--blue-light);color:var(--blue);}
+.tag-story{background:var(--amber-light);color:var(--amber);}
+.tag-fact{background:var(--purple-light);color:var(--purple);}
+
+/* Objection section */
+.obj-card{background:var(--white);border:1px solid var(--bg3);border-radius:var(--radius);padding:14px 16px;margin-bottom:8px;}
+.obj-q{font-size:12px;color:var(--ink2);margin-bottom:6px;font-weight:600;}
+.obj-q::before{content:"❝ ";color:var(--red);}
+.obj-q::after{content:" ❞";color:var(--red);}
+.obj-a{font-size:12px;color:var(--ink2);line-height:1.65;}
+.obj-highlight{color:var(--teal);font-weight:600;}
+.obj-note{font-size:11px;color:var(--teal);margin-top:6px;font-weight:600;}
+
+.goal-strip{background:linear-gradient(90deg,var(--teal) 0%,#0a6650 100%);border-radius:var(--radius);padding:14px 18px;margin-bottom:28px;display:flex;align-items:center;gap:16px;flex-wrap:wrap;}
+.divider-card{background:var(--white);border:1px solid var(--bg3);border-radius:var(--radius);padding:12px 16px;margin-bottom:10px;display:flex;align-items:center;gap:12px;}
+.step-num{width:26px;height:26px;border-radius:50%;background:var(--ink);color:var(--bg);font-family:var(--mono);font-size:11px;font-weight:600;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+
+@media(max-width:900px){.script-card-body{grid-template-columns:1fr;}}
+@media(max-width:600px){.container{padding:20px 16px;}.page-header{padding:28px 16px 24px;}}
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-logo">Biz<span>vitals</span></div>
+  <div class="nav-tabs">
+<a href="index.html" class="nav-tab">Pricing Plans<span class="nav-badge">CFO Rec.</span></a>
+<a href="bv-mypricing.html" class="nav-tab">Bizvitals Pricing<span class="nav-badge">My Plan</span></a>
+<a href="bv-onboarding.html" class="nav-tab">14-Day Trial Flow<span class="nav-badge">14 days</span></a>
+<a href="bv-demo.html" class="nav-tab">CXO Demo Script<span class="nav-badge">20 mins</span></a>
+<a href="bv-bovalue.html" class="nav-tab">Business Owner Value<span class="nav-badge">New</span></a>
+<a href="bv-market.html" class="nav-tab">Market Comparison<span class="nav-badge">Research</span></a>
+<a href="bv-compete.html" class="nav-tab">Competitor Analysis<span class="nav-badge">VS</span></a>
+<div class="nav-tab active">Telecall Scripts<span class="nav-badge">Team</span></div>
+<a href="bv-pitches.html" class="nav-tab">Elevator Pitches<span class="nav-badge">25</span></a>
+<a href="bv-social.html" class="nav-tab">Social Media<span class="nav-badge">30 Days</span></a>
+</div>
+</nav>
+
+<div class="page-header">
+  <div class="page-header-eyebrow">Bizvitals · Telecall Scripts</div>
+  <h1>5 scripts per person —<br><em>built on their elevator pitches</em></h1>
+  <p>Each team member has 5 complete call scripts, each built around one of their assigned elevator pitches. Rotate scripts daily. Same structure every time: intro → pitch → why it matters → book the demo.</p>
+</div>
+
+<div class="container">
+
+  <!-- GOAL STRIP -->
+  <div class="goal-strip">
+    <div><div style="font-family:var(--mono);font-size:9px;text-transform:uppercase;letter-spacing:0.08em;color:rgba(255,255,255,0.6);margin-bottom:3px;">Call goal</div><div style="font-size:14px;font-weight:600;color:#fff;">Book a 20-min demo call. Not sell. Not explain everything. Just book the demo.</div></div>
+    <div style="border-left:1px solid rgba(255,255,255,0.2);padding-left:16px;"><div style="font-family:var(--mono);font-size:9px;text-transform:uppercase;letter-spacing:0.08em;color:rgba(255,255,255,0.6);margin-bottom:3px;">Calling from</div><div style="font-size:14px;font-weight:600;color:#fff;">Findiag Innovation Pvt. Ltd. — makers of Bizvitals</div></div>
+    <div style="border-left:1px solid rgba(255,255,255,0.2);padding-left:16px;"><div style="font-family:var(--mono);font-size:9px;text-transform:uppercase;letter-spacing:0.08em;color:rgba(255,255,255,0.6);margin-bottom:3px;">Duration</div><div style="font-size:14px;font-weight:600;color:#fff;">30 – 60 seconds max</div></div>
+  </div>
+
+  <!-- HOW TO USE -->
+  <div class="section-label">How to use these scripts</div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin-bottom:32px;">
+    <div class="divider-card"><div class="step-num">1</div><div style="font-size:12px;color:var(--ink2);line-height:1.5;"><strong>Use Script 1 on Monday</strong>, Script 2 on Tuesday, and so on. Rotate every day so you never sound the same.</div></div>
+    <div class="divider-card"><div class="step-num">2</div><div style="font-size:12px;color:var(--ink2);line-height:1.5;"><strong>Read the pitch 3 times out loud</strong> before your first call. Know it well enough to say it in your own voice.</div></div>
+    <div class="divider-card"><div class="step-num">3</div><div style="font-size:12px;color:var(--ink2);line-height:1.5;"><strong>Pause after the pitch.</strong> Silence is powerful. Let them respond before you say anything else.</div></div>
+    <div class="divider-card"><div class="step-num">4</div><div style="font-size:12px;color:var(--ink2);line-height:1.5;"><strong>If they say yes</strong> — stop pitching immediately. Book the slot. Don't keep talking.</div></div>
+    <div class="divider-card"><div class="step-num">5</div><div style="font-size:12px;color:var(--ink2);line-height:1.5;"><strong>Always offer 2 time slots.</strong> "Does Tuesday at 11 or Thursday at 3 work?" is easier to say yes to than "when are you free?"</div></div>
+  </div>
+
+  <!-- ═══════════════ VARSHA ═══════════════ -->
+  <div class="section-label">Varsha — 5 scripts</div>
+  <div class="person-header">
+    <div class="person-avatar" style="background:linear-gradient(135deg,#0d7a5f,#1d9e75);">V</div>
+    <div>
+      <div class="person-name">Varsha</div>
+      <div class="person-sub">Calling on behalf of Co-founder · Findiag Innovation Pvt. Ltd.</div>
+      <div class="person-pitches">Pitches: #01 Pain · #06 Hook · #11 Question · #16 Story · #21 Fact</div>
+    </div>
+  </div>
+
+  <!-- V Script 1 -->
+  <div class="script-card">
+    <div class="script-card-header">
+      <span class="pitch-badge tag-pain">Script 1 · Pitch #01 · Pain</span>
+      <div class="script-card-title">"Your P&L shows profit but your bank says different"</div>
+    </div>
+    <div style="padding:12px 18px 0;"><div class="pitch-used">"Your P&L shows profit — but your bank account tells a different story. Bizvitals shows you exactly where the money is going."</div></div>
+    <div class="script-card-body">
+      <div class="script-step-block">
+        <div class="step-label">Step 1 · Introduction</div>
+        <div class="step-say">"Hello, am I speaking with <span class="k">[Name]</span>? Hi, I'm Varsha calling from <span class="k">Findiag Innovation</span> — we've built a product called Bizvitals. I'm reaching out on behalf of our co-founder."</div>
+        <div class="step-note">Confirm the name first. Smile before you dial — they can hear it.</div>
+      </div>
+      <div class="script-step-block">
+        <div class="step-label">Step 2 · The Pitch</div>
+        <div class="step-say">"Quick question — does this sound familiar? <span class="k">Your P&L shows profit, but your bank account tells a different story.</span> Bizvitals is a tool we built that shows business owners exactly where that gap is — where the money is actually going."</div>
+        <div class="step-note">Pause after "different story." Let them feel it before you explain.</div>
+      </div>
+      <div class="script-step-block">
+        <div class="step-label">Step 3 · Why it matters</div>
+        <div class="step-say">"You upload your annual report and in 2 minutes we show you — which department is responsible, where profit is leaking, and what to fix first. <span class="k">In plain language, no CA needed to explain it.</span>"</div>
+      </div>
+      <div class="script-step-block">
+        <div class="step-label">Step 4 · Book the demo</div>
+        <div class="step-say">"We'd love to give you a <span class="k">free 20-minute demo</span> to show you what your own numbers reveal. Would <span class="k">Tuesday at 11am or Thursday at 3pm</span> work for a quick call?"</div>
+        <div class="step-note">If yes — book immediately. Don't keep pitching.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- V Script 2 -->
+  <div class="script-card">
+    <div class="script-card-header">
+      <span class="pitch-badge tag-hook">Script 2 · Pitch #06 · Hook</span>
+      <div class="script-card-title">"Upload. 2 minutes. Full financial health check."</div>
+    </div>
+    <div style="padding:12px 18px 0;"><div class="pitch-used">"Upload your annual report. Get a full financial health check in 2 minutes. No CA. No finance degree. Just answers."</div></div>
+    <div class="script-card-body">
+      <div class="script-step-block">
+        <div class="step-label">Step 1 · Introduction</div>
+        <div class="step-say">"Hi <span class="k">[Name]</span>, I'm Varsha from <span class="k">Findiag Innovation</span> — we make a product called Bizvitals. I'm calling on behalf of our co-founder — this will take under a minute, I promise."</div>
+      </div>
+      <div class="script-step-block">
+        <div class="step-label">Step 2 · The Pitch</div>
+        <div class="step-say">"Bizvitals works like this — you <span class="k">upload your annual report, and in 2 minutes</span> you get a full financial health check. Profit leakage, department scores, risk map, cash flow gaps. <span class="k">No CA. No finance degree. Just answers.</span>"</div>
+        <div class="step-note">Say it with energy. The simplicity of "2 minutes" is your hook.</div>
+      </div>
+      <div class="script-step-block">
+        <div class="step-label">Step 3 · Why it matters</div>
+        <div class="step-say">"Most business owners wait for their CA's monthly report to understand their business. <span class="k">Bizvitals gives you that clarity every week, on demand,</span> for a fraction of the cost."</div>
+      </div>
+      <div class="script-step-block">
+        <div class="step-label">Step 4 · Book the demo</div>
+        <div class="step-say">"I'd love to show you a live demo — it's <span class="k">free, 20 minutes, no obligation.</span> Can we do this week? I can send a calendar link right now."</div>
+        <div class="step-note">Offer the calendar link immediately — it removes all friction.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- V Script 3 -->
+  <div class="script-card">
+    <div class="script-card-header">
+      <span class="pitch-badge tag-question">Script 3 · Pitch #11 · Question</span>
+      <div class="script-card-title">"Do you know which department is costing you the most?"</div>
+    </div>
+    <div style="padding:12px 18px 0;"><div class="pitch-used">"Quick question — do you know which department in your business is costing you the most profit right now? Most owners don't. Bizvitals shows you."</div></div>
+    <div class="script-card-body">
+      <div class="script-step-block">
+        <div class="step-label">Step 1 · Introduction</div>
+        <div class="step-say">"Hi, is this <span class="k">[Name]</span>? I'm Varsha, calling from <span class="k">Findiag Innovation</span> — makers of Bizvitals. I'm reaching out personally from our founder's office."</div>
+      </div>
+      <div class="script-step-block">
+        <div class="step-label">Step 2 · The Pitch</div>
+        <div class="step-say">"Quick question — <span class="k">do you know which department in your business is costing you the most profit right now?</span> Sales? Operations? HR? Most business owners I speak to don't — and that's exactly what Bizvitals shows you."</div>
+        <div class="step-note">Let the question land. Pause for 2 full seconds before continuing.</div>
+      </div>
+      <div class="script-step-block">
+        <div class="step-label">Step 3 · Why it matters</div>
+        <div class="step-say">"We built Bizvitals to give every business owner a <span class="k">department-level health score from their own annual report</span> — Sales, Finance, Operations, HR — all in 2 minutes."</div>
+      </div>
+      <div class="script-step-block">
+        <div class="step-label">Step 4 · Book the demo</div>
+        <div class="step-say">"We're offering a <span class="k">free 20-minute demo</span> where I show you exactly what your departments reveal. Does <span class="k">this Wednesday or Friday</span> work for a quick call?"</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- V Script 4 -->
+  <div class="script-card">
+    <div class="script-card-header">
+      <span class="pitch-badge tag-story">Script 4 · Pitch #16 · Story</span>
+      <div class="script-card-title">"A founder found ₹4.2L leaking — in his first week"</div>
+    </div>
+    <div style="padding:12px 18px 0;"><div class="pitch-used">"A founder we spoke to found ₹4.2 lakh a year leaking through logistics costs — costs he'd been paying for 3 years without knowing. That's what Bizvitals does."</div></div>
+    <div class="script-card-body">
+      <div class="script-step-block">
+        <div class="step-label">Step 1 · Introduction</div>
+        <div class="step-say">"Hello <span class="k">[Name]</span>, I'm Varsha from <span class="k">Findiag Innovation — we make Bizvitals,</span> a financial intelligence product for business owners. I'm calling on behalf of our co-founder."</div>
+      </div>
+      <div class="script-step-block">
+        <div class="step-label">Step 2 · The Pitch</div>
+        <div class="step-say">"I'll share something interesting — one of our early users found <span class="k">₹4.2 lakh a year leaking through logistics costs</span> that he'd been paying for 3 years without realising. That's what Bizvitals does — it finds the money leaking from your business and puts an exact rupee figure on it."</div>
+        <div class="step-note">The ₹4.2L is from Bizvitals' own landing page — it's a real finding. Say it confidently.</div>
+      </div>
+      <div class="script-step-block">
+        <div class="step-label">Step 3 · Why it matters</div>
+        <div class="step-say">"You just upload your annual report. In 2 minutes, Bizvitals shows you <span class="k">profit leakage by department, where cash is stuck, and what to fix first.</span> No setup, no data entry."</div>
+      </div>
+      <div class="script-step-block">
+        <div class="step-label">Step 4 · Book the demo</div>
+        <div class="step-say">"Would you be open to a <span class="k">free 20-minute demo</span> to see what your own numbers reveal? I can fix a time right now — <span class="k">Tuesday or Thursday, whichever works?</span>"</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- V Script 5 -->
+  <div class="script-card">
+    <div class="script-card-header">
+      <span class="pitch-badge tag-fact">Script 5 · Pitch #21 · Fact</span>
+      <div class="script-card-title">"8–15% of your revenue may be recoverable right now"</div>
+    </div>
+    <div style="padding:12px 18px 0;"><div class="pitch-used">"The average Indian SMB has 8 to 15% of revenue leaking as profit — that's ₹8 to ₹15 lakh on every crore of revenue. Bizvitals finds exactly where."</div></div>
+    <div class="script-card-body">
+      <div class="script-step-block">
+        <div class="step-label">Step 1 · Introduction</div>
+        <div class="step-say">"Hi <span class="k">[Name]</span>, this is Varsha from <span class="k">Findiag Innovation</span> — we've built a product called Bizvitals for business owners. Quick call on behalf of our co-founder."</div>
+      </div>
+      <div class="script-step-block">
+        <div class="step-label">Step 2 · The Pitch</div>
+        <div class="step-say">"Here's a number that surprises most business owners — <span class="k">the average Indian SMB has 8 to 15% of revenue leaking as profit.</span> On a ₹1 crore business, that's ₹8 to ₹15 lakh sitting on the table. Bizvitals finds exactly where yours is going."</div>
+        <div class="step-note">Pause after "sitting on the table." The number does the work — don't rush it.</div>
+      </div>
+      <div class="script-step-block">
+        <div class="step-label">Step 3 · Why it matters</div>
+        <div class="step-say">"We do this by reading your annual report — just one upload — and giving you a <span class="k">complete financial diagnosis in 2 minutes.</span> Profit leakage, department health, risk map, what to fix first."</div>
+      </div>
+      <div class="script-step-block">
+        <div class="step-label">Step 4 · Book the demo</div>
+        <div class="step-say">"I'd love to show you a live demo — <span class="k">completely free, 20 minutes.</span> Would this week work? I can send you a calendar link right now."</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════ SAHANA ═══════════════ -->
+  <div class="section-label" style="margin-top:40px;">Sahana — 5 scripts</div>
+  <div class="person-header">
+    <div class="person-avatar" style="background:linear-gradient(135deg,#1a56a0,#2d7dd2);">S</div>
+    <div>
+      <div class="person-name">Sahana</div>
+      <div class="person-sub">Calling on behalf of Co-founder · Findiag Innovation Pvt. Ltd.</div>
+      <div class="person-pitches">Pitches: #02 Pain · #07 Hook · #12 Question · #17 Story · #22 Fact</div>
+    </div>
+  </div>
+
+  <div class="script-card">
+    <div class="script-card-header"><span class="pitch-badge tag-pain">Script 1 · Pitch #02 · Pain</span><div class="script-card-title">"Can't tell which department is killing your profit?"</div></div>
+    <div style="padding:12px 18px 0;"><div class="pitch-used">"Most business owners can't tell which department is killing their profit. Bizvitals shows you — in 2 minutes, from one upload."</div></div>
+    <div class="script-card-body">
+      <div class="script-step-block"><div class="step-label">Step 1 · Introduction</div><div class="step-say">"Hi, is this <span class="k">[Name]</span>? I'm Sahana, calling from <span class="k">Findiag Innovation Private Limited</span> — we've built a product called Bizvitals. I'm reaching out personally from our founder's office."</div><div class="step-note">The phrase "founder's office" adds authority and warmth.</div></div>
+      <div class="script-step-block"><div class="step-label">Step 2 · The Pitch</div><div class="step-say">"Here's something I hear from almost every business owner — <span class="k">they can feel something is off with their profit, but they can't point to which department is responsible.</span> Bizvitals solves exactly that — one upload, 2 minutes, and you know which department is pulling you down."</div></div>
+      <div class="script-step-block"><div class="step-label">Step 3 · Why it matters</div><div class="step-say">"We built this for business owners who are working hard but don't have a CFO to explain their numbers. <span class="k">Bizvitals is that CFO — at a fraction of the cost, available whenever you need it.</span>"</div></div>
+      <div class="script-step-block"><div class="step-label">Step 4 · Book the demo</div><div class="step-say">"Could we set up a <span class="k">free 20-minute demo call</span>? I can show you what a real business diagnosis looks like. <span class="k">Tuesday at 11 or Thursday at 3</span> — which works better?"</div><div class="step-note">Two specific slots. Never ask "when are you free?"</div></div>
+    </div>
+  </div>
+
+  <div class="script-card">
+    <div class="script-card-header"><span class="pitch-badge tag-hook">Script 2 · Pitch #07 · Hook</span><div class="script-card-title">"Reads financials like a CFO — in plain language"</div></div>
+    <div style="padding:12px 18px 0;"><div class="pitch-used">"Bizvitals reads your financials the way an expert CFO would — and tells you what to fix first, in plain language."</div></div>
+    <div class="script-card-body">
+      <div class="script-step-block"><div class="step-label">Step 1 · Introduction</div><div class="step-say">"Hi <span class="k">[Name]</span>, good morning — I'm Sahana from <span class="k">Findiag Innovation</span>, makers of Bizvitals. This will be under a minute — calling from our co-founder's office."</div></div>
+      <div class="script-step-block"><div class="step-label">Step 2 · The Pitch</div><div class="step-say">"<span class="k">Bizvitals reads your company's financials the way an expert CFO would</span> — and then tells you in plain language what to fix first. No jargon, no spreadsheets, no waiting for your CA's next visit."</div><div class="step-note">Slow down on "plain language." That phrase resonates deeply with non-finance founders.</div></div>
+      <div class="script-step-block"><div class="step-label">Step 3 · Why it matters</div><div class="step-say">"You upload your annual report — one PDF — and get profit leakage, department scores, risk map, and prioritised action steps. <span class="k">All in 2 minutes.</span>"</div></div>
+      <div class="script-step-block"><div class="step-label">Step 4 · Book the demo</div><div class="step-say">"We're running <span class="k">free 20-minute product walkthroughs</span> for business owners this week. Can I book a slot for you? <span class="k">Wednesday or Friday morning</span> — does either work?"</div></div>
+    </div>
+  </div>
+
+  <div class="script-card">
+    <div class="script-card-header"><span class="pitch-badge tag-question">Script 3 · Pitch #12 · Question</span><div class="script-card-title">"If there's money leaking right now — would you want to know?"</div></div>
+    <div style="padding:12px 18px 0;"><div class="pitch-used">"If I told you there's money leaking from your business right now — would you want to know where? That's exactly what Bizvitals shows you."</div></div>
+    <div class="script-card-body">
+      <div class="script-step-block"><div class="step-label">Step 1 · Introduction</div><div class="step-say">"Hi <span class="k">[Name]</span>, this is Sahana from <span class="k">Bizvitals — by Findiag Innovation.</span> I'm calling on behalf of our co-founder. Quick question for you — 30 seconds, I promise."</div></div>
+      <div class="script-step-block"><div class="step-label">Step 2 · The Pitch</div><div class="step-say">"<span class="k">If I told you there's money leaking from your business right now — would you want to know where?</span> Most business owners say yes — but nobody's ever shown them exactly how much or where. That's what Bizvitals does."</div><div class="step-note">Pause hard after "would you want to know where?" Wait for them to say yes before continuing.</div></div>
+      <div class="script-step-block"><div class="step-label">Step 3 · Why it matters</div><div class="step-say">"We built a tool that reads your annual report and <span class="k">gives you the exact rupee figure for profit leakage — by department, by cost line.</span> 2 minutes from one upload."</div></div>
+      <div class="script-step-block"><div class="step-label">Step 4 · Book the demo</div><div class="step-say">"I'd love to show you a <span class="k">free 20-minute live demo.</span> Can we do <span class="k">Tuesday or Thursday this week?</span> I'll send a calendar link right now."</div></div>
+    </div>
+  </div>
+
+  <div class="script-card">
+    <div class="script-card-header"><span class="pitch-badge tag-story">Script 4 · Pitch #17 · Story</span><div class="script-card-title">"CA gives numbers. Nobody explains what they mean."</div></div>
+    <div style="padding:12px 18px 0;"><div class="pitch-used">"Most owners we talk to say the same thing: 'My CA gives me numbers, but nobody tells me what to do about them.' We built Bizvitals for exactly that."</div></div>
+    <div class="script-card-body">
+      <div class="script-step-block"><div class="step-label">Step 1 · Introduction</div><div class="step-say">"Hello <span class="k">[Name]</span>, I'm Sahana from <span class="k">Findiag Innovation</span> — we've built a financial intelligence tool called Bizvitals. Calling from our co-founder's office."</div></div>
+      <div class="script-step-block"><div class="step-label">Step 2 · The Pitch</div><div class="step-say">"Almost every business owner I speak to says the same thing: <span class="k">'My CA gives me numbers every month — but nobody tells me what to actually do with them.'</span> That's the exact gap Bizvitals fills. We translate your financials into clear, prioritised actions."</div></div>
+      <div class="script-step-block"><div class="step-label">Step 3 · Why it matters</div><div class="step-say">"Upload your annual report — 2 minutes — and you get a full diagnosis: <span class="k">where profit is leaking, which department has a problem, what to fix first.</span> In plain language, not financial jargon."</div></div>
+      <div class="script-step-block"><div class="step-label">Step 4 · Book the demo</div><div class="step-say">"We're offering <span class="k">free 20-minute demos</span> right now. Would <span class="k">this week</span> work for a quick call? I can share two slots that are open."</div></div>
+    </div>
+  </div>
+
+  <div class="script-card">
+    <div class="script-card-header"><span class="pitch-badge tag-fact">Script 5 · Pitch #22 · Fact</span><div class="script-card-title">"6.3 crore MSMEs. Less than 5% have financial intelligence."</div></div>
+    <div style="padding:12px 18px 0;"><div class="pitch-used">"There are 6.3 crore MSMEs in India. Less than 5% have any financial intelligence tool. Bizvitals is built for the other 95%."</div></div>
+    <div class="script-card-body">
+      <div class="script-step-block"><div class="step-label">Step 1 · Introduction</div><div class="step-say">"Hi <span class="k">[Name]</span>, I'm Sahana from <span class="k">Findiag Innovation — makers of Bizvitals.</span> Reaching out on behalf of our co-founder."</div></div>
+      <div class="script-step-block"><div class="step-label">Step 2 · The Pitch</div><div class="step-say">"Here's an interesting number — <span class="k">there are 6.3 crore businesses in India, and less than 5% of them have any financial intelligence tool.</span> The other 95% make decisions based on gut feel or a CA visit once a month. Bizvitals is built to change that."</div><div class="step-note">This positions the product as something the customer is missing — not something they need to be sold.</div></div>
+      <div class="script-step-block"><div class="step-label">Step 3 · Why it matters</div><div class="step-say">"We give business owners a <span class="k">complete financial health check from one annual report upload</span> — profit leakage, department scores, risk analysis — in 2 minutes."</div></div>
+      <div class="script-step-block"><div class="step-label">Step 4 · Book the demo</div><div class="step-say">"I'd love to show you what it looks like on a real business. <span class="k">Free 20-minute demo</span> — can we do <span class="k">Tuesday or Wednesday this week?</span>"</div></div>
+    </div>
+  </div>
+
+  <!-- ═══════════════ APEKSHA ═══════════════ -->
+  <div class="section-label" style="margin-top:40px;">Apeksha — 5 scripts</div>
+  <div class="person-header">
+    <div class="person-avatar" style="background:linear-gradient(135deg,#b86a00,#e07a20);">A</div>
+    <div>
+      <div class="person-name">Apeksha</div>
+      <div class="person-sub">Calling on behalf of Co-founder · Findiag Innovation Pvt. Ltd.</div>
+      <div class="person-pitches">Pitches: #03 Pain · #08 Hook · #13 Question · #18 Story · #23 Fact</div>
+    </div>
+  </div>
+
+  <div class="script-card">
+    <div class="script-card-header"><span class="pitch-badge tag-pain">Script 1 · Pitch #03 · Pain</span><div class="script-card-title">"CA report full of numbers — but no answers"</div></div>
+    <div style="padding:12px 18px 0;"><div class="pitch-used">"If you've ever felt your CA's report is full of numbers but no answers — Bizvitals is the answer layer on top of it."</div></div>
+    <div class="script-card-body">
+      <div class="script-step-block"><div class="step-label">Step 1 · Introduction</div><div class="step-say">"Hi <span class="k">[Name]</span>, this is Apeksha from <span class="k">Bizvitals — by Findiag Innovation.</span> Hope I haven't caught you at a bad time — this will be under a minute, I promise."</div><div class="step-note">"Under a minute, I promise" immediately relaxes the person.</div></div>
+      <div class="script-step-block"><div class="step-label">Step 2 · The Pitch</div><div class="step-say">"Quick question — <span class="k">have you ever looked at your CA's P&L report and felt it's full of numbers but no actual answers?</span> Like, what do I do with this information? Bizvitals is built to be exactly that answer layer — on top of whatever your CA gives you."</div></div>
+      <div class="script-step-block"><div class="step-label">Step 3 · Why it matters</div><div class="step-say">"We read your annual report and give you <span class="k">plain-language diagnosis — profit leakage, department health, what to fix first.</span> No finance degree needed. 2 minutes from one upload."</div></div>
+      <div class="script-step-block"><div class="step-label">Step 4 · Book the demo</div><div class="step-say">"We'd love to show you a live demo — <span class="k">free, 20 minutes.</span> Even 15 minutes would work. Can we do <span class="k">this week?</span>"</div><div class="step-note">If they hesitate — "Even 15 minutes would work. We won't waste your time."</div></div>
+    </div>
+  </div>
+
+  <div class="script-card">
+    <div class="script-card-header"><span class="pitch-badge tag-hook">Script 2 · Pitch #08 · Hook</span><div class="script-card-title">"Balance sheet → 6 reports → 2 minutes"</div></div>
+    <div style="padding:12px 18px 0;"><div class="pitch-used">"We turn your balance sheet and P&L into a 6-report business diagnosis — profit leakage, risk, department health, and more."</div></div>
+    <div class="script-card-body">
+      <div class="script-step-block"><div class="step-label">Step 1 · Introduction</div><div class="step-say">"Hi <span class="k">[Name]</span>, I'm Apeksha calling from <span class="k">Findiag Innovation</span> — we built a product called Bizvitals. Calling on behalf of our co-founder."</div></div>
+      <div class="script-step-block"><div class="step-label">Step 2 · The Pitch</div><div class="step-say">"Here's what Bizvitals does — we take your <span class="k">balance sheet and P&L and turn them into 6 detailed reports:</span> profit leakage, financial risk, department health, impact analysis, what-if scenarios, and a full risk map. All from one PDF upload, in 2 minutes."</div><div class="step-note">The number "6 reports" creates immediate curiosity. Let them ask what they are.</div></div>
+      <div class="script-step-block"><div class="step-label">Step 3 · Why it matters</div><div class="step-say">"Everything is in <span class="k">plain language — no finance background needed.</span> You'll know exactly which part of your business needs attention and why."</div></div>
+      <div class="script-step-block"><div class="step-label">Step 4 · Book the demo</div><div class="step-say">"I'd love to walk you through a live demo — <span class="k">free, 20 minutes.</span> Does <span class="k">Tuesday or Thursday</span> work for a quick call?"</div></div>
+    </div>
+  </div>
+
+  <div class="script-card">
+    <div class="script-card-header"><span class="pitch-badge tag-question">Script 3 · Pitch #13 · Question</span><div class="script-card-title">"When did you last get plain-language answers from your financials?"</div></div>
+    <div style="padding:12px 18px 0;"><div class="pitch-used">"When did you last get a plain-language explanation of your own financials — not a report, but actual answers? That's what we built."</div></div>
+    <div class="script-card-body">
+      <div class="script-step-block"><div class="step-label">Step 1 · Introduction</div><div class="step-say">"Hello <span class="k">[Name]</span>, I'm Apeksha from <span class="k">Findiag Innovation — makers of Bizvitals.</span> Quick call on behalf of our co-founder — 30 seconds."</div></div>
+      <div class="script-step-block"><div class="step-label">Step 2 · The Pitch</div><div class="step-say">"Quick question — <span class="k">when did you last get a plain-language explanation of your own business financials?</span> Not a P&L. Not a balance sheet. But actual answers — what's good, what's bad, what to do first. That's what we built."</div><div class="step-note">This question makes them reflect. Most will pause — that pause means they feel the gap.</div></div>
+      <div class="script-step-block"><div class="step-label">Step 3 · Why it matters</div><div class="step-say">"Bizvitals reads your annual report and delivers <span class="k">profit leakage, department health scores, risk analysis — all in plain language,</span> in 2 minutes."</div></div>
+      <div class="script-step-block"><div class="step-label">Step 4 · Book the demo</div><div class="step-say">"We're running <span class="k">free 20-minute demos</span> this week. Can I book a slot for you — <span class="k">Wednesday or Friday morning?</span>"</div></div>
+    </div>
+  </div>
+
+  <div class="script-card">
+    <div class="script-card-header"><span class="pitch-badge tag-story">Script 4 · Pitch #18 · Story</span><div class="script-card-title">"Loan approved in the first meeting — with a Bizvitals report"</div></div>
+    <div style="padding:12px 18px 0;"><div class="pitch-used">"One of our early users walked into a bank loan meeting with a 12-page AI-written financial summary from Bizvitals. Loan approved in the first meeting."</div></div>
+    <div class="script-card-body">
+      <div class="script-step-block"><div class="step-label">Step 1 · Introduction</div><div class="step-say">"Hi <span class="k">[Name]</span>, I'm Apeksha from <span class="k">Findiag Innovation — we make Bizvitals.</span> Calling on behalf of our co-founder. Quick story that I think will interest you."</div></div>
+      <div class="script-step-block"><div class="step-label">Step 2 · The Pitch</div><div class="step-say">"One of our early users walked into a bank loan meeting with a <span class="k">12-page AI-written financial summary generated by Bizvitals.</span> The bank approved the loan in the first meeting. Before Bizvitals, he had no idea how to present his financials in a way banks could trust."</div><div class="step-note">This is powerful for business owners who deal with banks or investors. Let it sink in.</div></div>
+      <div class="script-step-block"><div class="step-label">Step 3 · Why it matters</div><div class="step-say">"Bizvitals turns your annual report into <span class="k">board-ready, investor-ready reports — in 2 minutes, from one upload.</span> Profit leakage, department health, full risk map."</div></div>
+      <div class="script-step-block"><div class="step-label">Step 4 · Book the demo</div><div class="step-say">"I'd love to show you what that looks like — <span class="k">free 20-minute demo.</span> Can we do <span class="k">this week?</span> Two options: Tuesday at 11 or Thursday at 3."</div></div>
+    </div>
+  </div>
+
+  <div class="script-card">
+    <div class="script-card-header"><span class="pitch-badge tag-fact">Script 5 · Pitch #23 · Fact</span><div class="script-card-title">"A CFO costs ₹15L/yr. Bizvitals costs a fraction of that."</div></div>
+    <div style="padding:12px 18px 0;"><div class="pitch-used">"A full CFO costs ₹8–15 lakh a year. Bizvitals gives you the same financial insight — at a fraction of that cost."</div></div>
+    <div class="script-card-body">
+      <div class="script-step-block"><div class="step-label">Step 1 · Introduction</div><div class="step-say">"Hi <span class="k">[Name]</span>, I'm Apeksha calling from <span class="k">Findiag Innovation — makers of Bizvitals.</span> On behalf of our co-founder — this is a 30-second call."</div></div>
+      <div class="script-step-block"><div class="step-label">Step 2 · The Pitch</div><div class="step-say">"Quick number — <span class="k">a full-time CFO costs ₹8 to ₹15 lakh a year.</span> Most Indian SMBs can't afford that. Bizvitals gives you the same financial intelligence — profit leakage, department health, risk analysis — for <span class="k">a fraction of that cost."</span></div><div class="step-note">The value comparison lands hard. Let the CFO salary number sink in — then pivot to "fraction of that cost."</div></div>
+      <div class="script-step-block"><div class="step-label">Step 3 · Why it matters</div><div class="step-say">"And unlike a CFO, Bizvitals is available <span class="k">24/7, never takes a day off, and delivers results in 2 minutes</span> from your annual report."</div></div>
+      <div class="script-step-block"><div class="step-label">Step 4 · Book the demo</div><div class="step-say">"I'd love to give you a <span class="k">free 20-minute demo</span> — completely no obligation. <span class="k">Wednesday or Friday</span> — which works for you?"</div></div>
+    </div>
+  </div>
+
+  <!-- ═══════════════ SIDDANTH ═══════════════ -->
+  <div class="section-label" style="margin-top:40px;">Siddanth — 5 scripts</div>
+  <div class="person-header">
+    <div class="person-avatar" style="background:linear-gradient(135deg,#5b3fa6,#7c5cc4);">S</div>
+    <div>
+      <div class="person-name">Siddanth</div>
+      <div class="person-sub">Calling on behalf of Co-founder · Findiag Innovation Pvt. Ltd.</div>
+      <div class="person-pitches">Pitches: #04 Pain · #09 Hook · #14 Question · #19 Story · #24 Fact</div>
+    </div>
+  </div>
+
+  <div class="script-card">
+    <div class="script-card-header"><span class="pitch-badge tag-pain">Script 1 · Pitch #04 · Pain</span><div class="script-card-title">"Every business leaks profit — most never find out where"</div></div>
+    <div style="padding:12px 18px 0;"><div class="pitch-used">"Every business leaks profit somewhere — most owners never find out where. Bizvitals finds it and puts a rupee figure on it."</div></div>
+    <div class="script-card-body">
+      <div class="script-step-block"><div class="step-label">Step 1 · Introduction</div><div class="step-say">"Hello, may I speak with <span class="k">[Name]</span>? Hi, I'm Siddanth from <span class="k">Findiag Innovation — we make a product called Bizvitals.</span> Calling personally on behalf of our co-founder."</div><div class="step-note">"Personally on behalf of" signals this is not a mass call.</div></div>
+      <div class="script-step-block"><div class="step-label">Step 2 · The Pitch</div><div class="step-say">"Here's something that's true for almost every business — <span class="k">every business leaks profit somewhere, and most owners never find out where.</span> Bizvitals finds it — and doesn't just tell you it's there, it puts an <span class="k">exact rupee figure</span> on it and tells you which department it's coming from."</div></div>
+      <div class="script-step-block"><div class="step-label">Step 3 · Why it matters</div><div class="step-say">"You just upload your annual report. <span class="k">2 minutes later</span> you have a complete diagnosis — profit leakage, cash gaps, department health, risk map."</div></div>
+      <div class="script-step-block"><div class="step-label">Step 4 · Book the demo</div><div class="step-say">"I'd love to show you a <span class="k">free 20-minute demo</span>. I can share a calendar link right now — <span class="k">Tuesday or Thursday, whichever works?</span>"</div></div>
+    </div>
+  </div>
+
+  <div class="script-card">
+    <div class="script-card-header"><span class="pitch-badge tag-hook">Script 2 · Pitch #09 · Hook</span><div class="script-card-title">"Like a CFO on call — always available, answers in 2 minutes"</div></div>
+    <div style="padding:12px 18px 0;"><div class="pitch-used">"Bizvitals is like having a CFO on call — always available, always instant, and never takes a day off."</div></div>
+    <div class="script-card-body">
+      <div class="script-step-block"><div class="step-label">Step 1 · Introduction</div><div class="step-say">"Hi <span class="k">[Name]</span>, I'm Siddanth from <span class="k">Findiag Innovation</span> — we've built a product called Bizvitals. Quick call from our co-founder's office."</div></div>
+      <div class="script-step-block"><div class="step-label">Step 2 · The Pitch</div><div class="step-say">"Best way I can describe Bizvitals — it's like having a <span class="k">CFO on call for your business — always available, delivering answers in 2 minutes, and never takes a day off.</span> It reads your financials, spots the problems, and tells you what to fix first — in plain language."</div><div class="step-note">The "never takes a day off" line always gets a smile. Use it with a light tone.</div></div>
+      <div class="script-step-block"><div class="step-label">Step 3 · Why it matters</div><div class="step-say">"You upload your annual report once. <span class="k">2 minutes later you have profit leakage in rupees, department health scores, risk analysis</span> — everything a CFO would tell you, without the CFO salary."</div></div>
+      <div class="script-step-block"><div class="step-label">Step 4 · Book the demo</div><div class="step-say">"Want to see it live? <span class="k">Free 20-minute demo</span> — I can share two time slots right now. <span class="k">This Wednesday or Friday?</span>"</div></div>
+    </div>
+  </div>
+
+  <div class="script-card">
+    <div class="script-card-header"><span class="pitch-badge tag-question">Script 3 · Pitch #14 · Question</span><div class="script-card-title">"Is your business getting healthier or quietly riskier?"</div></div>
+    <div style="padding:12px 18px 0;"><div class="pitch-used">"Do you know if your business is getting healthier or quietly getting riskier? Bizvitals answers that question from your annual report."</div></div>
+    <div class="script-card-body">
+      <div class="script-step-block"><div class="step-label">Step 1 · Introduction</div><div class="step-say">"Hi <span class="k">[Name]</span>, Siddanth here from <span class="k">Findiag Innovation — makers of Bizvitals.</span> Reaching out on behalf of our co-founder. One quick question for you."</div></div>
+      <div class="script-step-block"><div class="step-label">Step 2 · The Pitch</div><div class="step-say">"<span class="k">Do you know right now whether your business is getting healthier — or quietly getting riskier?</span> Revenue can be growing while the underlying financial health is deteriorating. Bizvitals answers that question directly from your annual report."</div><div class="step-note">This question hits harder for businesses that are growing — because they assume growth = health.</div></div>
+      <div class="script-step-block"><div class="step-label">Step 3 · Why it matters</div><div class="step-say">"We give you a <span class="k">financial health score across 8 dimensions</span> — growth, profitability, liquidity, risk, efficiency and more — all from one PDF upload, in 2 minutes."</div></div>
+      <div class="script-step-block"><div class="step-label">Step 4 · Book the demo</div><div class="step-say">"I'd love to walk you through it — <span class="k">free 20-minute demo.</span> <span class="k">Tuesday at 11 or Thursday at 3</span> — which works?"</div></div>
+    </div>
+  </div>
+
+  <div class="script-card">
+    <div class="script-card-header"><span class="pitch-badge tag-story">Script 4 · Pitch #19 · Story</span><div class="script-card-title">"Built because founders couldn't answer: is my business healthy?"</div></div>
+    <div style="padding:12px 18px 0;"><div class="pitch-used">"We built this because the founders of Findiag kept hearing the same thing: 'I work 12 hours a day but I don't know if my business is actually healthy.' Now they can know."</div></div>
+    <div class="script-card-body">
+      <div class="script-step-block"><div class="step-label">Step 1 · Introduction</div><div class="step-say">"Hello <span class="k">[Name]</span>, I'm Siddanth from <span class="k">Findiag Innovation — we make Bizvitals,</span> a financial intelligence product. Calling on behalf of our co-founder."</div></div>
+      <div class="script-step-block"><div class="step-label">Step 2 · The Pitch</div><div class="step-say">"I want to share why our founders built this product. They kept hearing business owners say: <span class="k">'I work 12 hours a day, revenue is growing — but I genuinely don't know if my business is actually financially healthy.'</span> That question haunted them. So they built Bizvitals to answer it."</div><div class="step-note">This origin story builds authenticity. Business owners relate to working hard without clarity.</div></div>
+      <div class="script-step-block"><div class="step-label">Step 3 · Why it matters</div><div class="step-say">"One annual report upload. <span class="k">2 minutes. A complete financial health check</span> — 8 pillars, 6 department scores, profit leakage in rupees, risk map. Everything."</div></div>
+      <div class="script-step-block"><div class="step-label">Step 4 · Book the demo</div><div class="step-say">"We're in early launch and the <span class="k">founder is personally involved in every demo</span> at this stage. Can I book a <span class="k">free 20-minute call</span> for you — <span class="k">this week?</span>"</div></div>
+    </div>
+  </div>
+
+  <div class="script-card">
+    <div class="script-card-header"><span class="pitch-badge tag-fact">Script 5 · Pitch #24 · Fact</span><div class="script-card-title">"6 reports. One PDF. Under 2 minutes."</div></div>
+    <div style="padding:12px 18px 0;"><div class="pitch-used">"Bizvitals generates 6 detailed financial reports from one PDF upload — in under 2 minutes. No setup. No integration. No data entry."</div></div>
+    <div class="script-card-body">
+      <div class="script-step-block"><div class="step-label">Step 1 · Introduction</div><div class="step-say">"Hi <span class="k">[Name]</span>, I'm Siddanth from <span class="k">Findiag Innovation</span> — we make Bizvitals. On behalf of our co-founder — this will take 30 seconds."</div></div>
+      <div class="script-step-block"><div class="step-label">Step 2 · The Pitch</div><div class="step-say">"Here's what Bizvitals does in a single sentence — <span class="k">upload one PDF of your annual report and get 6 detailed financial reports in under 2 minutes.</span> Profit leakage, department health, risk analysis, what-if scenarios, impact analysis, financial diagnostic. No setup. No integration. No data entry."</div><div class="step-note">The "no setup, no integration, no data entry" line removes every objection before they can raise it.</div></div>
+      <div class="script-step-block"><div class="step-label">Step 3 · Why it matters</div><div class="step-say">"Everything is in <span class="k">plain language with clear next steps</span> — so you know what to act on, not just what's happening."</div></div>
+      <div class="script-step-block"><div class="step-label">Step 4 · Book the demo</div><div class="step-say">"Can I show you a <span class="k">free 20-minute live demo?</span> <span class="k">Wednesday or Friday</span> — which works better?"</div></div>
+    </div>
+  </div>
+
+  <!-- ═══════════════ IMPANA ═══════════════ -->
+  <div class="section-label" style="margin-top:40px;">Impana — 5 scripts</div>
+  <div class="person-header">
+    <div class="person-avatar" style="background:linear-gradient(135deg,#c0392b,#e04a3a);">I</div>
+    <div>
+      <div class="person-name">Impana</div>
+      <div class="person-sub">Calling on behalf of Co-founder · Findiag Innovation Pvt. Ltd.</div>
+      <div class="person-pitches">Pitches: #05 Pain · #10 Hook · #15 Question · #20 Story · #25 Fact</div>
+    </div>
+  </div>
+
+  <div class="script-card">
+    <div class="script-card-header"><span class="pitch-badge tag-pain">Script 1 · Pitch #05 · Pain</span><div class="script-card-title">"Business is busy but cash is always tight"</div></div>
+    <div style="padding:12px 18px 0;"><div class="pitch-used">"Cash is tight but business is busy — that gap has an explanation. Bizvitals finds it in your own financial data."</div></div>
+    <div class="script-card-body">
+      <div class="script-step-block"><div class="step-label">Step 1 · Introduction</div><div class="step-say">"Hi, is this <span class="k">[Name]</span>? I'm Impana, calling from <span class="k">Findiag Innovation</span> — we've built a financial intelligence product called Bizvitals. Reaching out directly from our founding team."</div><div class="step-note">"Financial intelligence" sounds premium. Use it intentionally.</div></div>
+      <div class="script-step-block"><div class="step-label">Step 2 · The Pitch</div><div class="step-say">"Does this sound familiar — <span class="k">business is busy, revenue looks okay, but cash is always tight</span> and you can't quite figure out why? That gap has an explanation. And Bizvitals finds it in your own financial data — exactly where the money is disappearing."</div><div class="step-note">Many founders nod immediately at this — it's their daily reality. Pause after "tight."</div></div>
+      <div class="script-step-block"><div class="step-label">Step 3 · Why it matters</div><div class="step-say">"We analyse your annual report — <span class="k">2 minutes, one upload</span> — and show you profit leakage, cash gaps, department accountability, all in plain language."</div></div>
+      <div class="script-step-block"><div class="step-label">Step 4 · Book the demo</div><div class="step-say">"We're offering a <span class="k">free 20-minute demo</span> to a select set of business owners. <span class="k">Does this Wednesday or Friday morning</span> work for a quick call?"</div><div class="step-note">"Select set of business owners" creates mild exclusivity.</div></div>
+    </div>
+  </div>
+
+  <div class="script-card">
+    <div class="script-card-header"><span class="pitch-badge tag-hook">Script 2 · Pitch #10 · Hook</span><div class="script-card-title">"One PDF. Six reports. Profit, risk, departments — 2 minutes."</div></div>
+    <div style="padding:12px 18px 0;"><div class="pitch-used">"One PDF upload. Six reports. Profit leakage, cash flow gaps, department health, risk map, what-if analysis — all in 2 minutes."</div></div>
+    <div class="script-card-body">
+      <div class="script-step-block"><div class="step-label">Step 1 · Introduction</div><div class="step-say">"Hi <span class="k">[Name]</span>, I'm Impana from <span class="k">Findiag Innovation — makers of Bizvitals.</span> Quick call on behalf of our co-founder — 30 seconds."</div></div>
+      <div class="script-step-block"><div class="step-label">Step 2 · The Pitch</div><div class="step-say">"Here's what Bizvitals does — <span class="k">one PDF upload of your annual report, and you get six reports in 2 minutes:</span> profit leakage, cash flow gaps, department health, risk map, what-if analysis, and a full financial diagnostic. Everything a business owner needs to understand their numbers."</div><div class="step-note">List all 6 clearly and confidently. The comprehensiveness impresses people.</div></div>
+      <div class="script-step-block"><div class="step-label">Step 3 · Why it matters</div><div class="step-say">"<span class="k">No setup, no data entry, no finance background needed.</span> Just upload and read — in plain language."</div></div>
+      <div class="script-step-block"><div class="step-label">Step 4 · Book the demo</div><div class="step-say">"I'd love to walk you through it live — <span class="k">free, 20 minutes.</span> <span class="k">Tuesday or Thursday</span> — what works?"</div></div>
+    </div>
+  </div>
+
+  <div class="script-card">
+    <div class="script-card-header"><span class="pitch-badge tag-question">Script 3 · Pitch #15 · Question</span><div class="script-card-title">"What if you could see all 6 departments scored financially?"</div></div>
+    <div style="padding:12px 18px 0;"><div class="pitch-used">"What if you could see your Sales, Operations, and HR departments scored on financial health — all from one annual report upload?"</div></div>
+    <div class="script-card-body">
+      <div class="script-step-block"><div class="step-label">Step 1 · Introduction</div><div class="step-say">"Hello <span class="k">[Name]</span>, I'm Impana from <span class="k">Findiag Innovation — we make Bizvitals.</span> Calling from our founding team on behalf of our co-founder."</div></div>
+      <div class="script-step-block"><div class="step-label">Step 2 · The Pitch</div><div class="step-say">"Here's a question — <span class="k">what if you could see your Sales team, Operations, Finance, HR, Material, and Management departments — each given a financial health score?</span> So you instantly know which department is performing and which is dragging your profit down. All from one annual report upload."</div><div class="step-note">This pitch works especially well for business owners with multiple departments or teams.</div></div>
+      <div class="script-step-block"><div class="step-label">Step 3 · Why it matters</div><div class="step-say">"That's exactly what Bizvitals does. <span class="k">2 minutes. One PDF. Six department scores plus full financial diagnostic.</span> In plain language."</div></div>
+      <div class="script-step-block"><div class="step-label">Step 4 · Book the demo</div><div class="step-say">"Can I show you a <span class="k">free 20-minute demo</span> this week? <span class="k">Wednesday or Friday morning</span> — which is better for you?"</div></div>
+    </div>
+  </div>
+
+  <div class="script-card">
+    <div class="script-card-header"><span class="pitch-badge tag-story">Script 4 · Pitch #20 · Story</span><div class="script-card-title">"Like having a CA, CFO, and analyst look at your business at once"</div></div>
+    <div style="padding:12px 18px 0;"><div class="pitch-used">"Imagine your CA, your CFO, and a financial analyst all looking at your business at once — and giving you one clear priority to act on. That's Bizvitals."</div></div>
+    <div class="script-card-body">
+      <div class="script-step-block"><div class="step-label">Step 1 · Introduction</div><div class="step-say">"Hi <span class="k">[Name]</span>, I'm Impana from <span class="k">Findiag Innovation — makers of Bizvitals.</span> Quick call from our founding team."</div></div>
+      <div class="script-step-block"><div class="step-label">Step 2 · The Pitch</div><div class="step-say">"Imagine having your <span class="k">CA, your CFO, and a financial analyst all looking at your business at the same time</span> — and instead of giving you 3 different reports, they give you <span class="k">one clear priority to act on.</span> That's what Bizvitals does. From your annual report. In 2 minutes."</div><div class="step-note">This image of three experts converging into one clear answer is memorable and powerful.</div></div>
+      <div class="script-step-block"><div class="step-label">Step 3 · Why it matters</div><div class="step-say">"Profit leakage, department health, risk map, what to fix first — <span class="k">all in plain language, no finance degree needed.</span>"</div></div>
+      <div class="script-step-block"><div class="step-label">Step 4 · Book the demo</div><div class="step-say">"I'd love to show you a <span class="k">free 20-minute demo</span> — completely no obligation. <span class="k">Tuesday or Thursday</span> — which works for you?"</div></div>
+    </div>
+  </div>
+
+  <div class="script-card">
+    <div class="script-card-header"><span class="pitch-badge tag-fact">Script 5 · Pitch #25 · Fact</span><div class="script-card-title">"Benchmarked against thousands. See where you stand."</div></div>
+    <div style="padding:12px 18px 0;"><div class="pitch-used">"We benchmarked Bizvitals against thousands of Indian companies. Your score tells you exactly where you stand — and what the top 10% in your industry do differently."</div></div>
+    <div class="script-card-body">
+      <div class="script-step-block"><div class="step-label">Step 1 · Introduction</div><div class="step-say">"Hi <span class="k">[Name]</span>, I'm Impana from <span class="k">Findiag Innovation — we make Bizvitals.</span> Calling on behalf of our co-founder."</div></div>
+      <div class="script-step-block"><div class="step-label">Step 2 · The Pitch</div><div class="step-say">"Here's something unique about Bizvitals — we've <span class="k">benchmarked the product against thousands of real Indian companies,</span> including listed firms. So when you upload your report, your score doesn't just tell you how you're doing — it tells you <span class="k">exactly where you stand in your industry and what the top 10% do differently.</span>"</div><div class="step-note">Benchmarking is extremely compelling for competitive business owners. "Top 10%" is the hook.</div></div>
+      <div class="script-step-block"><div class="step-label">Step 3 · Why it matters</div><div class="step-say">"<span class="k">Indian accounting standards, Indian company benchmarks, plain-language output.</span> Built specifically for the way business is done here."</div></div>
+      <div class="script-step-block"><div class="step-label">Step 4 · Book the demo</div><div class="step-say">"I'd love to show you your benchmark live in a <span class="k">free 20-minute demo.</span> <span class="k">Wednesday or Friday</span> — what works for you?"</div></div>
+    </div>
+  </div>
+
+  <!-- OBJECTION HANDLERS -->
+  <div class="section-label" style="margin-top:40px;">Objection handlers — for all team members</div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:10px;margin-bottom:28px;">
+    <div class="obj-card"><div class="obj-q">I'm busy right now</div><div class="obj-a">"Absolutely understood. Can I send you a quick overview on WhatsApp and follow up next week? When's a good time to reconnect — <span class="obj-highlight">Monday or Tuesday morning?</span>"</div></div>
+    <div class="obj-card"><div class="obj-q">I already have a CA</div><div class="obj-a">"That's great — Bizvitals works alongside your CA. We take what they give you and translate it into <span class="obj-highlight">plain language with clear next steps</span> so you don't have to wait for the next monthly meeting."</div></div>
+    <div class="obj-card"><div class="obj-q">I already use ChatGPT / Claude / Gemini</div><div class="obj-a">"We love those tools too — but here's the difference. ChatGPT gives general answers. <span class="obj-highlight">Bizvitals gives your specific profit leakage number, your department scores, your risk map</span> — benchmarked against thousands of real Indian companies. General AI vs purpose-built financial diagnosis."</div><div class="obj-note">★ Most important objection to handle confidently. Practice this one most.</div></div>
+    <div class="obj-card"><div class="obj-q">We use Tally / Zoho already</div><div class="obj-a">"Those tools record your transactions — Bizvitals reads those records and <span class="obj-highlight">tells you what they mean.</span> They work together perfectly. The demo is free and 20 minutes — shall we fix a time?"</div></div>
+
+    <div class="obj-card"><div class="obj-q">How much does it cost?</div><div class="obj-a">"The pricing depends on what works best for your business — but here's the thing, <span class="obj-highlight">there's nothing to pay right now.</span> We're currently offering a <span class="obj-highlight">completely free 1-month trial for our first 100 customers</span> — no credit card, no commitment. The best way to understand the value is to see it first. <span class="obj-highlight">Let's do the 20-minute demo, and after that if you like what you see, we can talk about what plan makes sense for you."</span></div><div class="obj-note">★ Never mention a price number on the call. If they push — say "it's very affordable and we'll cover it fully after the demo." Redirect every time.</div></div>
+
+    <div class="obj-card"><div class="obj-q">Is my data secure? What happens to my financial data?</div><div class="obj-a">"Completely secure. Your data is <span class="obj-highlight">encrypted with bank-grade encryption</span> — the same standard your bank uses. It is only used to generate your diagnosis and is <span class="obj-highlight">never shared, never sold, never stored beyond what's needed.</span> You stay in full control at all times. Our founder personally stands behind this."</div><div class="obj-note">Say this calmly and with full confidence. Data security is an emotional concern — don't rush it.</div></div>
+
+    <div class="obj-card"><div class="obj-q">What about the privacy of my company's financial information?</div><div class="obj-a">"Your financial data is completely private — <span class="obj-highlight">only you can see your diagnosis.</span> We don't share it with any third party, we don't retain it after your session, and we don't use it without your consent. <span class="obj-highlight">Your data belongs to you, always.</span> Happy to share our privacy policy before the demo if that helps."</div><div class="obj-note">Offering the privacy policy proactively builds trust — even if they don't ask for it.</div></div>
+
+    <div class="obj-card"><div class="obj-q">I already have a CA / CFO doing this — why do I need Bizvitals?</div><div class="obj-a">"Bizvitals isn't here to replace your CA or CFO — it works alongside them. Your CA handles compliance and filings. Your CFO advises on strategy. But <span class="obj-highlight">neither of them gives you an instant answer at 10pm on a Sunday</span> when you're wondering why your cash is tight. Bizvitals does. And when you do sit with your CA or CFO next time, <span class="obj-highlight">you'll already know the right questions to ask.</span>"</div><div class="obj-note">Never make them feel their CA/CFO is being replaced. Always position as complementary.</div></div>
+
+    <div class="obj-card"><div class="obj-q">What does your AI actually do? How does it work?</div><div class="obj-a">"Our AI isn't a general chatbot — it's <span class="obj-highlight">purpose-built specifically for financial diagnosis of Indian businesses.</span> It reads your balance sheet and P&L, applies over 30 financial health checks, benchmarks your numbers against thousands of real Indian companies, and writes a plain-language report — <span class="obj-highlight">profit leakage in rupees, department health scores, risk flags, and prioritised next steps.</span> Trained on real Indian company data including listed firms — so it understands Indian accounting standards. It doesn't give generic advice — it gives <span class="obj-highlight">answers specific to your business."</span></div><div class="obj-note">★ They're genuinely curious here — explain with pride. Don't oversell. The specificity does the work.</div></div>
+
+    <div class="obj-card"><div class="obj-q">I can't share my confidential / crucial financial documents</div><div class="obj-a">"Completely understand — and we're <span class="obj-highlight">not asking for anything confidential.</span> All we need is your <span class="obj-highlight">Balance Sheet and Profit & Loss statement</span> — these are publicly available financial documents that every business already files with their CA or auditor. We don't need your bank statements, GST data, client details, employee records, or any internal business information. <span class="obj-highlight">Just the two standard documents your CA already has.</span>"</div><div class="obj-note">★ This objection usually comes from a misunderstanding — they think we need sensitive internal data. Clarify quickly and confidently. If they're still unsure, add: "In fact, for listed companies this data is publicly available on the stock exchange. We just make it useful for private businesses too."</div></div>
+
+    <div class="obj-card"><div class="obj-q">Not interested</div><div class="obj-a">"I completely respect that. May I ask — is there a specific reason? If not, I'll make a note not to follow up. <span class="obj-highlight">Either way, thank you for your time.</span>" <em style="color:var(--ink3);font-size:11px;">(If they give a reason — respond to it. Always end respectfully.)</em></div></div>
+    <div cla

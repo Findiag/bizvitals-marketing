@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bizvitals — Business Owner Value</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+--ink: #0f0e0c;
+--ink2: #3a3835;
+--ink3: #6b6860;
+--bg: #f7f5f0;
+--bg2: #eeeae2;
+--bg3: #e4dfd5;
+--white: #ffffff;
+--teal: #0d7a5f;
+--teal-light: #d6f0e8;
+--teal-mid: #1d9e75;
+--blue: #1a56a0;
+--blue-light: #dceeff;
+--amber: #b86a00;
+--amber-light: #fdefd3;
+--red: #c0392b;
+--red-light: #fde8e6;
+--purple: #5b3fa6;
+--purple-light: #ede9fc;
+--accent: #e85d2a;
+--accent2: #f0a500;
+--serif: 'DM Serif Display', Georgia, serif;
+--sans: 'DM Sans', sans-serif;
+--mono: 'JetBrains Mono', monospace;
+--radius: 10px;
+--radius-lg: 16px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: var(--sans); background: var(--bg); color: var(--ink); font-size: 14px; line-height: 1.6; min-width: 320px; }
+/* ── NAV ── */
+nav {
+position: sticky; top: 0; z-index: 100;
+background: var(--ink);
+display: flex; align-items: stretch;
+border-bottom: 1px solid #2a2826;
+overflow-x: auto; -webkit-overflow-scrolling: touch;
+}
+/* Utility classes */
+.tc{text-align:center}.tc.t11{font-size:11px}
+.f9{font-size:9px}.f10{font-size:10px}.f11{font-size:11px}.f12{font-size:12px}.f13{font-size:13px}.f14{font-size:14px}
+.fw5{font-weight:500}.fw6{font-weight:600}.fw7{font-weight:700}
+.ci{color:var(--ink)}.c2{color:var(--ink2)}.c3{color:var(--ink3)}.ct{color:var(--teal)}
+.mono{font-family:var(--mono)}.uc{text-transform:uppercase}
+.ls6{letter-spacing:0.06em}.ls7{letter-spacing:0.07em}.ls8{letter-spacing:0.08em}
+.lh5{line-height:1.5}.lh6{line-height:1.6}.lh65{line-height:1.65}.lh7{line-height:1.7}.lh75{line-height:1.75}
+.mb2{margin-bottom:2px}.mb4{margin-bottom:4px}.mb5{margin-bottom:5px}.mb6{margin-bottom:6px}.mb8{margin-bottom:8px}.mb10{margin-bottom:10px}.mb12{margin-bottom:12px}
+.pl14{padding-left:14px}.mla{margin-left:auto}
+.flex-ac{display:flex;align-items:center}
+.gap6{gap:6px}.gap8{gap:8px}.gap10{gap:10px}.gap12{gap:12px}.gap16{gap:16px}
+.w9p{width:9%}.w10p{width:10%}
+.card-base{background:var(--white);border:1px solid var(--bg3);border-radius:var(--radius-lg);overflow:hidden}
+.card-pad{padding:14px 16px}
+.mono-eyebrow{font-family:var(--mono);font-size:9px;text-transform:uppercase;letter-spacing:0.07em;margin-bottom:8px}
+::-webkit-scrollbar { height: 0; }
+.nav-logo {
+padding: 0 20px; font-family: var(--serif);
+font-size: 17px; color: var(--bg);
+border-right: 1px solid #2a2826;
+letter-spacing: 0.01em; white-space: nowrap;
+display: flex; align-items: center; flex-shrink: 0;
+}
+.nav-logo span { color: var(--accent2); }
+.nav-tabs { display: flex; flex: 1; }
+.nav-tab {
+padding: 14px 16px; font-size: 11px; font-weight: 500;
+color: #888; cursor: pointer;
+border-right: 1px solid #2a2826;
+transition: all 0.2s; letter-spacing: 0.04em;
+text-transform: uppercase; user-select: none;
+white-space: nowrap; flex-shrink: 0;
+display: flex; align-items: center; gap: 6px;
+}
+.nav-tab:hover { color: var(--bg); background: #1a1816; }
+.nav-tab.active { color: var(--accent2); background: #1a1816; }
+.nav-badge {
+display: inline-block; font-size: 9px; font-family: var(--mono);
+padding: 2px 6px; border-radius: 3px;
+background: #2a2826; color: #888; flex-shrink: 0;
+}
+.nav-tab.active .nav-badge { background: var(--accent); color: #fff; }
+/* ── PAGES ── */
+.page { display: none; min-height: calc(100vh - 49px); }
+.page.active { display: block; }
+/* ── PAGE HEADER ── */
+.page-header {
+background: var(--ink); padding: 40px 24px 36px;
+position: relative; overflow: hidden;
+}
+.page-header::after {
+content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px;
+background: linear-gradient(90deg, var(--accent) 0%, var(--accent2) 60%, transparent 100%);
+}
+.page-header-eyebrow {
+font-family: var(--mono); font-size: 10px; color: var(--accent2);
+letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 10px;
+}
+.page-header h1 {
+font-family: var(--serif); font-size: clamp(26px, 4vw, 38px);
+color: var(--bg); line-height: 1.15; max-width: 600px;
+}
+.page-header h1 em { color: var(--accent2); font-style: italic; }
+.page-header p {
+color: #888; font-size: 13px; margin-top: 10px;
+max-width: 520px; line-height: 1.65;
+}
+/* ── CONTAINER ── */
+.container { max-width: 1100px; margin: 0 auto; padding: 32px 24px; }
+/* ── SECTION LABEL ── */
+.section-label {
+font-family: var(--mono); font-size: 10px; letter-spacing: 0.1em;
+text-transform: uppercase; color: var(--ink3); margin-bottom: 14px;
+display: flex; align-items: center; gap: 10px;
+}
+.section-label::after { content: ''; flex: 1; height: 1px; background: var(--bg3); }
+/* ════════════════════════════════
+PAGE 1 — PRICING
+════════════════════════════════ */
+/* Intro stats */
+.pricing-intro {
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+gap: 12px; margin-bottom: 28px;
+}
+.intro-stat { background: var(--white); border: 1px solid var(--bg3); border-radius: var(--radius); padding: 14px 16px; }
+.intro-stat-label { font-size: 11px; color: var(--ink3); margin-bottom: 4px; }
+.intro-stat-val { font-family: var(--serif); font-size: 20px; color: var(--ink); }
+.intro-stat-sub { font-size: 11px; color: var(--ink3); margin-top: 2px; }
+/* Billing toggle */
+.billing-toggle-wrap {
+display: flex; align-items: center; justify-content: center;
+gap: 14px; margin-bottom: 24px;
+background: var(--white); border: 1px solid var(--bg3);
+border-radius: 50px; padding: 10px 20px; width: fit-content; margin-left: auto; margin-right: auto;
+box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+}
+.billing-label { font-size: 13px; font-weight: 500; color: var(--ink3); transition: color 0.2s; cursor: pointer; }
+.billing-label.active { color: var(--ink); }
+.billing-save-badge { font-size: 10px; font-weight: 600; background: var(--teal-light); color: var(--teal); padding: 2px 8px; border-radius: 20px; margin-left: 4px; }
+.toggle-track { width: 44px; height: 24px; border-radius: 12px; background: var(--bg3); cursor: pointer; position: relative; transition: background 0.25s; flex-shrink: 0; }
+.toggle-track.annual { background: var(--teal); }
+.toggle-knob { position: absolute; top: 2px; left: 2px; width: 20px; height: 20px; border-radius: 50%; background: white; box-shadow: 0 1px 4px rgba(0,0,0,0.25); transition: transform 0.25s cubic-bezier(.4,0,.2,1); }
+.toggle-track.annual .toggle-knob { transform: translateX(20px); }
+.annual-badge { display: none; font-size: 10px; font-weight: 600; background: var(--teal-light); color: var(--teal); padding: 2px 8px; border-radius: 20px; margin-left: 6px; vertical-align: middle; }
+.annual-badge.visible { display: inline; }
+.save-line { font-size: 11px; color: var(--teal-mid); font-weight: 500; min-height: 16px; margin-top: 2px; opacity: 0; transition: opacity 0.2s; }
+.save-line.visible { opacity: 1; }
+.plan-price-sub-billing { font-size: 11px; color: var(--ink3); margin-bottom: 10px; }
+/* Plan cards */
+.plans-grid {
+display: grid;
+grid-template-columns: repeat(4, 1fr);
+gap: 12px; margin-bottom: 32px;
+align-items: start;
+}
+.plan-card {
+background: var(--white); border: 1px solid var(--bg3);
+border-radius: var(--radius-lg); padding: 20px 18px;
+display: flex; flex-direction: column;
+transition: box-shadow 0.2s, transform 0.2s;
+}
+.plan-card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,0.08); }
+.plan-card.featured { border: 2px solid var(--teal); box-shadow: 0 0 0 3px rgba(13,122,95,0.08); }
+.plan-tag { font-family: var(--mono); font-size: 9px; letter-spacing: 0.08em; text-transform: uppercase; padding: 3px 8px; border-radius: 4px; display: inline-block; margin-bottom: 10px; width: fit-content; }
+.tag-starter { background: var(--teal-light); color: var(--teal); }
+.tag-growth { background: var(--teal); color: #fff; }
+.tag-enterprise { background: var(--purple-light); color: var(--purple); }
+.tag-custom { background: var(--amber-light); color: var(--amber); }
+.plan-price { font-family: var(--serif); font-size: 30px; color: var(--ink); line-height: 1; margin-bottom: 2px; }
+.plan-price sup { font-size: 15px; vertical-align: super; }
+.wallet-badge { font-size: 11px; background: var(--amber-light); color: var(--amber); padding: 3px 10px; border-radius: 20px; margin-bottom: 14px; display: inline-block; }
+.plan-divider { height: 1px; background: var(--bg2); margin: 10px 0; }
+.plan-section-head { font-family: var(--mono); font-size: 9px; letter-spacing: 0.07em; text-transform: uppercase; color: var(--ink3); margin: 10px 0 5px; }
+.plan-feature { display: flex; align-items: flex-start; gap: 6px; font-size: 12px; color: var(--ink2); margin-bottom: 5px; line-height: 1.4; }
+.plan-feature-icon { flex-shrink: 0; margin-top: 1px; font-size: 13px; }
+.feat-yes { color: var(--teal-mid); }
+.feat-no { color: var(--bg3); }
+.feat-partial { color: var(--amber); }
+.plan-cta {
+display: block; text-align: center; padding: 10px 14px;
+border-radius: var(--radius); font-size: 12px; font-weight: 600;
+cursor: pointer; border: none; margin-top: auto; padding-top: 10px;
+transition: all 0.2s; letter-spacing: 0.02em;
+}
+.cta-outline { background: transparent; border: 1.5px solid var(--bg3); color: var(--ink2); }
+.cta-outline:hover { border-color: var(--ink2); color: var(--ink); background: var(--bg); }
+.cta-solid { background: var(--teal); color: #fff; border: 1.5px solid var(--teal); }
+.cta-solid:hover { background: #0a6650; }
+.cta-custom { background: var(--amber-light); border: 1.5px solid #f5c97a; color: var(--amber); }
+/* Sub-feature rows */
+.sub-feat-row { display: flex; align-items: center; gap: 6px; font-size: 11px; padding: 3px 0 3px 6px; border-left: 2px solid var(--bg3); margin: 3px 0 3px 6px; color: var(--ink3); }
+.sub-feat-row.included { border-left-color: var(--teal-light); color: var(--ink2); }
+.sub-feat-row.locked { border-left-color: var(--bg3); color: #bbb; font-style: italic; }
+/* Dept split callout */
+.dept-callout { background: var(--white); border: 1px solid var(--bg3); border-radius: var(--radius-lg); padding: 16px 18px; margin-bottom: 24px; display: flex; gap: 16px; flex-wrap: wrap; }
+.dept-callout-plan { flex: 1; min-width: 200px; }
+.dept-callout-plan-label { font-family: var(--mono); font-size: 9px; letter-spacing: 0.07em; text-transform: uppercase; margin-bottom: 6px; }
+.dept-callout-plan-label.starter { color: var(--teal); }
+.dept-callout-plan-label.growth { color: var(--blue); }
+.dept-callout-plan-label.enterprise { color: var(--purple); }
+.dept-tag { display: inline-flex; align-items: center; gap: 5px; font-size: 11px; padding: 4px 10px; border-radius: 6px; margin: 3px 3px 3px 0; }
+.dept-tag.included { background: var(--teal-light); color: var(--teal); }
+.dept-tag.locked { background: var(--bg2); color: var(--ink3); text-decoration: line-through; opacity: 0.6; }
+.dept-callout-divider { width: 1px; background: var(--bg3); }
+.dept-reason { font-size: 11px; color: var(--ink3); line-height: 1.6; margin-top: 6px; font-style: italic; }
+/* Annual strip */
+.annual-strip { background: var(--ink); border-radius: var(--radius-lg); padding: 18px 22px; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 14px; align-items: center; margin-bottom: 28px; }
+.annual-strip-label { color: #aaa; font-size: 12px; line-height: 1.5; }
+.annual-strip-label strong { color: var(--bg); display: block; font-size: 13px; margin-bottom: 2px; }
+.annual-plan { text-align: center; }
+.annual-plan-name { font-size: 10px; color: #666; font-family: var(--mono); letter-spacing: 0.06em; text-transform: uppercase; }
+.annual-plan-price { font-family: var(--serif); font-size: 18px; color: var(--bg); margin: 2px 0; }
+.annual-plan-save { font-size: 10px; color: var(--teal-mid); }
+/* Breakdown table */
+.breakdown-table { width: 100%; border-collapse: collapse; font-size: 12px; background: var(--white); border: 1px solid var(--bg3); border-radius: var(--radius-lg); overflow: hidden; margin-bottom: 28px; }
+.breakdown-table th { background: var(--ink); color: #bbb; font-weight: 500; font-size: 10px; padding: 10px 12px; text-align: left; letter-spacing: 0.04em; text-transform: uppercase; }
+.breakdown-table th:not(:first-child) { text-align: center; }
+.breakdown-table td { padding: 7px 12px; border-bottom: 1px solid var(--bg2); color: var(--ink2); vertical-align: middle; font-size: 12px; }
+.breakdown-table td:not(:first-child) { text-align: center; }
+.breakdown-table tr:last-child td { border-bottom: none; }
+.breakdown-table .section-row td { background: var(--bg2); font-family: var(--mono); font-size: 9px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink3); padding: 5px 12px; font-weight: 500; }
+.breakdown-table .total-row td { background: var(--bg); font-weight: 600; font-size: 12px; color: var(--ink); border-top: 2px solid var(--bg3); }
+.breakdown-table .sub-row td:first-child { padding-left: 20px; }
+.chk { color: var(--teal-mid); font-size: 14px; }
+.xmark { color: var(--bg3); font-size: 13px; }
+.part { color: var(--amber); font-size: 10px; font-weight: 600; }
+.feat-val { font-family: var(--mono); font-size: 10px; color: var(--ink3); }
+.highlight-col { background: rgba(13,122,95,0.05); }
+/* Pills */
+.pill { display: inline-block; font-size: 9px; font-weight: 700; padding: 2px 7px; border-radius: 20px; letter-spacing: 0.04em; text-transform: uppercase; white-space: nowrap; }
+.pill-aha { background: var(--teal-light); color: var(--teal); }
+.pill-upgrade { background: var(--purple-light); color: var(--purple); }
+.pill-urgency { background: var(--red-light); color: var(--red); }
+.pill-engage { background: var(--blue-light); color: var(--blue); }
+/* Wallet */
+.wallet-section { background: linear-gradient(135deg,#fffbf0,#fff8e6); border: 1px solid #f5c97a; border-radius: var(--radius-lg); padding: 20px 22px; margin-bottom: 16px; }
+.wallet-section h3 { font-family: var(--serif); font-size: 17px; color: var(--ink); margin-bottom: 5px; }
+.wallet-section p { font-size: 12px; color: var(--ink3); margin-bottom: 14px; line-height: 1.6; }
+.wallet-rates { display: flex; gap: 8px; flex-wrap: wrap; }
+.wallet-rate { background: var(--white); border: 1px solid #f5c97a; border-radius: var(--radius); padding: 10px 14px; text-align: center; min-width: 100px; flex: 1; }
+.wallet-rate-label { font-size: 10px; color: var(--ink3); margin-bottom: 3px; }
+.wallet-rate-price { font-family: var(--serif); font-size: 17px; color: var(--amber); }
+.wallet-rate-sub { font-size: 10px; color: var(--ink3); }
+/* ════════════════════════════════
+PAGE 2 — ONBOARDING
+════════════════════════════════ */
+.metrics-row { display: grid; grid-template-columns: repeat(4,1fr); gap: 10px; margin-bottom: 28px; }
+.metric-card { background: var(--white); border: 1px solid var(--bg3); border-radius: var(--radius); padding: 14px 16px; }
+.metric-card-label { font-size: 10px; color: var(--ink3); font-family: var(--mono); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 4px; }
+.metric-card-val { font-family: var(--serif); font-size: 20px; color: var(--ink); }
+.metric-card-sub { font-size: 10px; color: var(--ink3); margin-top: 2px; }
+.phase-block { margin-bottom: 28px; }
+.phase-header { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+.phase-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+.phase-name { font-family: var(--mono); font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink3); }
+.phase-range { font-size: 11px; color: var(--ink3); margin-left: auto; }
+.day-row { display: grid; grid-template-columns: 48px 1fr; margin-bottom: 2px; position: relative; }
+.day-row::before { content: ''; position: absolute; left: 23px; top: 50px; bottom: -2px; width: 1px; background: var(--bg3); }
+.day-row:last-child::before { display: none; }
+.day-num-wrap { padding-top: 12px; display: flex; justify-content: center; }
+.day-circle { width: 34px; height: 34px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: var(--mono); font-size: 10px; font-weight: 600; flex-shrink: 0; position: relative; z-index: 1; }
+.day-content { background: var(--white); border: 1px solid var(--bg3); border-radius: var(--radius); padding: 12px 14px; margin-bottom: 8px; margin-left: 4px; }
+.day-title { font-weight: 600; font-size: 13px; color: var(--ink); margin-bottom: 5px; display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+.day-desc { font-size: 12px; color: var(--ink2); line-height: 1.6; margin-bottom: 8px; }
+.day-email { background: var(--bg); border-radius: 6px; padding: 7px 10px; font-size: 11px; color: var(--ink3); border-left: 2px solid var(--bg3); }
+.day-email strong { color: var(--ink2); }
+.phase-hook .day-circle { background: var(--teal-light); color: var(--teal); }
+.phase-hook .phase-dot { background: var(--teal-mid); }
+.phase-value .day-circle { background: var(--blue-light); color: var(--blue); }
+.phase-value .phase-dot { background: var(--blue); }
+.phase-convert .day-circle { background: var(--purple-light); color: var(--purple); }
+.phase-convert .phase-dot { background: var(--purple); }
+.phase-close .day-circle { background: var(--red-light); color: var(--red); }
+.phase-close .phase-dot { background: var(--red); }
+/* Pill badges on onboarding */
+.pill-aha2 { background: var(--teal-light); color: var(--teal); }
+.pill-upgrade2 { background: var(--purple-light); color: var(--purple); }
+.pill-urgency2 { background: var(--red-light); color: var(--red); }
+.pill-engage2 { background: var(--blue-light); color: var(--blue); }
+/* ════════════════════════════════
+PAGE 3 — DEMO SCRIPT
+════════════════════════════════ */
+.demo-meta { display: grid; grid-template-columns: repeat(4,1fr); gap: 10px; margin-bottom: 28px; }
+.script-scene { background: var(--white); border: 1px solid var(--bg3); border-radius: var(--radius); padding: 16px 18px; margin-bottom: 10px; }
+.scene-head { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 10px; }
+.scene-num-badge { width: 26px; height: 26px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: var(--mono); font-size: 10px; font-weight: 700; flex-shrink: 0; }
+.scene-title { font-size: 13px; font-weight: 600; color: var(--ink); flex: 1; line-height: 1.4; }
+.scene-time { font-family: var(--mono); font-size: 9px; color: var(--ink3); background: var(--bg); padding: 3px 7px; border-radius: 4px; white-space: nowrap; }
+.you-say { background: #eef5ff; border-left: 3px solid var(--blue); border-radius: 0 6px 6px 0; padding: 8px 12px; font-size: 12px; color: #1a3a6b; margin: 6px 0; font-style: italic; line-height: 1.6; }
+.you-say::before { content: "You say: "; font-style: normal; font-weight: 700; color: var(--blue); }
+.they-say { background: var(--bg); border-left: 3px solid var(--bg3); border-radius: 0 6px 6px 0; padding: 8px 12px; font-size: 12px; color: var(--ink3); margin: 6px 0; font-style: italic; line-height: 1.6; }
+.they-say::before { content: "They say: "; font-style: normal; font-weight: 700; color: var(--ink3); }
+.do-this { background: var(--teal-light); border-radius: 6px; padding: 7px 10px; font-size: 11px; color: var(--teal); margin: 5px 0; line-height: 1.55; }
+.do-this::before { content: "✦ Action: "; font-weight: 700; }
+.dont-do { background: var(--red-light); border-radius: 6px; padding: 7px 10px; font-size: 11px; color: var(--red); margin: 5px 0; line-height: 1.55; }
+.dont-do::before { content: "✕ Avoid: "; font-weight: 700; }
+.cfo-tip { background: var(--amber-light); border-radius: 6px; padding: 7px 10px; font-size: 11px; color: var(--amber); margin: 5px 0; line-height: 1.55; }
+.cfo-tip::before { content: "★ CFO tip: "; font-weight: 700; }
+.objection-card { background: var(--bg); border: 1px solid var(--bg3); border-radius: var(--radius); padding: 13px 15px; margin-bottom: 8px; }
+.obj-q { font-size: 12px; color: var(--ink2); margin-bottom: 5px; line-height: 1.5; }
+.obj-q::before { content: "Objection: "; font-weight: 700; color: var(--red); }
+.obj-a { font-size: 12px; color: var(--teal); line-height: 1.6; }
+.obj-a::before { content: "Response: "; font-weight: 700; }
+.one-liner { background: var(--ink); border-radius: var(--radius-lg); padding: 22px 26px; margin-top: 8px; }
+.one-liner-label { font-family: var(--mono); font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase; color: #666; margin-bottom: 10px; }
+.one-liner-text { font-family: var(--serif); font-size: clamp(15px,2vw,18px); color: var(--bg); line-height: 1.5; }
+.one-liner-text em { color: var(--accent2); font-style: italic; }
+.one-liner-sub { font-size: 11px; color: #666; margin-top: 8px; }
+.demo-phase { display: flex; align-items: center; gap: 10px; margin: 24px 0 10px; }
+.demo-phase-dot { width: 8px; height: 8px; border-radius: 50%; }
+.demo-phase-name { font-family: var(--mono); font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink3); }
+.demo-phase-time { font-size: 11px; color: var(--ink3); margin-left: auto; }
+.demo-phase::after { content: ''; flex: 1; height: 1px; background: var(--bg3); margin-left: 4px; max-width: 60px; }
+.scene-badge-discovery { background: var(--teal-light); color: var(--teal); }
+.scene-badge-demo { background: var(--blue-light); color: var(--blue); }
+.scene-badge-close { background: var(--purple-light); color: var(--purple); }
+.scene-badge-objection { background: var(--red-light); color: var(--red); }
+/* BO value column */
+.bo-val { font-size: 11px; color: var(--teal); line-height: 1.4; font-style: italic; }
+.val-cell { vertical-align: middle; }
+/* ════════════════════════════════
+RESPONSIVE BREAKPOINTS
+════════════════════════════════ */
+/* Tablet: ≤900px */
+@media (max-width: 900px) {
+.plans-grid { grid-template-columns: 1fr 1fr; }
+.pricing-intro { grid-template-columns: 1fr 1fr; }
+.metrics-row { grid-template-columns: 1fr 1fr; }
+.demo-meta { grid-template-columns: 1fr 1fr; }
+.annual-strip { grid-template-columns: 1fr 1fr; }
+.dept-callout { flex-direction: column; }
+.dept-callout-divider { display: none; }
+.breakdown-table { font-size: 11px; }
+.breakdown-table th, .breakdown-table td { padding: 6px 8px; }
+}
+/* Mobile: ≤600px */
+@media (max-width: 600px) {
+.container { padding: 20px 16px; }
+.page-header { padding: 28px 16px 24px; }
+.plans-grid { grid-template-columns: 1fr; }
+.pricing-intro { grid-template-columns: 1fr; }
+.metrics-row { grid-template-columns: 1fr 1fr; }
+.demo-meta { grid-template-columns: 1fr 1fr; }
+.annual-strip { grid-template-columns: 1fr 1fr; }
+.billing-toggle-wrap { padding: 8px 16px; }
+.wallet-rates { flex-direction: column; }
+.wallet-rate { min-width: unset; }
+.breakdown-table-wrap { overflow-x: auto; }
+.scene-head { flex-wrap: wrap; }
+.scene-time { margin-left: 36px; }
+.day-row { grid-template-columns: 40px 1fr; }
+}
+/* Print */
+@media print {
+nav { display: none !important; }
+.page { display: block !important; page-break-after: always; }
+.page:last-child { page-break-after: auto; }
+body { background: white; }
+.plan-card:hover { transform: none; box-shadow: none; }
+}
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--bg3); border-radius: 3px; }
+
+.tc{text-align:center}.tc.t11{font-size:11px}
+.f9{font-size:9px}.f10{font-size:10px}.f11{font-size:11px}.f12{font-size:12px}.f13{font-size:13px}.f14{font-size:14px}
+.fw5{font-weight:500}.fw6{font-weight:600}.fw7{font-weight:700}
+.ci{color:var(--ink)}.c2{color:var(--ink2)}.c3{color:var(--ink3)}.ct{color:var(--teal)}.ctm{color:var(--teal-mid)}.cr{color:var(--red)}
+.lh15{line-height:1.5}.lh16{line-height:1.6}.lh17{line-height:1.7}
+.mb4{margin-bottom:4px}.mb5{margin-bottom:5px}.mb6{margin-bottom:6px}.mb8{margin-bottom:8px}.mb10{margin-bottom:10px}
+
+  a.nav-tab { text-decoration: none; display: flex; align-items: center; gap: 6px; }
+</style>
+<script>
+var currentView = 'cfo';
+function setView(view) {
+  currentView = view;
+  var isCfo = view === 'cfo';
+  document.querySelectorAll('.cfo-val').forEach(function(el){ el.style.display = isCfo ? '' : 'none'; });
+  document.querySelectorAll('.bo-val').forEach(function(el){ el.style.display = isCfo ? 'none' : ''; });
+  var cfoBtn = document.getElementById('view-cfo');
+  var boBtn  = document.getElementById('view-bo');
+  var head   = document.getElementById('col-value-head');
+  if (cfoBtn) { cfoBtn.style.background = isCfo ? 'var(--ink)' : 'transparent'; cfoBtn.style.color = isCfo ? 'var(--bg)' : 'var(--ink3)'; }
+  if (boBtn)  { boBtn.style.background = isCfo ? 'transparent' : 'var(--teal)'; boBtn.style.color = isCfo ? 'var(--ink3)' : '#fff'; }
+  if (head)   head.textContent = isCfo ? 'CFO Value' : 'Business Owner Value';
+}
+var isAnnual = false;
+var pricing = { starter:{monthly:499,annual:416}, growth:{monthly:999,annual:832}, enterprise:{monthly:2499,annual:2082} };
+var savingsMap = { starter:'\u20b9996', growth:'\u20b91,998', enterprise:'\u20b94,998' };
+function setBilling(mode) { isAnnual = mode === 'annual'; applyBilling(); }
+function toggleBilling()  { isAnnual = !isAnnual; applyBilling(); }
+function fmt(n) { return n.toLocaleString('en-IN'); }
+function animatePrice(el, from, to) {
+  var dur=300, s=performance.now();
+  (function step(now){
+    var t=Math.min((now-s)/dur,1), e=t<0.5?2*t*t:-1+(4-2*t)*t;
+    el.textContent=fmt(Math.round(from+(to-from)*e));
+    if(t<1) requestAnimationFrame(step); else el.textContent=fmt(to);
+  })(s);
+}
+function applyBilling() {
+  var track=document.getElementById('billing-toggle'),lblM=document.getElementById('lbl-monthly'),
+      lblA=document.getElementById('lbl-annual'),strip=document.getElementById('annual-summary-strip');
+  if(track) track.classList.toggle('annual',isAnnual);
+  if(lblM)  lblM.classList.toggle('active',!isAnnual);
+  if(lblA)  lblA.classList.toggle('active',isAnnual);
+  if(strip) strip.style.display=isAnnual?'grid':'none';
+  ['starter','growth','enterprise'].forEach(function(plan){
+    var val=isAnnual?pricing[plan].annual:pricing[plan].monthly,
+        badge=document.getElementById('badge-'+plan),save=document.getElementById('save-'+plan),
+        sub=document.getElementById('sub-'+plan),price=document.getElementById('price-'+plan);
+    if(!price) return;
+    animatePrice(price,parseInt(price.textContent.replace(/,/g,'')),val);
+    if(badge) badge.classList.toggle('visible',isAnnual);
+    if(save){save.classList.toggle('visible',isAnnual);save.textContent='Save '+savingsMap[plan]+'/yr \u2014 2 months free';}
+    if(sub) sub.textContent=isAnnual?'per month \u00b7 billed \u20b9'+fmt(val*12)+'/yr':'per month \u00b7 billed monthly';
+  });
+  var thS=document.getElementById('th-starter'),thG=document.getElementById('th-growth');
+  if(thS) thS.textContent=isAnnual?'\u20b9416/mo':'\u20b9499/mo';
+  if(thG) thG.textContent=isAnnual?'\u20b9832/mo':'\u20b9999/mo';
+  document.querySelectorAll('.fv').forEach(function(el){
+    var s=el.dataset.s,sa=el.dataset.sa,g=el.dataset.g,ga=el.dataset.ga,d='';
+    if(g) d=isAnnual?'\u20b9'+ga:'\u20b9'+g;
+    else if(s) d=isAnnual?'\u20b9'+sa:'\u20b9'+s;
+    else d='\u2014';
+    el.textContent=d;
+  });
+  var sTot=isAnnual?416:499,gTot=isAnnual?832:999,eTot=isAnnual?2082:2499;
+  var tS=document.getElementById('tbl-total-starter'),tG=document.getElementById('tbl-total-growth'),
+      bl=document.getElementById('tbl-billing-label'),pS=document.getElementById('tbl-price-starter'),
+      pG=document.getElementById('tbl-price-growth'),pE=document.getElementById('tbl-price-enterprise');
+  if(tS) tS.textContent='\u20b9'+fmt(sTot);
+  if(tG) tG.textContent='\u20b9'+fmt(gTot);
+  if(bl) bl.textContent=isAnnual?'Annual plan price (per mo)':'Monthly plan price';
+  if(pS) pS.textContent='\u20b9'+fmt(sTot)+'/mo';
+  if(pG) pG.textContent='\u20b9'+fmt(gTot)+'/mo';
+  if(pE) pE.textContent='\u20b9'+fmt(eTot)+'/mo';
+}
+</script>
+</head>
+<body>
+<nav>
+<div class="nav-logo">Biz<span>vitals</span></div>
+<div class="nav-tabs">
+<a href="index.html" class="nav-tab">Pricing Plans<span class="nav-badge">CFO Rec.</span></a>
+<a href="bv-mypricing.html" class="nav-tab">Bizvitals Pricing<span class="nav-badge">My Plan</span></a>
+<a href="bv-onboarding.html" class="nav-tab">14-Day Trial Flow<span class="nav-badge">14 days</span></a>
+<a href="bv-demo.html" class="nav-tab">CXO Demo Script<span class="nav-badge">20 mins</span></a>
+<div class="nav-tab active">Business Owner Value<span class="nav-badge">New</span></div>
+<a href="bv-market.html" class="nav-tab">Market Comparison<span class="nav-badge">Research</span></a>
+<a href="bv-compete.html" class="nav-tab">Competitor Analysis<span class="nav-badge">VS</span></a>
+<a href="bv-telecalls.html" class="nav-tab">Telecall Scripts<span class="nav-badge">Team</span></a>
+<a href="bv-pitches.html" class="nav-tab">Elevator Pitches<span class="nav-badge">25</span></a>
+<a href="bv-social.html" class="nav-tab">Social Media<span class="nav-badge">30 Days</span></a>
+</div>
+</nav>
+<div class="page active" id="page-bovalue">
+<div class="page-header">
+<div class="page-header-eyebrow">Bizvitals · Business Owner Value</div>
+<h1>What every feature means<br><em>for the person running the business</em></h1>
+<p>Not technical specs. Not CFO jargon. This is how each Bizvitals feature translates into a real business owner's daily life — the questions it answers, the anxiety it removes, and the decisions it makes possible.</p>
+</div>
+<div class="container">
+<div style="background:var(--white);border:1px solid var(--bg3);border-radius:var(--radius-lg);padding:20px 24px;margin-bottom:32px;display:grid;grid-template-columns:1fr 1px 1fr;gap:24px;align-items:start;">
+<div>
+<div style="font-family:var(--mono);font-size:9px;letter-spacing:0.08em;text-transform:uppercase;color:var(--ink3);margin-bottom:10px;">CFO value (technical)</div>
+<div style="font-size:12px;color:var(--ink3);line-height:1.7;">
+Gross margin %, EBITDA ratios, current ratio, debt-to-equity, asset turnover, CAGR — metrics and formulas that need a finance background to interpret.
+</div>
+</div>
+<div style="background:var(--bg3);width:1px;height:100%;"></div>
+<div>
+<div style="font-family:var(--mono);font-size:9px;letter-spacing:0.08em;text-transform:uppercase;color:var(--teal);margin-bottom:10px;">Business owner value (plain language)</div>
+<div style="font-size:12px;color:var(--ink2);line-height:1.7;">"Am I actually making money?" · "Will I run out of cash?" · "Which department is the problem?" · "Where is money leaking?" — Questions a founder asks at 11pm staring at a bank statement....</div>
+</div>
+</div>
+<div class="section-label">① Financial Diagnostic — what each module means to you</div>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px;margin-bottom:28px;">
+<div style="background:var(--white);border:1px solid var(--bg3);border-radius:var(--radius);padding:16px 18px;">
+<div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
+<div style="background:var(--teal-light);color:var(--teal);font-family:var(--mono);font-size:10px;font-weight:600;padding:3px 8px;border-radius:4px;">1.1 Growth</div>
+<div style="font-size:11px;color:var(--ink3);margin-left:auto;">Starter ✓</div>
+</div>
+<div style="font-size:14px;font-weight:600;color:var(--ink);margin-bottom:6px;">Is my business actually getting bigger?</div>
+<div style="font-size:12px;color:var(--ink2);line-height:1.65;margin-bottom:10px;">Revenue is up this month — but is that real growth or a one-off order? The Growth module strips out seasonal noise and one-time spikes to show you whether your business is on a genuine upward trajectory or just having a lucky month....</div>
+<div style="background:var(--teal-light);border-radius:6px;padding:8px 12px;font-size:11px;color:var(--teal);line-height:1.5;">
+<strong>Real question answered:</strong> "Should I hire more people or wait?" — Growth score below 60 says wait. Above 75 says you have room to expand.
+</div>
+</div>
+<div style="background:var(--white);border:1px solid var(--bg3);border-radius:var(--radius);padding:16px 18px;">
+<div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
+<div style="background:var(--teal-light);color:var(--teal);font-family:var(--mono);font-size:10px;font-weight:600;padding:3px 8px;border-radius:4px;">1.2 Profitability</div>
+<div style="font-size:11px;color:var(--ink3);margin-left:auto;">Starter ✓</div>
+</div>
+<div style="font-size:14px;font-weight:600;color:var(--ink);margin-bottom:6px;">Am I actually making money, or just busy?</div>
+<div style="font-size:12px;color:var(--ink2);line-height:1.65;margin-bottom:10px;">The most common shock for Indian business owners: "My revenue is ₹2 crore but I have nothing in the bank." Profitability shows exactly where money is earned vs where it disappears — from gross margin all the way to what you actually keep....</div>
+<div style="background:var(--teal-light);border-radius:6px;padding:8px 12px;font-size:11px;color:var(--teal);line-height:1.5;">
+<strong>Real question answered:</strong> "Why does my profit look good on paper but my bank account feels empty?" — This module tells you exactly why.
+</div>
+</div>
+<div style="background:var(--white);border:1px solid var(--bg3);border-radius:var(--radius);padding:16px 18px;">
+<div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
+<div style="background:var(--teal-light);color:var(--teal);font-family:var(--mono);font-size:10px;font-weight:600;padding:3px 8px;border-radius:4px;">1.3 Efficiency</div>
+<div style="font-size:11px;color:var(--ink3);margin-left:auto;">Starter ✓</div>
+</div>
+<div style="font-size:14px;font-weight:600;color:var(--ink);margin-bottom:6px;">Am I spending ₹1 to earn ₹1, or ₹1 to earn ₹3?</div>
+<div style="font-size:12px;color:var(--ink2);line-height:1.65;margin-bottom:10px;">Efficiency tells you how well your business converts effort and cost into output. A low efficiency score doesn't mean your team is lazy — it usually means your processes, pricing, or cost structure has a hidden leak that's silently eating your margins....</div>
+<div style="background:var(--teal-light);border-radius:6px;padding:8px 12px;font-size:11px;color:var(--teal);line-height:1.5;">
+<strong>Real question answered:</strong> "Are we working harder this year but making less?" — Efficiency score trending down while revenue goes up is the first warning sign.
+</div>
+</div>
+<div style="background:var(--white);border:1px solid var(--bg3);border-radius:var(--radius);padding:16px 18px;">
+<div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
+<div style="background:var(--amber-light);color:var(--amber);font-family:var(--mono);font-size:10px;font-weight:600;padding:3px 8px;border-radius:4px;">1.4 Turnover</div>
+<div style="font-size:11px;color:var(--ink3);margin-left:auto;">Growth ✓</div>
+</div>
+<div style="font-size:14px;font-weight:600;color:var(--ink);margin-bottom:6px;">Is my money sitting still or working hard?</div>
+<div style="font-size:12px;color:var(--ink2);line-height:1.65;margin-bottom:10px;">You have stock sitting in a warehouse. You have invoices waiting to be paid....</div>
+<div style="background:var(--amber-light);border-radius:6px;padding:8px 12px;font-size:11px;color:var(--amber);line-height:1.5;">
+<strong>Real question answered:</strong> "I bought ₹50L worth of stock. How long before I see that money back?" — Turnover score gives you the answer in plain numbers.
+</div>
+</div>
+<div style="background:var(--white);border:1px solid var(--bg3);border-radius:var(--radius);padding:16px 18px;">
+<div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
+<div style="background:var(--red-light);color:var(--red);font-family:var(--mono);font-size:10px;font-weight:600;padding:3px 8px;border-radius:4px;">1.5 Business Risk</div>
+<div style="font-size:11px;color:var(--ink3);margin-left:auto;">Growth ✓</div>
+</div>
+<div style="font-size:14px;font-weight:600;color:var(--ink);margin-bottom:6px;">What could shut my business down that I'm not seeing?</div>
+<div style="font-size:12px;color:var(--ink2);line-height:1.65;margin-bottom:10px;">Customer concentration (2 clients = 70% revenue), supplier dependency, revenue seasonality, geographic risk — these are the silent landmines in every growing business. Business Risk scans for them before they become emergencies....</div>
+<div style="background:var(--red-light);border-radius:6px;padding:8px 12px;font-size:11px;color:var(--red);line-height:1.5;">
+<strong>Real question answered:</strong> "If my top customer leaves tomorrow, do I survive?" — Business Risk score below 50 means the honest answer is probably no. You need to know that.
+</div>
+</div>
+<div style="background:var(--white);border:1px solid var(--bg3);border-radius:var(--radius);padding:16px 18px;">
+<div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
+<div style="background:var(--red-light);color:var(--red);font-family:var(--mono);font-size:10px;font-weight:600;padding:3px 8px;border-radius:4px;">1.6 Financial Risk</div>
+<div style="font-size:11px;color:var(--ink3);margin-left:auto;">Growth ✓</div>
+</div>
+<div style="font-size:14px;font-weight:600;color:var(--ink);margin-bottom:6px;">Am I borrowing too much? Can I handle another bad month?</div>
+<div style="font-size:12px;color:var(--ink2);line-height:1.65;margin-bottom:10px;">Most businesses don't fail because of bad sales — they fail because they took on too much debt relative to what they earn. Financial Risk measures your leverage, your interest coverage, and your ability to absorb a shock — like a delayed customer payment or a sudden cost spike....</div>
+<div style="background:var(--red-light);border-radius:6px;padding:8px 12px;font-size:11px;color:var(--red);line-height:1.5;">
+<strong>Real question answered:</strong> "Should I take that ₹50L business loan?" — Financial Risk score tells you if your business can actually handle more debt right now.
+</div>
+</div>
+<div style="background:var(--white);border:1px solid var(--bg3);border-radius:var(--radius);padding:16px 18px;">
+<div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
+<div style="background:var(--red-light);color:var(--red);font-family:var(--mono);font-size:10px;font-weight:600;padding:3px 8px;border-radius:4px;">1.7 Liquidity</div>
+<div style="font-size:11px;color:var(--ink3);margin-left:auto;">Growth ✓</div>
+</div>
+<div style="font-size:14px;font-weight:600;color:var(--ink);margin-bottom:6px;">Will I run out of cash before my next payment comes in?</div>
+<div style="font-size:12px;color:var(--ink2);line-height:1.65;margin-bottom:10px;">The most terrifying feeling in business: salary day is in 10 days, a big customer payment is delayed by 30 days, and you have ₹3L in the bank. Liquidity tracks how much breathing room you have between your cash inflows and outflows at any point in time....</div>
+<div style="background:var(--red-light);border-radius:6px;padding:8px 12px;font-size:11px;color:var(--red);line-height:1.5;">
+<strong>Real question answered:</strong> "Do I have enough cash to run the business for the next 60 days even if nothing goes right?" — Liquidity score answers this every single week.
+</div>
+</div>
+<div style="background:var(--white);border:1px solid var(--bg3);border-radius:var(--radius);padding:16px 18px;">
+<div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
+<div style="background:var(--amber-light);color:var(--amber);font-family:var(--mono);font-size:10px;font-weight:600;padding:3px 8px;border-radius:4px;">1.8 Safety</div>
+<div style="font-size:11px;color:var(--ink3);margin-left:auto;">Growth ✓</div>
+</div>
+<div style="font-size:14px;font-weight:600;color:var(--ink);margin-bottom:6px;">Is my business fundamentally stable or walking a tightrope?</div>
+<div style="font-size:12px;color:var(--ink2);line-height:1.65;margin-bottom:10px;">Safety is the big-picture solvency check. Are your assets worth more than your liabilities?...</div>
+<div style="background:var(--amber-light);border-radius:6px;padding:8px 12px;font-size:11px;color:var(--amber);line-height:1.5;">
+<strong>Real question answered:</strong> "If I wanted to raise funding or take a bank loan today, would my business qualify?" — Safety score tells you the honest answer before you walk into that meeting.
+</div>
+</div>
+</div>
+<div class="section-label">② Cross-Functional Diagnostic — why knowing your departments matters</div>
+<div style="background:var(--white);border:1px solid var(--bg3);border-radius:var(--radius-lg);padding:20px 24px;margin-bottom:16px;">
+<div style="font-size:14px;font-weight:600;color:var(--ink);margin-bottom:8px;">The problem no accounting tool solves</div>
+<div style="font-size:12px;color:var(--ink2);line-height:1.7;max-width:700px;">
+Your P&L tells you the business made ₹12L profit this quarter. But it doesn't tell you that your Sales team is performing brilliantly while your Operations department is quietly burning ₹4L in waste every month. Without department-level visibility, you're managing the whole business by looking at one number.
+</div>
+</div>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;margin-bottom:28px;">
+<div style="background:var(--white);border:1px solid var(--bg3);border-radius:var(--radius);padding:16px 18px;">
+<div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
+<div style="background:var(--teal-light);color:var(--teal);font-family:var(--mono);font-size:10px;font-weight:600;padding:3px 8px;border-radius:4px;">2.1 Sales</div>
+<div style="font-size:10px;color:var(--ink3);">Starter ✓</div>
+</div>
+<div style="font-size:13px;font-weight:600;color:var(--ink);margin-bottom:6px;">Is my sales team actually performing or just busy?</div>
+<div style="font-size:12px;color:var(--ink2);line-height:1.6;margin-bottom:8px;">Tracks revenue growth, deal conversion efficiency, customer acquisition cost, and concentration risk. Your team can be running 50 meetings a month and still have a poor Sales score if those meetings aren't converting profitably.</div>
+<div style="background:var(--teal-light);border-radius:6px;padding:7px 10px;font-size:11px;color:var(--teal);">
+<strong>Tells you:</strong> Which customers are worth keeping, which aren't, and whether your sales effort is producing real margin.
+</div>
+</div>
+<div style="background:var(--white);border:1px solid var(--bg3);border-radius:var(--radius);padding:16px 18px;">
+<div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
+<div style="background:var(--teal-light);color:var(--teal);font-family:var(--mono);font-size:10px;font-weight:600;padding:3px 8px;border-radius:4px;">2.2 Finance</div>
+<div style="font-size:10px;color:var(--ink3);">Starter ✓</div>
+</div>
+<div style="font-size:13px;font-weight:600;color:var(--ink);margin-bottom:6px;">Is the finance function helping or hiding problems?</div>
+<div style="font-size:12px;color:var(--ink2);line-height:1.6;margin-bottom:8px;">Tracks collection efficiency, payment cycles, working capital management, and cost control. A poor Finance dept score often reveals slow collections dragging your cash position — even when the business is selling well.</div>
+<div style="background:var(--teal-light);border-radius:6px;padding:7px 10px;font-size:11px;color:var(--teal);">
+<strong>Tells you:</strong> Whether your collections team is chasing payments fast enough and if your cash conversion is as fast as it should be.
+</div>
+</div>
+<div style="background:var(--white);border:1px solid var(--bg3);border-radius:var(--radius);padding:16px 18px;">
+<div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
+<div style="background:var(--amber-light);color:var(--amber);font-family:var(--mono);font-size:10px;font-weight:600;padding:3px 8px;border-radius:4px;">2.3 Management</div>
+<div style="font-size:10px;color:var(--ink3);">Growth ✓</div>
+</div>
+<div style="font-size:13px;font-weight:600;color:var(--ink);margin-bottom:6px;">Are my managers running a tight ship or a leaky one?</div>
+<div style="font-size:12px;color:var(--ink2);line-height:1.6;margin-bottom:8px;">Measures overhead cost control, decision-making efficiency, budget adherence, and admin cost as a % of revenue. Many growing businesses see management costs silently balloon as they scale — this catches it early.</div>
+<div style="background:var(--amber-light);border-radius:6px;padding:7px 10px;font-size:11px;color:var(--amber);">
+<strong>Tells you:</strong> Whether your management layer is adding value relative to what it costs — a conversation most founders avoid.
+</div>
+</div>
+<div style="background:var(--white);border:1px solid var(--bg3);border-radius:var(--radius);padding:16px 18px;">
+<div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
+<div style="background:var(--amber-light);color:var(--amber);font-family:var(--mono);font-size:10px;font-weight:600;padding:3px 8px;border-radius:4px;">2.4 Material</div>
+<div style="font-size:10px;color:var(--ink3);">Growth ✓</div>
+</div>
+<div style="font-size:13px;font-weight:600;color:var(--ink);margin-bottom:6px;">Am I overpaying for what I buy, or leaving money on the table?</div>
+<div style="font-size:12px;color:var(--ink2);line-height:1.6;margin-bottom:8px;">For any business buying raw materials, inventory, or supplies — Material tracks procurement costs, vendor payment terms, inventory turnover, and material cost as % of revenue. One bad vendor relationship can quietly destroy your margin.</div>
+<div style="background:var(--amber-light);border-radius:6px;padding:7px 10px;font-size:11px;color:var(--amber);">
+<strong>Tells you:</strong> Which vendors are costing you more than they should and whether your purchase costs are trending in the right direction.
+</div>
+</div>
+<div style="background:var(--white);border:1px solid var(--bg3);border-radius:var(--radius);padding:16px 18px;">
+<div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
+<div style="background:var(--amber-light);color:var(--amber);font-family:var(--mono);font-size:10px;font-weight:600;padding:3px 8px;border-radius:4px;">2.5 Operations</div>
+<div style="font-size:10px;color:var(--ink3);">Growth ✓</div>
+</div>
+<div style="font-size:13px;font-weight:600;color:var(--ink);margin-bottom:6px;">Is my business running smoothly or is something always on fire?</div>
+<div style="font-size:12px;color:var(--ink2);line-height:1.6;margin-bottom:8px;">Tracks operational cost structure, output efficiency, fixed vs variable cost balance, and capacity utilisation. Operations is often where the biggest hidden costs live — especially in manufacturing, distribution, and service businesses.</div>
+<div style="background:var(--amber-light);border-radius:6px;padding:7px 10px;font-size:11px;color:var(--amber);">
+<strong>Tells you:</strong> Whether you're running at a cost structure that can scale — or one that will break you as you grow.
+</div>
+</div>
+<div style="background:var(--white);border:1px solid var(--bg3);border-radius:var(--radius);padding:16px 18px;">
+<div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
+<div style="background:var(--amber-light);color:var(--amber);font-family:var(--mono);font-size:10px;font-weight:600;padding:3px 8px;border-radius:4px;">2.6 HR</div>
+<div style="font-size:10px;color:var(--ink3);">Growth ✓</div>
+</div>
+<div style="font-size:13px;font-weight:600;color:var(--ink);margin-bottom:6px;">Am I getting value from my people cost?</div>
+<div style="font-size:12px;color:var(--ink2);line-height:1.6;margin-bottom:8px;">Payroll is usually the single largest cost in a service or knowledge business. HR tracks revenue per employee, salary cost as % of revenue, attrition cost impact, and productivity trends. A low HR score doesn't mean your team is bad — it often means your hiring is ahead of your revenue.</div>
+<div style="background:var(--amber-light);border-radius:6px;padding:7px 10px;font-size:11px;color:var(--amber);">
+<strong>Tells you:</strong> Whether you've over-hired, under-hired, or whether your team cost is eating into the profit that growth should be delivering.
+</div>
+</div>
+</div>
+<div class="section-label">Analysis Tools — turning data into decisions</div>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px;margin-bottom:28px;">
+<div style="background:var(--white);border:1px solid var(--bg3);border-radius:var(--radius);padding:16px 18px;display:flex;gap:14px;">
+<div style="width:36px;height:36px;border-radius:50%;background:var(--blue-light);color:var(--blue);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;flex-shrink:0;">③</div>
+<div>
+<div style="font-size:13px;font-weight:600;color:var(--ink);margin-bottom:4px;">Impact Analysis — "What happens if I change X?"</div>
+<div style="font-size:12px;color:var(--ink2);line-height:1.6;margin-bottom:8px;">Before you increase prices, add a new product line, or change a vendor — Impact Analysis shows you the downstream financial effect across your entire business. It's the answer to "I have an idea, but I don't know if it'll actually make things better."</div>
+<div style="font-size:11px;color:var(--blue);background:var(--blue-light);padding:6px 10px;border-radius:6px;"><strong>Example:</strong> "If I increase my product price by 8%, does my net margin go up or do I lose enough customers to make it worse?"</div>
+</div>
+</div>
+<div style="background:var(--white);border:1px solid var(--bg3);border-radius:var(--radius);padding:16px 18px;display:flex;gap:14px;">
+<div style="width:36px;height:36px;border-radius:50%;background:var(--red-light);color:var(--red);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;flex-shrink:0;">④</div>
+<div>
+<div style="font-size:13px;font-weight:600;color:var(--ink);margin-bottom:4px;">Risk Analysis — "What are the things that could hurt me?"</div>
+<div style="font-size:12px;color:var(--ink2);line-height:1.6;margin-bottom:8px;">Maps every material risk in your business — customer concentration, market dependency, cost volatility, cash cycle gaps — and ranks them by financial impact. Most business owners only discover their risks when they become crises.</div>
+<div style="font-size:11px;color:var(--red);background:var(--red-light);padding:6px 10px;border-radius:6px;"><strong>Example:</strong> "My top 3 customers are 65% of revenue. Risk Analysis flags this as critical and shows you exactly what to do to diversify."</div>
+</div>
+</div>
+<div style="background:var(--white);border:1px solid var(--bg3);border-radius:var(--radius);padding:16px 18px;display:flex;gap:14px;">
+<div style="width:36px;height:36px;border-radius:50%;background:var(--purple-light);color:var(--purple);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;flex-shrink:0;">⑤</div>
+<div>
+<div style="font-size:13px;font-weight:600;color:var(--ink);margin-bottom:4px;">What-if Analysis — "Let me test this idea before I commit"</div>
+<div style="font-size:12px;color:var(--ink2);line-height:1.6;margin-bottom:8px;">Run scenarios against your real financial data. Hire 5 people. Open a new branch. Cut a product line. What-if Analysis runs each scenario and shows you the projected impact on cash, profit, and risk — before you spend a single rupee.</div>
+<div style="font-size:11px;color:var(--purple);background:var(--purple-light);padding:6px 10px;border-radius:6px;"><strong>Example:</strong> "What if I hire 3 senior salespeople at ₹1.2L/month each — how long before they pay for themselves given my current conversion rate?"</div>
+</div>
+</div>
+<div style="background:var(--white);border:1px solid var(--bg3);border-radius:var(--radius);padding:16px 18px;display:flex;gap:14px;">
+<div style="width:36px;height:36px;border-radius:50%;background:var(--red-light);color:var(--red);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;flex-shrink:0;">⑥</div>
+<div>
+<div style="font-size:13px;font-weight:600;color:var(--ink);margin-bottom:4px;">Profit Leakage — "Show me the money I'm losing without knowing"</div>
+<div style="font-size:12px;color:var(--ink2);line-height:1.6;margin-bottom:8px;">This is Bizvitals' most powerful feature. Every business leaks profit in ways that never show up clearly in a P&L — underpriced products, slow collections, vendor discounts not claimed, overtime costs creeping up. Profit Leakage finds them all and puts a ₹ figure on each.</div>
+<div style="font-size:11px;color:var(--red);background:var(--red-light);padding:6px 10px;border-radius:6px;"><strong>The average Indian SMB has 8–15% of revenue in recoverable profit leakage.</strong> On ₹1Cr revenue that's ₹8–15L/year sitting on the table.</div>
+</div>
+</div>
+<div style="background:var(--white);border:1px solid var(--bg3);border-radius:var(--radius);padding:16px 18px;display:flex;gap:14px;grid-column:1/-1;">
+<div style="width:36px;height:36px;border-radius:50%;background:var(--amber-light);color:var(--amber);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;flex-shrink:0;">⑦</div>
+<div style="flex:1;">
+<div style="font-size:13px;font-weight:600;color:var(--ink);margin-bottom:4px;">Heat Map — "Show me the problem at a glance"</div>
+<div style="font-size:12px;color:var(--ink2);line-height:1.6;margin-bottom:8px;">A visual colour map of your entire business health — green is good, red needs attention, yellow is a warning. For business owners who think visually rather than numerically, the Heat Map is often the first thing they look at every Monday morning. One glance and you know where to spend your attention this week.</div>
+<div style="font-size:11px;color:var(--amber);background:var(--amber-light);padding:6px 10px;border-radius:6px;"><strong>Example:</strong> Three greens, one yellow (Operations), one red (Liquidity). You now know exactly what deserves your attention today — without reading a single number.</div>
+</div>
+</div>
+</div>
+<div class="section-label">AI Features — your always-on financial advisor</div>
+<div style="display:grid;grid-template-columns:1fr;gap:12px;margin-bottom:28px;">
+<div style="background:var(--ink);border-radius:var(--radius-lg);padding:22px 24px;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;">
+<div>
+<div style="font-family:var(--mono);font-size:9px;letter-spacing:0.08em;text-transform:uppercase;color:var(--accent2);margin-bottom:10px;">⑩ AI Observations & Recommendations</div>
+<div style="font-size:13px;font-weight:600;color:var(--bg);margin-bottom:8px;">"Tell me what I need to do, not just what's happening"</div>
+<div style="font-size:12px;color:#aaa;line-height:1.65;">Instead of a dashboard full of numbers, your AI CFO writes a plain-language weekly brief — what changed, why it changed, what it means for you, and what to do about it. No finance degree required. It's like having a senior CA write a personal memo for your business every week.</div>
+<div style="background:#1a1816;border-radius:6px;padding:8px 12px;font-size:11px;color:var(--accent2);margin-top:10px;font-style:italic;line-height:1.6;">"Your debtor days increased from 42 to 67 this quarter — representing ₹3.4L in delayed cash. Recommend tightening credit terms with your top 3 customers."</div>
+</div>
+<div>
+<div style="font-family:var(--mono);font-size:9px;letter-spacing:0.08em;text-transform:uppercase;color:var(--accent2);margin-bottom:10px;">⑪ AI Report Download</div>
+<div style="font-size:13px;font-weight:600;color:var(--bg);margin-bottom:8px;">"Give me something I can share with my investors or board"</div>
+<div style="font-size:12px;color:#aaa;line-height:1.65;">A professionally formatted financial report with AI-written narrative — not just tables and charts, but actual sentences that explain the story of your business this quarter. Share with your CA, your co-founder, your bank, or your investors. It looks like something a Big 4 firm produced.</div>
+<div style="background:#1a1816;border-radius:6px;padding:8px 12px;font-size:11px;color:var(--accent2);margin-top:10px;line-height:1.6;"><strong>Real use case:</strong> A founder used the AI report to walk into a bank loan meeting with a 12-page narrative financial summary. Loan approved in the first meeting.</div>
+</div>
+<div>
+<div style="font-family:var(--mono);font-size:9px;letter-spacing:0.08em;text-transform:uppercase;color:var(--accent2);margin-bottom:10px;">⑫ Voice Note AI</div>
+<div style="font-size:13px;font-weight:600;color:var(--bg);margin-bottom:8px;">"Explain my financials to me while I drive to the office"</div>
+<div style="font-size:12px;color:#aaa;line-height:1.65;">A 2-minute audio summary of your business financial health, delivered every week. No screens, no reports, no spreadsheets. Just clear, plain language about how your business is doing — narrated in a calm, professional voice. The most human-feeling feature in any financial tool you'll ever use.</div>
+<div style="background:#1a1816;border-radius:6px;padding:8px 12px;font-size:11px;color:var(--accent2);margin-top:10px;line-height:1.6;"><strong>Best for:</strong> Founders who are always on the move, CXOs who don't read reports, and anyone who processes information better by listening than reading.</div>
+</div>
+</div>
+</div>
+<div class="section-label">⑬ Collaboration — bringing your full team onto the same page</div>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px;margin-bottom:28px;">
+<div style="background:var(--white);border:1px solid var(--bg3);border-radius:var(--radius);padding:18px 20px;">
+<div style="font-family:var(--mono);font-size:9px;letter-spacing:0.07em;text-transform:uppercase;color:var(--purple);margin-bottom:8px;">13.1 External CA Access · Enterprise</div>
+<div style="font-size:14px;font-weight:600;color:var(--ink);margin-bottom:8px;">Your CA sees exactly what you see — no more "can you send me the files" calls</div>
+<div style="font-size:12px;color:var(--ink2);line-height:1.65;margin-bottom:10px;">Invite your Chartered Accountant directly onto your Bizvitals account. They see your financial diagnostic, your risk scores, your leakage report — all in real time....</div>
+<div style="font-size:11px;background:var(--purple-light);color:var(--purple);padding:7px 10px;border-radius:6px;"><strong>Real value:</strong> Cuts down monthly CA meeting time by 40–60% because all the "let me find that file" and "can you explain this figure" time disappears.</div>
+</div>
+<div style="background:var(--white);border:1px solid var(--bg3);border-radius:var(--radius);padding:18px 20px;">
+<div style="font-family:var(--mono);font-size:9px;letter-spacing:0.07em;text-transform:uppercase;color:var(--purple);margin-bottom:8px;">13.2 Cross-functional Team · Enterprise</div>
+<div style="font-size:14px;font-weight:600;color:var(--ink);margin-bottom:8px;">Your Sales head, Operations manager, and HR lead all see their own department's numbers</div>
+<div style="font-size:12px;color:var(--ink2);line-height:1.65;margin-bottom:10px;">Stop being the only person in the room who understands the financial picture. Give each department head access to their own department's diagnostic — Sales sees their score, Operations sees theirs, HR sees theirs....</div>
+<div style="font-size:11px;background:var(--purple-light);color:var(--purple);padding:7px 10px;border-radius:6px;"><strong>Real value:</strong> Transforms the monthly review from "the boss reads the numbers to the team" into "every department head walks in already knowing their score."</div>
+</div>
+</div>
+<div class="section-label">The real ROI — what Bizvitals is worth to your business</div>
+<div style="background:var(--ink);border-radius:var(--radius-lg);padding:24px 28px;display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:20px;">
+<div style="text-align:center;">
+<div style="font-family:var(--serif);font-size:28px;color:var(--accent2);line-height:1;">8–15%</div>
+<div style="font-size:11px;color:#888;margin-top:6px;line-height:1.5;">of revenue recoverable via Profit Leakage detection on average</div>
+</div>
+<div style="text-align:center;">
+<div style="font-family:var(--serif);font-size:28px;color:var(--accent2);line-height:1;">40–60%</div>
+<div style="font-size:11px;color:#888;margin-top:6px;line-height:1.5;">reduction in time spent preparing for CA and board meetings</div>
+</div>
+<div style="text-align:center;">
+<div style="font-family:var(--serif);font-size:28px;color:var(--accent2);line-height:1;">1 week</div>
+<div style="font-size:11px;color:#888;margin-top:6px;line-height:1.5;">average time to first actionable insight after connecting your data</div>
+</div>
+<div style="text-align:center;">
+<div style="font-family:var(--serif);font-size:28px;color:var(--accent2);line-height:1;">10×</div>
+<div style="font-size:11px;color:#888;margin-top:6px;line-height:1.5;">minimum ROI rule — if Bizvitals saves ₹10k, it pays for itself at ₹999/mo</div>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>
