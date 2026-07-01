@@ -1,0 +1,2022 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bizvitals — SMO Content Plan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#0f0e0c;--ink2:#3a3835;--ink3:#6b6860;--bg:#f7f5f0;--bg2:#eeeae2;--bg3:#e4dfd5;--white:#ffffff;--teal:#0d7a5f;--teal-light:#d6f0e8;--teal-mid:#1d9e75;--blue:#1a56a0;--blue-light:#dceeff;--amber:#b86a00;--amber-light:#fdefd3;--red:#c0392b;--red-light:#fde8e6;--purple:#5b3fa6;--purple-light:#ede9fc;--accent:#e85d2a;--accent2:#f0a500;--serif:'DM Serif Display',Georgia,serif;--sans:'DM Sans',sans-serif;--mono:'JetBrains Mono',monospace;--radius:10px;--radius-lg:16px;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:var(--sans);background:var(--bg);color:var(--ink);font-size:14px;line-height:1.6;min-width:320px;}
+nav{position:sticky;top:0;z-index:100;background:var(--ink);display:flex;align-items:stretch;border-bottom:1px solid #2a2826;overflow-x:auto;}
+nav::-webkit-scrollbar{height:0;}
+.nav-logo{padding:0 20px;font-family:var(--serif);font-size:17px;color:var(--bg);border-right:1px solid #2a2826;white-space:nowrap;display:flex;align-items:center;flex-shrink:0;}
+.nav-logo span{color:var(--accent2);}
+.nav-tabs{display:flex;flex:1;}
+.nav-tab{padding:14px 16px;font-size:11px;font-weight:500;color:#888;border-right:1px solid #2a2826;letter-spacing:0.04em;text-transform:uppercase;white-space:nowrap;flex-shrink:0;display:flex;align-items:center;gap:6px;text-decoration:none;transition:all 0.2s;}
+.nav-tab:hover{color:var(--bg);background:#1a1816;}
+.nav-tab.active{color:var(--accent2);background:#1a1816;}
+.nav-badge{font-size:9px;font-family:var(--mono);padding:2px 6px;border-radius:3px;background:#2a2826;color:#888;}
+.nav-tab.active .nav-badge{background:var(--accent);color:#fff;}
+.page-header{background:var(--ink);padding:40px 24px 36px;position:relative;overflow:hidden;}
+.page-header::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent) 0%,var(--accent2) 60%,transparent 100%);}
+.page-header-eyebrow{font-family:var(--mono);font-size:10px;color:var(--accent2);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:10px;}
+.page-header h1{font-family:var(--serif);font-size:clamp(26px,4vw,38px);color:var(--bg);line-height:1.15;max-width:640px;}
+.page-header h1 em{color:var(--accent2);font-style:italic;}
+.page-header p{color:#888;font-size:13px;margin-top:10px;max-width:560px;line-height:1.65;}
+.container{max-width:1100px;margin:0 auto;padding:32px 24px;}
+.section-label{font-family:var(--mono);font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink3);margin-bottom:14px;display:flex;align-items:center;gap:10px;}
+.section-label::after{content:'';flex:1;height:1px;background:var(--bg3);}
+.week-tabs{display:flex;gap:8px;margin-bottom:24px;flex-wrap:wrap;}
+.week-btn{padding:8px 20px;border-radius:20px;border:1.5px solid var(--bg3);background:var(--white);font-size:12px;font-weight:600;cursor:pointer;transition:all 0.2s;color:var(--ink3);}
+.week-btn.active{background:var(--ink);color:var(--bg);border-color:var(--ink);}
+.week-content{display:none;}
+.week-content.active{display:block;}
+.day-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:14px;margin-bottom:32px;}
+.day-card{background:var(--white);border:1px solid var(--bg3);border-radius:var(--radius-lg);overflow:hidden;}
+.day-header{padding:10px 16px;display:flex;align-items:center;gap:10px;border-bottom:1px solid var(--bg2);}
+.day-num{font-family:var(--serif);font-size:22px;color:var(--ink);line-height:1;}
+.day-theme{font-size:11px;font-weight:600;color:var(--ink2);}
+.day-date{font-family:var(--mono);font-size:9px;color:var(--ink3);margin-left:auto;}
+.content-tabs{display:flex;border-bottom:1px solid var(--bg2);}
+.ct{padding:8px 14px;font-size:10px;font-weight:600;letter-spacing:0.04em;text-transform:uppercase;cursor:pointer;color:var(--ink3);border-bottom:2px solid transparent;transition:all 0.15s;flex:1;text-align:center;}
+.ct.active{color:var(--teal);border-bottom-color:var(--teal);background:rgba(13,122,95,0.04);}
+.content-panel{display:none;padding:14px 16px;}
+.content-panel.active{display:block;}
+.post-body{font-size:13px;color:var(--ink);line-height:1.7;white-space:pre-line;margin-bottom:10px;}
+.post-hashtags{font-size:11px;color:var(--blue);line-height:1.8;margin-bottom:8px;}
+.type-badge{display:inline-block;font-size:9px;font-weight:700;padding:2px 8px;border-radius:20px;letter-spacing:0.04em;text-transform:uppercase;margin-bottom:8px;}
+.tb-post{background:var(--blue-light);color:var(--blue);}
+.tb-short{background:var(--red-light);color:var(--red);}
+.tb-video{background:var(--purple-light);color:var(--purple);}
+.platforms{display:flex;gap:6px;margin-bottom:8px;flex-wrap:wrap;}
+.plat{font-size:9px;font-weight:600;padding:2px 7px;border-radius:4px;background:var(--bg2);color:var(--ink3);}
+.post-contact{margin-top:10px;padding-top:8px;border-top:1px solid var(--bg2);font-size:10px;color:var(--ink3);line-height:1.8;}
+.post-contact span{color:var(--ink2);font-weight:500;}
+.theme-strip{background:var(--ink);border-radius:var(--radius);padding:10px 16px;margin-bottom:20px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;}
+.ts-week{font-family:var(--mono);font-size:10px;color:var(--accent2);letter-spacing:0.08em;text-transform:uppercase;}
+.ts-theme{font-size:13px;font-weight:600;color:var(--bg);}
+.ts-focus{font-size:11px;color:#888;}
+.audience-strip{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px;margin-bottom:28px;}
+.aud-card{background:var(--white);border:1px solid var(--bg3);border-radius:var(--radius);padding:12px 14px;text-align:center;}
+@media(max-width:600px){.container{padding:20px 16px;}.page-header{padding:28px 16px 24px;}.day-grid{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-logo">Biz<span>vitals</span></div>
+  <div class="nav-tabs">
+<a href="index.html" class="nav-tab">Pricing Plans<span class="nav-badge">CFO Rec.</span></a>
+<a href="bv-mypricing.html" class="nav-tab">Bizvitals Pricing<span class="nav-badge">My Plan</span></a>
+<a href="bv-onboarding.html" class="nav-tab">14-Day Trial Flow<span class="nav-badge">14 days</span></a>
+<a href="bv-demo.html" class="nav-tab">CXO Demo Script<span class="nav-badge">20 mins</span></a>
+<a href="bv-bovalue.html" class="nav-tab">Business Owner Value<span class="nav-badge">New</span></a>
+<a href="bv-market.html" class="nav-tab">Market Comparison<span class="nav-badge">Research</span></a>
+<a href="bv-compete.html" class="nav-tab">Competitor Analysis<span class="nav-badge">VS</span></a>
+<a href="bv-telecalls.html" class="nav-tab">Telecall Scripts<span class="nav-badge">Team</span></a>
+<a href="bv-pitches.html" class="nav-tab">Elevator Pitches<span class="nav-badge">25</span></a>
+<a href="bv-social.html" class="nav-tab">Social Media<span class="nav-badge">30 Days</span></a>
+<div class="nav-tab active">SMO Content<span class="nav-badge">Investor</span></div>
+</div>
+</nav>
+
+<div class="page-header">
+  <div class="page-header-eyebrow">Bizvitals · SMO Content Plan</div>
+  <h1>30-day investor & IPO<br><em>content strategy</em></h1>
+  <p>Same product. Different audience. This plan speaks to investors evaluating IPOs, fund managers justifying allocations, companies preparing for public listing, and analysts who need data-backed decisions — not gut feel.</p>
+</div>
+
+<div class="container">
+
+  <!-- AUDIENCE -->
+  <div class="section-label">Who this content speaks to</div>
+  <div class="audience-strip">
+    <div class="aud-card"><div style="font-size:18px;margin-bottom:4px;">📊</div><div style="font-size:11px;font-weight:600;color:var(--ink);">IPO Investors</div><div style="font-size:10px;color:var(--ink3);">Evaluating offers before committing capital</div></div>
+    <div class="aud-card"><div style="font-size:18px;margin-bottom:4px;">🏦</div><div style="font-size:11px;font-weight:600;color:var(--ink);">Fund Managers</div><div style="font-size:10px;color:var(--ink3);">Justifying allocation decisions with data</div></div>
+    <div class="aud-card"><div style="font-size:18px;margin-bottom:4px;">🏢</div><div style="font-size:11px;font-weight:600;color:var(--ink);">Pre-IPO Companies</div><div style="font-size:10px;color:var(--ink3);">Preparing for analyst & public questions</div></div>
+    <div class="aud-card"><div style="font-size:18px;margin-bottom:4px;">🔍</div><div style="font-size:11px;font-weight:600;color:var(--ink);">Financial Analysts</div><div style="font-size:10px;color:var(--ink3);">Deep-diving 40+ parameters fast</div></div>
+    <div class="aud-card"><div style="font-size:18px;margin-bottom:4px;">💼</div><div style="font-size:11px;font-weight:600;color:var(--ink);">HNI Investors</div><div style="font-size:10px;color:var(--ink3);">Making smart, data-backed choices</div></div>
+    <div class="aud-card"><div style="font-size:18px;margin-bottom:4px;">📈</div><div style="font-size:11px;font-weight:600;color:var(--ink);">Retail Investors</div><div style="font-size:10px;color:var(--ink3);">Going beyond prospectus surface data</div></div>
+  </div>
+
+  <!-- WEEK TABS -->
+  <div class="week-tabs">
+    <button class="week-btn active" onclick="showWeek(1,this)">Week 1 — IPO Evaluation</button>
+    <button class="week-btn" onclick="showWeek(2,this)">Week 2 — Data Intelligence</button>
+    <button class="week-btn" onclick="showWeek(3,this)">Week 3 — Fund & Risk</button>
+    <button class="week-btn" onclick="showWeek(4,this)">Week 4 — Action & Authority</button>
+  </div>
+
+  <!-- ═══════ WEEK 1 ═══════ -->
+  <div class="week-content active" id="week-1">
+    <div class="theme-strip">
+      <div class="ts-week">Week 1</div>
+      <div class="ts-theme">IPO Evaluation — "Evaluate before you invest"</div>
+      <div class="ts-focus">Goal: Position Bizvitals as the essential tool for any investor looking at an IPO</div>
+    </div>
+    <div class="day-grid">
+
+      <!-- DAY 1 -->
+      <div class="day-card">
+        <div class="day-header"><div class="day-num">01</div><div><div class="day-theme">The IPO Evaluation Hook</div><div class="day-date">Day 1 · Mon</div></div></div>
+        <div class="content-tabs"><div class="ct active" onclick="switchTab(this,'s1d1-post')">Post</div><div class="ct" onclick="switchTab(this,'s1d1-short')">Short</div><div class="ct" onclick="switchTab(this,'s1d1-video')">Video</div></div>
+        <div class="content-panel active" id="s1d1-post">
+          <div class="platforms"><span class="plat">LinkedIn</span><span class="plat">Twitter/X</span></div>
+          <span class="type-badge tb-post">Post</span>
+          <div class="post-body">Before you invest in any IPO —
+evaluate it.
+
+Not the hype.
+Not the brand.
+Not the grey market premium.
+
+The actual financials.
+
+Bizvitals analyses any IPO offer
+across 40+ key parameters
+in under 10 minutes.
+
+Data-backed. Fact-driven.
+Smart investment decisions.</div>
+          <div class="post-hashtags">#IPOInvestor #SmartInvesting #Bizvitals #IPOAnalysis #DataDrivenInvesting</div>
+          <div class="post-contact"><span>📧</span> support@bizvitals.ai &nbsp;|&nbsp; <span>📞</span> 9353796081 &nbsp;|&nbsp; <span>🌐</span> bizvitals.ai</div>
+        </div>
+        <div class="content-panel" id="s1d1-short">
+          <span class="type-badge tb-short">Short / Reel</span>
+          <div class="post-body">[0-5s] "IPO open. Everyone's excited. But have you actually evaluated it?"
+
+[5-18s] "Not the GMP. Not the brand.
+The actual financial health.
+40+ parameters. Under 10 minutes.
+That's Bizvitals."
+
+[18-27s] "Invest with data.
+Not with hope."
+
+[27-30s] "bizvitals.ai | 📞 9353796081"</div>
+          <div class="post-contact"><span>🌐</span> bizvitals.ai &nbsp;|&nbsp; <span>📞</span> 9353796081</div>
+        </div>
+        <div class="content-panel" id="s1d1-video">
+          <span class="type-badge tb-video">Video (60 sec)</span>
+          <div class="post-body">[0-10s] Breaking news style ticker:
+"New IPO opens. Subscription: 47x oversubscribed."
+Investor looks excited. About to click Apply.
+
+[10-25s] Pause. Text on screen:
+"But have you actually read the financials?"
+"Not the prospectus summary.
+The actual numbers."
+
+[25-45s] Show Bizvitals loading an IPO analysis:
+→ Profitability score: 61
+→ Debt risk: High
+→ Working capital gap: ₹42Cr
+→ Promoter holding trend: Declining
+
+[45-58s] "40 parameters. Under 10 minutes.
+Now you know what you're buying."
+
+[58-60s] "bizvitals.ai | support@bizvitals.ai | 📞 9353796081"</div>
+          <div class="post-contact"><span>📧</span> support@bizvitals.ai &nbsp;|&nbsp; <span>📞</span> 9353796081 &nbsp;|&nbsp; <span>🌐</span> bizvitals.ai</div>
+        </div>
+      </div>
+
+      <!-- DAY 2 -->
+      <div class="day-card">
+        <div class="day-header"><div class="day-num">02</div><div><div class="day-theme">Compare Multiple IPOs</div><div class="day-date">Day 2 · Tue</div></div></div>
+        <div class="content-tabs"><div class="ct active" onclick="switchTab(this,'s1d2-post')">Post</div><div class="ct" onclick="switchTab(this,'s1d2-short')">Short</div><div class="ct" onclick="switchTab(this,'s1d2-video')">Video</div></div>
+        <div class="content-panel active" id="s1d2-post">
+          <div class="platforms"><span class="plat">LinkedIn</span><span class="plat">Instagram</span></div>
+          <span class="type-badge tb-post">Post</span>
+          <div class="post-body">3 IPOs open this month.
+Which one deserves your capital?
+
+Most investors pick based on:
+→ Brand name
+→ Analyst recommendations
+→ Grey market premium
+
+Smart investors compare:
+→ Financial health scores
+→ Debt-to-equity trends
+→ Profit consistency
+→ Working capital efficiency
+
+Bizvitals evaluates multiple IPOs
+side by side. Quickly. Accurately.</div>
+          <div class="post-hashtags">#IPOComparison #InvestSmart #Bizvitals #FinancialAnalysis #HNIInvestor</div>
+          <div class="post-contact"><span>📧</span> support@bizvitals.ai &nbsp;|&nbsp; <span>📞</span> 9353796081 &nbsp;|&nbsp; <span>🌐</span> bizvitals.ai</div>
+        </div>
+        <div class="content-panel" id="s1d2-short">
+          <span class="type-badge tb-short">Short / Reel</span>
+          <div class="post-body">[0-5s] "3 IPOs. Same week. Which one?"
+
+[5-20s] Side-by-side comparison:
+Company A: Profitability 74 ✅ Debt Risk: Low ✅
+Company B: Profitability 48 ⚠️ Debt Risk: High 🔴
+Company C: Profitability 61 ✅ Debt Risk: Medium ⚠️
+
+[20-27s] "The answer was always in the data.
+Bizvitals finds it."
+
+[27-30s] "bizvitals.ai"</div>
+          <div class="post-contact"><span>🌐</span> bizvitals.ai &nbsp;|&nbsp; <span>📞</span> 9353796081</div>
+        </div>
+        <div class="content-panel" id="s1d2-video">
+          <span class="type-badge tb-video">Video (60 sec)</span>
+          <div class="post-body">[0-15s] "Three IPOs. One week. Limited capital.
+Which one do you choose?"
+
+[15-40s] Bizvitals comparison dashboard:
+Upload 3 company annual reports.
+Side-by-side scorecard appears:
+→ Financial health: 74 | 48 | 61
+→ Growth trajectory: Rising | Flat | Rising
+→ Debt risk: Low | High | Medium
+→ Promoter commitment: Strong | Declining | Stable
+
+[40-55s] "The choice becomes obvious.
+Not because of hype.
+Because of data."
+
+[55-60s] "bizvitals.ai | 📞 9353796081"</div>
+          <div class="post-contact"><span>📧</span> support@bizvitals.ai &nbsp;|&nbsp; <span>📞</span> 9353796081 &nbsp;|&nbsp; <span>🌐</span> bizvitals.ai</div>
+        </div>
+      </div>
+
+      <!-- DAY 3 -->
+      <div class="day-card">
+        <div class="day-header"><div class="day-num">03</div><div><div class="day-theme">What Prospectus Hides</div><div class="day-date">Day 3 · Wed</div></div></div>
+        <div class="content-tabs"><div class="ct active" onclick="switchTab(this,'s1d3-post')">Post</div><div class="ct" onclick="switchTab(this,'s1d3-short')">Short</div><div class="ct" onclick="switchTab(this,'s1d3-video')">Video</div></div>
+        <div class="content-panel active" id="s1d3-post">
+          <div class="platforms"><span class="plat">LinkedIn</span><span class="plat">Twitter/X</span></div>
+          <span class="type-badge tb-post">Post</span>
+          <div class="post-body">The IPO prospectus tells you
+what the company wants you to know.
+
+What it doesn't tell you easily:
+
+→ Whether profit growth is sustainable
+→ How efficiently they use capital
+→ Hidden debt obligations
+→ Working capital stress signals
+→ Department-level cost inefficiencies
+
+Bizvitals surfaces all of this.
+Data-backed. Completely independent.
+No conflict of interest.</div>
+          <div class="post-hashtags">#IPOProspectus #InvestorAlert #Bizvitals #DueDiligence #SmartCapital</div>
+          <div class="post-contact"><span>📧</span> support@bizvitals.ai &nbsp;|&nbsp; <span>📞</span> 9353796081 &nbsp;|&nbsp; <span>🌐</span> bizvitals.ai</div>
+        </div>
+        <div class="content-panel" id="s1d3-short">
+          <span class="type-badge tb-short">Short / Reel</span>
+          <div class="post-body">[0-5s] "The prospectus tells you what they want you to know."
+
+[5-20s] "What it doesn't show you easily:
+→ Debt stress signals
+→ Capital efficiency gaps
+→ Profit sustainability
+→ Working capital cracks"
+
+[20-27s] "Bizvitals shows you all of it.
+Independently. In under 10 minutes."
+
+[27-30s] "bizvitals.ai"</div>
+          <div class="post-contact"><span>🌐</span> bizvitals.ai &nbsp;|&nbsp; <span>📞</span> 9353796081</div>
+        </div>
+        <div class="content-panel" id="s1d3-video">
+          <span class="type-badge tb-video">Video (60 sec)</span>
+          <div class="post-body">[0-15s] Investor reading a thick prospectus.
+"This document is 400 pages.
+The important numbers are buried."
+
+[15-40s] Show Bizvitals extracting what matters:
+→ EBITDA quality score: 58 — margin compression warning
+→ Receivables trend: Widening — cash collection slowing
+→ Interest coverage ratio: 2.1 — borderline
+→ Inventory days: 94 — above industry average
+
+[40-55s] "These are the numbers
+that determine whether this IPO
+deserves your money."
+
+[55-60s] "bizvitals.ai | support@bizvitals.ai"</div>
+          <div class="post-contact"><span>📧</span> support@bizvitals.ai &nbsp;|&nbsp; <span>📞</span> 9353796081 &nbsp;|&nbsp; <span>🌐</span> bizvitals.ai</div>
+        </div>
+      </div>
+
+      <!-- DAY 4 -->
+      <div class="day-card">
+        <div class="day-header"><div class="day-num">04</div><div><div class="day-theme">10 Minutes vs 10 Days</div><div class="day-date">Day 4 · Thu</div></div></div>
+        <div class="content-tabs"><div class="ct active" onclick="switchTab(this,'s1d4-post')">Post</div><div class="ct" onclick="switchTab(this,'s1d4-short')">Short</div><div class="ct" onclick="switchTab(this,'s1d4-video')">Video</div></div>
+        <div class="content-panel active" id="s1d4-post">
+          <div class="platforms"><span class="plat">LinkedIn</span><span class="plat">Twitter/X</span></div>
+          <span class="type-badge tb-post">Post</span>
+          <div class="post-body">In finance, time is money.
+And money is time.
+
+A traditional financial analyst
+takes 3–10 days to evaluate an IPO.
+
+Bizvitals does it in under 10 minutes.
+
+40+ key parameters.
+Same rigour. Fraction of the time.
+
+When IPO windows are open for 3 days —
+speed is not optional.</div>
+          <div class="post-hashtags">#FinanceTime #IPOWindow #Bizvitals #FastAnalysis #InvestmentDecision</div>
+          <div class="post-contact"><span>📧</span> support@bizvitals.ai &nbsp;|&nbsp; <span>📞</span> 9353796081 &nbsp;|&nbsp; <span>🌐</span> bizvitals.ai</div>
+        </div>
+        <div class="content-panel" id="s1d4-short">
+          <span class="type-badge tb-short">Short / Reel</span>
+          <div class="post-body">[0-5s] "In finance, time is money. And money is time."
+
+[5-18s] "Traditional IPO analysis: 3–10 days.
+Bizvitals IPO analysis: Under 10 minutes.
+40+ parameters. Same depth."
+
+[18-27s] "IPO windows don't wait.
+Neither should you."
+
+[27-30s] "bizvitals.ai | 📞 9353796081"</div>
+          <div class="post-contact"><span>🌐</span> bizvitals.ai &nbsp;|&nbsp; <span>📞</span> 9353796081</div>
+        </div>
+        <div class="content-panel" id="s1d4-video">
+          <span class="type-badge tb-video">Video (60 sec)</span>
+          <div class="post-body">[0-15s] Split screen:
+Left: Analyst with 3 monitors, stacks of reports.
+Right: Investor on laptop, coffee in hand.
+
+[15-35s] Timer starts.
+Left: Day 1... Day 3... Day 7...
+Right: 2 min... 5 min... 9 min... "Analysis complete."
+
+[35-50s] "Same 40 parameters.
+Same financial rigour.
+Completely different speed."
+
+[50-60s] "bizvitals.ai | 📞 9353796081 | support@bizvitals.ai"</div>
+          <div class="post-contact"><span>📧</span> support@bizvitals.ai &nbsp;|&nbsp; <span>📞</span> 9353796081 &nbsp;|&nbsp; <span>🌐</span> bizvitals.ai</div>
+        </div>
+      </div>
+
+      <!-- DAY 5 -->
+      <div class="day-card">
+        <div class="day-header"><div class="day-num">05</div><div><div class="day-theme">40 Parameters Explained</div><div class="day-date">Day 5 · Fri</div></div></div>
+        <div class="content-tabs"><div class="ct active" onclick="switchTab(this,'s1d5-post')">Post</div><div class="ct" onclick="switchTab(this,'s1d5-short')">Short</div><div class="ct" onclick="switchTab(this,'s1d5-video')">Video</div></div>
+        <div class="content-panel active" id="s1d5-post">
+          <div class="platforms"><span class="plat">LinkedIn</span><span class="plat">Instagram</span></div>
+          <span class="type-badge tb-post">Post</span>
+          <div class="post-body">What does Bizvitals actually analyse?
+
+40+ parameters across:
+
+📊 Profitability — quality, margins, consistency
+📈 Growth — real vs inflated
+💧 Liquidity — cash stress indicators
+⚖️ Leverage — debt load vs earnings
+⚙️ Efficiency — capital utilisation
+⚠️ Business Risk — concentration, dependency
+🏢 Department Health — where costs hide
+🔮 Forward Indicators — sustainability signals
+
+Every parameter. Every IPO.
+Under 10 minutes.</div>
+          <div class="post-hashtags">#40Parameters #IPODueDiligence #Bizvitals #FinancialAnalysis #InvestorTools</div>
+          <div class="post-contact"><span>📧</span> support@bizvitals.ai &nbsp;|&nbsp; <span>📞</span> 9353796081 &nbsp;|&nbsp; <span>🌐</span> bizvitals.ai</div>
+        </div>
+        <div class="content-panel" id="s1d5-short">
+          <span class="type-badge tb-short">Short / Reel</span>
+          <div class="post-body">[0-5s] "What does a complete IPO analysis look like?"
+
+[5-22s] Fast reveal of 8 categories:
+"Profitability quality 📊"
+"Growth sustainability 📈"
+"Liquidity stress 💧"
+"Leverage risk ⚖️"
+"Capital efficiency ⚙️"
+"Business risk ⚠️"
+"Department health 🏢"
+"Forward indicators 🔮"
+
+[22-27s] "40 parameters. One upload. 10 minutes."
+
+[27-30s] "bizvitals.ai"</div>
+          <div class="post-contact"><span>🌐</span> bizvitals.ai &nbsp;|&nbsp; <span>📞</span> 9353796081</div>
+        </div>
+        <div class="content-panel" id="s1d5-video">
+          <span class="type-badge tb-video">Video (60 sec)</span>
+          <div class="post-body">[0-10s] "When you invest in an IPO, you're buying the next 5 years of this company.
+You need to know everything."
+
+[10-45s] Animated scorecard loads — 40 parameters appear:
+Each category fills in with scores
+Highlight any red flags as they appear
+→ Interest coverage ratio: 1.8 🔴
+→ Receivables trend: Worsening ⚠️
+→ Promoter pledge: 24% ⚠️
+
+[45-55s] "Three flags. Before you applied.
+Now you decide with full information."
+
+[55-60s] "bizvitals.ai | 📞 9353796081"</div>
+          <div class="post-contact"><span>📧</span> support@bizvitals.ai &nbsp;|&nbsp; <span>📞</span> 9353796081 &nbsp;|&nbsp; <span>🌐</span> bizvitals.ai</div>
+        </div>
+      </div>
+
+      <!-- DAY 6 -->
+      <div class="day-card">
+        <div class="day-header"><div class="day-num">06</div><div><div class="day-theme">For the Retail Investor</div><div class="day-date">Day 6 · Sat</div></div></div>
+        <div class="content-tabs"><div class="ct active" onclick="switchTab(this,'s1d6-post')">Post</div><div class="ct" onclick="switchTab(this,'s1d6-short')">Short</div><div class="ct" onclick="switchTab(this,'s1d6-video')">Video</div></div>
+        <div class="content-panel active" id="s1d6-post">
+          <div class="platforms"><span class="plat">Instagram</span><span class="plat">Twitter/X</span></div>
+          <span class="type-badge tb-post">Post</span>
+          <div class="post-body">Until now, deep IPO analysis
+was only for institutional investors.
+
+They had Bloomberg terminals.
+Research desks.
+Analyst teams.
+
+You had a 400-page prospectus
+and someone's YouTube video.
+
+Bizvitals changes that.
+
+40+ parameter IPO analysis.
+Available to every investor.
+Under 10 minutes.</div>
+          <div class="post-hashtags">#RetailInvestor #LevelPlayingField #Bizvitals #IPOAnalysis #EveryInvestor</div>
+          <div class="post-contact"><span>📧</span> support@bizvitals.ai &nbsp;|&nbsp; <span>📞</span> 9353796081 &nbsp;|&nbsp; <span>🌐</span> bizvitals.ai</div>
+        </div>
+        <div class="content-panel" id="s1d6-short">
+          <span class="type-badge tb-short">Short / Reel</span>
+          <div class="post-body">[0-8s] "Institutional investors have Bloomberg terminals.
+What do retail investors have?"
+
+[8-20s] "Until now: a 400-page prospectus.
+Now: Bizvitals.
+40 parameters. 10 minutes.
+Same intelligence. Every investor."
+
+[20-27s] "The playing field just levelled."
+
+[27-30s] "bizvitals.ai"</div>
+          <div class="post-contact"><span>🌐</span> bizvitals.ai &nbsp;|&nbsp; <span>📞</span> 9353796081</div>
+        </div>
+        <div class="content-panel" id="s1d6-video">
+          <span class="type-badge tb-video">Video (60 sec)</span>
+          <div class="post-body">[0-15s] Two investors.
+Institutional: 6 analysts, 3 screens, research desk.
+Retail: Phone, coffee, YouTube video.
+
+[15-35s] "This information gap has cost retail investors
+billions in bad IPO decisions."
+
+Bizvitals dashboard loads:
+"Now the retail investor has the same depth.
+40 parameters. 10 minutes. ₹502/month."
+
+[35-50s] "IPO knowledge should not be a privilege.
+It should be a right."
+
+[50-60s] "bizvitals.ai | support@bizvitals.ai | 📞 9353796081"</div>
+          <div class="post-contact"><span>📧</span> support@bizvitals.ai &nbsp;|&nbsp; <span>📞</span> 9353796081 &nbsp;|&nbsp; <span>🌐</span> bizvitals.ai</div>
+        </div>
+      </div>
+
+      <!-- DAY 7 -->
+      <div class="day-card">
+        <div class="day-header"><div class="day-num">07</div><div><div class="day-theme">Week 1 Authority Close</div><div class="day-date">Day 7 · Sun</div></div></div>
+        <div class="content-tabs"><div class="ct active" onclick="switchTab(this,'s1d7-post')">Post</div><div class="ct" onclick="switchTab(this,'s1d7-short')">Short</div><div class="ct" onclick="switchTab(this,'s1d7-video')">Video</div></div>
+        <div class="content-panel active" id="s1d7-post">
+          <div class="platforms"><span class="plat">LinkedIn</span><span class="plat">All platforms</span></div>
+          <span class="type-badge tb-post">Post</span>
+          <div class="post-body">Every IPO that disappoints post-listing
+had the warning signs in the data.
+
+The problem was not the data.
+The problem was no one read it properly.
+
+Bizvitals reads it.
+All 40+ parameters.
+In under 10 minutes.
+
+So the next IPO you evaluate —
+you go in with facts.
+Not faith.</div>
+          <div class="post-hashtags">#DataBeforeFaith #IPOWarnings #Bizvitals #SmartInvesting #FactsFirst</div>
+          <div class="post-contact"><span>📧</span> support@bizvitals.ai &nbsp;|&nbsp; <span>📞</span> 9353796081 &nbsp;|&nbsp; <span>🌐</span> bizvitals.ai</div>
+        </div>
+        <div class="content-panel" id="s1d7-short">
+          <span class="type-badge tb-short">Short / Reel</span>
+          <div class="post-body">[0-8s] "Every disappointing IPO had warning signs. In the data."
+
+[8-20s] "The problem was nobody read it carefully.
+Bizvitals reads it for you.
+40 parameters. 10 minutes.
+Facts before faith."
+
+[20-27s] "Invest with data. Not with hope."
+
+[27-30s] "bizvitals.ai | 📞 9353796081"</div>
+          <div class="post-contact"><span>🌐</span> bizvitals.ai &nbsp;|&nbsp; <span>📞</span> 9353796081</div>
+        </div>
+        <div class="content-panel" id="s1d7-video">
+          <span class="type-badge tb-video">Video (60 sec)</span>
+          <div class="post-body">[0-15s] Montage: IPO listing day crowds.
+Then — 6 months later. Same stock down 40%.
+"The warning signs were always there."
+
+[15-40s] Show retroactive analysis:
+"Promoter pledge: 31% — red flag"
+"Receivables surge pre-IPO: 68% — red flag"
+"EBITDA margin declining 3 years: red flag"
+
+[40-55s] "Bizvitals would have caught all three.
+Before you applied."
+
+[55-60s] "bizvitals.ai | support@bizvitals.ai | 📞 9353796081"</div>
+          <div class="post-contact"><span>📧</span> support@bizvitals.ai &nbsp;|&nbsp; <span>📞</span> 9353796081 &nbsp;|&nbsp; <span>🌐</span> bizvitals.ai</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ═══════ WEEK 2 ═══════ -->
+  <div class="week-content" id="week-2">
+    <div class="theme-strip">
+      <div class="ts-week">Week 2</div>
+      <div class="ts-theme">Data Intelligence — "Beyond the surface numbers"</div>
+      <div class="ts-focus">Goal: Build credibility through depth. Show what the product actually surfaces.</div>
+    </div>
+    <div class="day-grid">
+
+      <!-- DAY 8 -->
+      <div class="day-card">
+        <div class="day-header"><div class="day-num">08</div><div><div class="day-theme">Hidden Financial Issues</div><div class="day-date">Day 8 · Mon</div></div></div>
+        <div class="content-tabs"><div class="ct active" onclick="switchTab(this,'s2d8-post')">Post</div><div class="ct" onclick="switchTab(this,'s2d8-short')">Short</div><div class="ct" onclick="switchTab(this,'s2d8-video')">Video</div></div>
+        <div class="content-panel active" id="s2d8-post">
+          <div class="platforms"><span class="plat">LinkedIn</span><span class="plat">Twitter/X</span></div>
+          <span class="type-badge tb-post">Post</span>
+          <div class="post-body">Key financial issues that prospectuses
+don't highlight clearly:
+
+→ Revenue recognition timing
+→ Related party transaction exposure
+→ Contingent liabilities buried in notes
+→ Working capital deterioration trend
+→ Promoter compensation vs company size
+→ Off-balance sheet obligations
+
+Our system surfaces all of these.
+Completely data-backed.
+Before you make the investment.</div>
+          <div class="post-hashtags">#HiddenRisks #IPODueDiligence #Bizvitals #FinancialIntelligence #InvestorEducation</div>
+          <div class="post-contact"><span>📧</span> support@bizvitals.ai &nbsp;|&nbsp; <span>📞</span> 9353796081 &nbsp;|&nbsp; <span>🌐</span> bizvitals.ai</div>
+        </div>
+        <div class="content-panel" id="s2d8-short">
+          <span class="type-badge tb-short">Short / Reel</span>
+          <div class="post-body">[0-5s] "What the prospectus buries. What we surface."
+
+[5-22s] Issues appear one by one:
+"Revenue recognition timing ⚠️"
+"Related party exposure 🔴"
+"Contingent liabilities 📋"
+"Working capital stress 💧"
+"Off-balance sheet debt 📊"
+
+[22-27s] "All of this. Data-backed. Under 10 minutes."
+
+[27-30s] "bizvitals.ai"</div>
+          <div class="post-contact"><span>🌐</span> bizvitals.ai &nbsp;|&nbsp; <span>📞</span> 9353796081</div>
+        </div>
+        <div class="content-panel" id="s2d8-video">
+          <span class="type-badge tb-video">Video (60 sec)</span>
+          <div class="post-body">[0-15s] "Every prospectus is written by the company's lawyers.
+To show the company in the best possible light."
+
+[15-40s] Bizvitals flags hidden issues:
+→ Related party transactions: ₹142Cr — 23% of revenue
+→ Contingent liabilities: ₹68Cr undisclosed exposure
+→ Receivables ageing: 35% over 180 days
+→ Promoter salary: 4.2% of PAT — above benchmark
+
+[40-55s] "These are the numbers they hoped you wouldn't notice.
+We noticed."
+
+[55-60s] "bizvitals.ai | 📞 9353796081"</div>
+          <div class="post-contact"><span>📧</span> support@bizvitals.ai &nbsp;|&nbsp; <span>📞</span> 9353796081 &nbsp;|&nbsp; <span>🌐</span> bizvitals.ai</div>
+        </div>
+      </div>
+
+      <!-- DAY 9 -->
+      <div class="day-card">
+        <div class="day-header"><div class="day-num">09</div><div><div class="day-theme">Quality of Profit</div><div class="day-date">Day 9 · Tue</div></div></div>
+        <div class="content-tabs"><div class="ct active" onclick="switchTab(this,'s2d9-post')">Post</div><div class="ct" onclick="switchTab(this,'s2d9-short')">Short</div><div class="ct" onclick="switchTab(this,'s2d9-video')">Video</div></div>
+        <div class="content-panel active" id="s2d9-post">
+          <div class="platforms"><span class="plat">LinkedIn</span><span class="plat">Instagram</span></div>
+          <span class="type-badge tb-post">Post</span>
+          <div class="post-body">Not all profit is equal.
+
+A company can show ₹100Cr PAT.
+But if it's driven by:
+→ One-time asset sales
+→ Deferred tax reversals
+→ Government subsidies
+
+That profit is not sustainable.
+
+Bizvitals analyses profit quality —
+separating real earnings
+from accounting-assisted ones.
+
+Because what you're buying
+is the future. Not the past.</div>
+          <div class="post-hashtags">#ProfitQuality #EarningsQuality #Bizvitals #IPOAnalysis #SustainableGrowth</div>
+          <div class="post-contact"><span>📧</span> support@bizvitals.ai &nbsp;|&nbsp; <span>📞</span> 9353796081 &nbsp;|&nbsp; <span>🌐</span> bizvitals.ai</div>
+        </div>
+        <div class="content-panel" id="s2d9-short">
+          <span class="type-badge tb-short">Short / Reel</span>
+          <div class="post-body">[0-5s] "₹100 crore profit. But is it real profit?"
+
+[5-20s] "One-time asset sale: ₹42Cr
+Deferred tax reversal: ₹18Cr
+Actual recurring profit: ₹40Cr
+
+That's the number you should be valuing."
+
+[20-27s] "Bizvitals separates real profit
+from accounting-assisted profit."
+
+[27-30s] "bizvitals.ai"</div>
+          <div class="post-contact"><span>🌐</span> bizvitals.ai &nbsp;|&nbsp; <span>📞</span> 9353796081</div>
+        </div>
+        <div class="content-panel" id="s2d9-video">
+          <span class="type-badge tb-video">Video (60 sec)</span>
+          <div class="post-body">[0-15s] "The company's headline: PAT up 68% year-on-year.
+The headline looks great."
+
+[15-40s] Bizvitals profit quality breakdown:
+→ Core operating profit: ₹38Cr
+→ One-time land sale: ₹29Cr
+→ Tax incentives expiring next year: ₹12Cr
+→ Adjusted recurring PAT: ₹38Cr
+
+"You were valuing ₹79Cr profit.
+You should be valuing ₹38Cr."
+
+[40-55s] "The P/E ratio just doubled.
+You needed to know this."
+
+[55-60s] "bizvitals.ai | 📞 9353796081"</div>
+          <div class="post-contact"><span>📧</span> support@bizvitals.ai &nbsp;|&nbsp; <span>📞</span> 9353796081 &nbsp;|&nbsp; <span>🌐</span> bizvitals.ai</div>
+        </div>
+      </div>
+
+      <!-- DAY 10 -->
+      <div class="day-card">
+        <div class="day-header"><div class="day-num">10</div><div><div class="day-theme">Working Capital Red Flags</div><div class="day-date">Day 10 · Wed</div></div></div>
+        <div class="content-tabs"><div class="ct active" onclick="switchTab(this,'s2d10-post')">Post</div><div class="ct" onclick="switchTab(this,'s2d10-short')">Short</div><div class="ct" onclick="switchTab(this,'s2d10-video')">Video</div></div>
+        <div class="content-panel active" id="s2d10-post">
+          <div class="platforms"><span class="plat">LinkedIn</span><span class="plat">Twitter/X</span></div>
+          <span class="type-badge tb-post">Post</span>
+          <div class="post-body">Working capital stress is one of
+the most reliable early warning signals
+for companies heading for trouble.
+
+Watch for:
+→ Receivable days increasing year-on-year
+→ Inventory piling up faster than sales
+→ Payable days shrinking (suppliers tightening)
+→ Cash conversion cycle lengthening
+
+These signals appear in the financials
+12–18 months before the crisis.
+
+Bizvitals surfaces all four.
+Automatically. Every analysis.</div>
+          <div class="post-hashtags">#WorkingCapital #EarlyWarning #Bizvitals #FinancialRisk #IPORedFlags</div>
+          <div class="post-contact"><span>📧</span> support@bizvitals.ai &nbsp;|&nbsp; <span>📞</span> 9353796081 &nbsp;|&nbsp; <span>🌐</span> bizvitals.ai</div>
+        </div>
+        <div class="content-panel" id="s2d10-short">
+          <span class="type-badge tb-short">Short / Reel</span>
+          <div class="post-body">[0-5s] "4 working capital signals that predict trouble — 12 months early:"
+
+[5-22s] One by one:
+"1. Receivable days rising ↑"
+"2. Inventory growing faster than sales ↑"
+"3. Suppliers tightening terms ↓"
+"4. Cash conversion cycle lengthening ↑"
+
+[22-27s] "Bizvitals tracks all four. Every analysis."
+
+[27-30s] "bizvitals.ai"</div>
+          <div class="post-contact"><span>🌐</span> bizvitals.ai &nbsp;|&nbsp; <span>📞</span> 9353796081</div>
+        </div>
+        <div class="content-panel" id="s2d10-video">
+          <span class="type-badge tb-video">Video (60 sec)</span>
+          <div class="post-body">[0-15s] "Companies don't collapse overnight.
+They give you warnings 12–18 months before."
+
+[15-40s] Trend chart animation:
+Year 1: Receivable days — 42
+Year 2: Receivable days — 58
+Year 3: Receivable days — 79 (IPO year)
+Year 4: Company raises red flag
+
+"This trend was in every annual report.
+Bizvitals would have flagged it at Year 2."
+
+[40-55s] "The data was always there.
+The question is whether you looked."
+
+[55-60s] "bizvitals.ai | 📞 9353796081"</div>
+          <div class="post-contact"><span>📧</span> support@bizvitals.ai &nbsp;|&nbsp; <span>📞</span> 9353796081 &nbsp;|&nbsp; <span>🌐</span> bizvitals.ai</div>
+        </div>
+      </div>
+
+      <!-- DAY 11 -->
+      <div class="day-card">
+        <div class="day-header"><div class="day-num">11</div><div><div class="day-theme">Debt Load Analysis</div><div class="day-date">Day 11 · Thu</div></div></div>
+        <div class="content-tabs"><div class="ct active" onclick="switchTab(this,'s2d11-post')">Post</div><div class="ct" onclick="switchTab(this,'s2d11-short')">Short</div><div class="ct" onclick="switchTab(this,'s2d11-video')">Video</div></div>
+        <div class="content-panel active" id="s2d11-post">
+          <div class="platforms"><span class="plat">LinkedIn</span><span class="plat">Instagram</span></div>
+          <span class="type-badge tb-post">Post</span>
+          <div class="post-body">Debt is not bad.
+Unserviceable debt is.
+
+Before any IPO investment, ask:
+
+→ What is their Debt/EBITDA ratio?
+→ What is their interest coverage ratio?
+→ Is debt growing faster than revenue?
+→ Are they using IPO proceeds to repay debt?
+
+If proceeds are going to debt repayment —
+the company has a cash problem.
+Not a growth story.
+
+Bizvitals answers all of this.
+Data first. Always.</div>
+          <div class="post-hashtags">#DebtAnalysis #IPOProceeds #Bizvitals #LeverageRisk #FinancialDueDiligence</div>
+          <div class="post-contact"><span>📧</span> support@bizvitals.ai &nbsp;|&nbsp; <span>📞</span> 9353796081 &nbsp;|&nbsp; <span>🌐</span> bizvitals.ai</div>
+        </div>
+        <div class="content-panel" id="s2d11-short">
+          <span class="type-badge tb-short">Short / Reel</span>
+          <div class="post-body">[0-5s] "IPO proceeds going to debt repayment? Red flag."
+
+[5-20s] "It means the company couldn't repay
+from operations. They need your money
+to fix their balance sheet.
+That's not a growth story."
+
+[20-27s] "Bizvitals identifies this
+before you apply."
+
+[27-30s] "bizvitals.ai"</div>
+          <div class="post-contact"><span>🌐</span> bizvitals.ai &nbsp;|&nbsp; <span>📞</span> 9353796081</div>
+        </div>
+        <div class="content-panel" id="s2d11-video">
+          <span class="type-badge tb-video">Video (60 sec)</span>
+          <div class="post-body">[0-15s] "IPO objective: Expansion and growth.
+Or so it says."
+
+[15-40s] Bizvitals debt analysis:
+→ Debt/EBITDA: 4.8x (high risk threshold: 3x)
+→ Interest coverage: 1.6x (below safe: 2x)
+→ IPO proceeds: 68% to debt repayment
+→ Debt growing at 24% vs revenue at 11%
+
+"They're listing to repay what they borrowed.
+Not to grow."
+
+[40-55s] "Now you know what kind of investment this is."
+
+[55-60s] "bizvitals.ai | 📞 9353796081"</div>
+          <div class="post-contact"><span>📧</span> support@bizvitals.ai &nbsp;|&nbsp; <span>📞</span> 9353796081 &nbsp;|&nbsp; <span>🌐</span> bizvitals.ai</div>
+        </div>
+      </div>
+
+      <!-- DAY 12 -->
+      <div class="day-card">
+        <div class="day-header"><div class="day-num">12</div><div><div class="day-theme">Growth Quality</div><div class="day-date">Day 12 · Fri</div></div></div>
+        <div class="content-tabs"><div class="ct active" onclick="switchTab(this,'s2d12-post')">Post</div><div class="ct" onclick="switchTab(this,'s2d12-short')">Short</div><div class="ct" onclick="switchTab(this,'s2d12-video')">Video</div></div>
+        <div class="content-panel active" id="s2d12-post">
+          <div class="platforms"><span class="plat">LinkedIn</span><span class="plat">Twitter/X</span></div>
+          <span class="type-badge tb-post">Post</span>
+          <div class="post-body">Revenue growth of 40% looks impressive.
+
+But was it driven by:
+→ New customers? (Sustainable)
+→ One large government order? (One-off)
+→ Acquisition? (Needs integration)
+→ Price hikes alone? (Volume declining)
+
+Real growth and inflated growth
+look identical on the headline.
+
+Bizvitals goes deeper.
+Quality of growth. Not just speed.</div>
+          <div class="post-hashtags">#GrowthQuality #RevenueAnalysis #Bizvitals #IPOEvaluation #SustainableGrowth</div>
+          <div class="post-contact"><span>📧</span> support@bizvitals.ai &nbsp;|&nbsp; <span>📞</span> 9353796081 &nbsp;|&nbsp; <span>🌐</span> bizvitals.ai</div>
+        </div>
+        <div class="content-panel" id="s2d12-short">
+          <span class="type-badge tb-short">Short / Reel</span>
+          <div class="post-body">[0-5s] "40% revenue growth. Impressive? Depends."
+
+[5-20s] "New customers → sustainable ✅
+One government order → one-off ⚠️
+Price hikes, volume declining → fragile 🔴
+Acquisition driven → integration risk ⚠️"
+
+[20-27s] "Bizvitals tells you
+what's behind the growth number."
+
+[27-30s] "bizvitals.ai"</div>
+          <div class="post-contact"><span>🌐</span> bizvitals.ai &nbsp;|&nbsp; <span>📞</span> 9353796081</div>
+        </div>
+        <div class="content-panel" id="s2d12-video">
+          <span class="type-badge tb-video">Video (60 sec)</span>
+          <div class="post-body">[0-15s] "Revenue up 40%. Everyone's excited.
+But growth quality matters more than growth rate."
+
+[15-40s] Bizvitals growth analysis:
+→ Volume growth: -4% (price hike masked this)
+→ Customer concentration: Top 3 = 61% revenue
+→ Repeat customer rate: Declining
+→ New market entry: None in 3 years
+
+"This is a company extracting from existing customers.
+Not building new ones."
+
+[40-55s] "The growth story has an expiry date.
+You needed to know when."
+
+[55-60s] "bizvitals.ai | 📞 9353796081"</div>
+          <div class="post-contact"><span>📧</span> support@bizvitals.ai &nbsp;|&nbsp; <span>📞</span> 9353796081 &nbsp;|&nbsp; <span>🌐</span> bizvitals.ai</div>
+        </div>
+      </div>
+
+      <!-- DAY 13 -->
+      <div class="day-card">
+        <div class="day-header"><div class="day-num">13</div><div><div class="day-theme">Benchmarking vs Industry</div><div class="day-date">Day 13 · Sat</div></div></div>
+        <div class="content-tabs"><div class="ct active" onclick="switchTab(this,'s2d13-post')">Post</div><div class="ct" onclick="switchTab(this,'s2d13-short')">Short</div><div class="ct" onclick="switchTab(this,'s2d13-video')">Video</div></div>
+        <div class="content-panel active" id="s2d13-post">
+          <div class="platforms"><span class="plat">LinkedIn</span><span class="plat">Instagram</span></div>
+          <span class="type-badge tb-post">Post</span>
+          <div class="post-body">A 12% EBITDA margin means nothing
+without context.
+
+Is that good for the industry?
+Or is the industry average 22%?
+
+Bizvitals benchmarks every metric
+against industry peers.
+
+So you know if this company is:
+→ Best in class
+→ Industry average
+→ Or significantly below par
+
+Context turns numbers into decisions.</div>
+          <div class="post-hashtags">#IndustryBenchmark #PeerComparison #Bizvitals #IPOContext #FinancialBenchmarking</div>
+          <div class="post-contact"><span>📧</span> support@bizvitals.ai &nbsp;|&nbsp; <span>📞</span> 9353796081 &nbsp;|&nbsp; <span>🌐</span> bizvitals.ai</div>
+        </div>
+        <div class="content-panel" id="s2d13-short">
+          <span class="type-badge tb-short">Short / Reel</span>
+          <div class="post-body">[0-5s] "12% EBITDA margin. Good or bad?"
+
+[5-18s] "Depends on the industry.
+Retail benchmark: 8% → this company is great ✅
+Pharma benchmark: 24% → this company is weak 🔴"
+
+[18-27s] "Context turns numbers into decisions.
+Bizvitals provides the context."
+
+[27-30s] "bizvitals.ai"</div>
+          <div class="post-contact"><span>🌐</span> bizvitals.ai &nbsp;|&nbsp; <span>📞</span> 9353796081</div>
+        </div>
+        <div class="content-panel" id="s2d13-video">
+          <span class="type-badge tb-video">Video (60 sec)</span>
+          <div class="post-body">[0-15s] "You see a number. Is it good?
+Without a benchmark — you can't know."
+
+[15-40s] Bizvitals benchmarking dashboard:
+Company metric → Industry benchmark → Gap
+EBITDA: 11% vs industry 18% → Below ⚠️
+ROE: 14% vs industry 11% → Above ✅
+Inventory days: 94 vs industry 61 → Concern 🔴
+Debt/Equity: 1.2 vs industry 0.8 → Watch ⚠️
+
+[40-55s] "Two green. Two concerns.
+Now you know exactly what to price in."
+
+[55-60s] "bizvitals.ai | 📞 9353796081"</div>
+          <div class="post-contact"><span>📧</span> support@bizvitals.ai &nbsp;|&nbsp; <span>📞</span> 9353796081 &nbsp;|&nbsp; <span>🌐</span> bizvitals.ai</div>
+        </div>
+      </div>
+
+      <!-- DAY 14 -->
+      <div class="day-card">
+        <div class="day-header"><div class="day-num">14</div><div><div class="day-theme">Week 2 Intelligence Recap</div><div class="day-date">Day 14 · Sun</div></div></div>
+        <div class="content-tabs"><div class="ct active" onclick="switchTab(this,'s2d14-post')">Post</div><div class="ct" onclick="switchTab(this,'s2d14-short')">Short</div><div class="ct" onclick="switchTab(this,'s2d14-video')">Video</div></div>
+        <div class="content-panel active" id="s2d14-post">
+          <div class="platforms"><span class="plat">All platforms</span></div>
+          <span class="type-badge tb-post">Post</span>
+          <div class="post-body">This week's investor intelligence checklist:
+
+✅ What's hiding in the prospectus?
+✅ Is the profit real or accounting-assisted?
+✅ Are working capital signals flashing?
+✅ Can the company service its debt?
+✅ Is the growth sustainable?
+✅ How does it compare to peers?
+
+Bizvitals answers all six.
+Automatically. In under 10 minutes.
+
+This is what informed investing looks like.</div>
+          <div class="post-hashtags">#InvestorChecklist #Bizvitals #SmartIPO #DueDiligence #DataInvesting</div>
+          <div class="post-contact"><span>📧</span> support@bizvitals.ai &nbsp;|&nbsp; <span>📞</span> 9353796081 &nbsp;|&nbsp; <span>🌐</span> bizvitals.ai</div>
+        </div>
+        <div class="content-panel" id="s2d14-short">
+          <span class="type-badge tb-short">Short / Reel</span>
+          <div class="post-body">[0-5s] "Before any IPO — run this checklist:"
+
+[5-22s] Six items tick off:
+"Profit quality ✅"
+"Working capital stress ✅"
+"Debt serviceability ✅"
+"Growth sustainability ✅"
+"Hidden liabilities ✅"
+"Industry benchmark ✅"
+
+[22-27s] "Bizvitals does all six.
+Under 10 minutes."
+
+[27-30s] "bizvitals.ai | 📞 9353796081"</div>
+          <div class="post-contact"><span>🌐</span> bizvitals.ai &nbsp;|&nbsp; <span>📞</span> 9353796081</div>
+        </div>
+        <div class="content-panel" id="s2d14-video">
+          <span class="type-badge tb-video">Video (60 sec)</span>
+          <div class="post-body">[0-10s] "Two weeks of IPO intelligence.
+One takeaway: the data was always there."
+
+[10-40s] Montage of this week's insights:
+→ Profit quality breakdown
+→ Working capital trend
+→ Debt load analysis
+→ Growth quality dissection
+→ Industry benchmarking
+
+[40-55s] "Everything you need. One platform.
+10 minutes per IPO."
+
+[55-60s] "Book a demo: bizvitals.ai
+📞 9353796081 | support@bizvitals.ai"</div>
+          <div class="post-contact"><span>📧</span> support@bizvitals.ai &nbsp;|&nbsp; <span>📞</span> 9353796081 &nbsp;|&nbsp; <span>🌐</span> bizvitals.ai</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ═══════ WEEK 3 ═══════ -->
+  <div class="week-content" id="week-3">
+    <div class="theme-strip">
+      <div class="ts-week">Week 3</div>
+      <div class="ts-theme">Fund & Risk — "Justify every allocation"</div>
+      <div class="ts-focus">Goal: Speak to fund managers, family offices, and HNIs who need to justify decisions with data</div>
+    </div>
+    <div class="day-grid">
+
+      <!-- DAY 15 -->
+      <div class="day-card">
+        <div class="day-header"><div class="day-num">15</div><div><div class="day-theme">Justify Your Fund Allocation</div><div class="day-date">Day 15 · Mon</div></div></div>
+        <div class="content-tabs"><div class="ct active" onclick="switchTab(this,'s3d15-post')">Post</div><div class="ct" onclick="switchTab(this,'s3d15-short')">Short</div><div class="ct" onclick="switchTab(this,'s3d15-video')">Video</div></div>
+        <div class="content-panel active" id="s3d15-post">
+          <div class="platforms"><span class="plat">LinkedIn</span><span class="plat">Twitter/X</span></div>
+          <span class="type-badge tb-post">Post</span>
+          <div class="post-body">When your investment committee asks:
+"Why did you allocate to this IPO?"
+
+"The GMP looked good" is not an answer.
+"The brand is well-known" is not an answer.
+
+The answer is a complete
+data-backed analysis report.
+
+Fact. Figures. Financial parameters.
+40+ data points.
+
+That's what Bizvitals gives you.
+Every single time.</div>
+          <div class="post-hashtags">#FundManager #InvestmentCommittee #Bizvitals #AllocationJustification #DataBackedInvesting</div>
+          <div class="post-contact"><span>📧</span> support@bizvitals.ai &nbsp;|&nbsp; <span>📞</span> 9353796081 &nbsp;|&nbsp; <span>🌐</span> bizvitals.ai</div>
+        </div>
+        <div class="content-panel" id="s3d15-short">
+          <span class="type-badge tb-short">Short / Reel</span>
+          <div class="post-body">[0-5s] "Your committee asks: Why this IPO?"
+
+[5-20s] Wrong answers:
+"GMP is strong ❌"
+"Everyone's applying ❌"
+"The brand is good ❌"
+
+Right answer:
+"Here is a 40-parameter data analysis. ✅"
+
+[20-27s] "Bizvitals gives you the right answer.
+Every time."
+
+[27-30s] "bizvitals.ai"</div>
+          <div class="post-contact"><span>🌐</span> bizvitals.ai &nbsp;|&nbsp; <span>📞</span> 9353796081</div>
+        </div>
+        <div class="content-panel" id="s3d15-video">
+          <span class="type-badge tb-video">Video (60 sec)</span>
+          <div class="post-body">[0-15s] Investment committee meeting.
+"Why did we allocate ₹2Cr to this IPO?"
+
+[15-35s] Wrong response: "The GMP was 40%. Everyone was applying."
+Committee unimpressed.
+
+Right response: Slides up. Bizvitals report.
+Financial health: 78. Debt risk: Low.
+Growth quality: Sustained 4 years.
+Industry benchmark: Top quartile.
+
+[35-50s] "That's a defensible allocation.
+That's a professional decision."
+
+[50-60s] "bizvitals.ai | 📞 9353796081"</div>
+          <div class="post-contact"><span>📧</span> support@bizvitals.ai &nbsp;|&nbsp; <span>📞</span> 9353796081 &nbsp;|&nbsp; <span>🌐</span> bizvitals.ai</div>
+        </div>
+      </div>
+
+      <!-- DAY 16 -->
+      <div class="day-card">
+        <div class="day-header"><div class="day-num">16</div><div><div class="day-theme">For Pre-IPO Companies</div><div class="day-date">Day 16 · Tue</div></div></div>
+        <div class="content-tabs"><div class="ct active" onclick="switchTab(this,'s3d16-post')">Post</div><div class="ct" onclick="switchTab(this,'s3d16-short')">Short</div><div class="ct" onclick="switchTab(this,'s3d16-video')">Video</div></div>
+        <div class="content-panel active" id="s3d16-post">
+          <div class="platforms"><span class="plat">LinkedIn</span><span class="plat">Instagram</span></div>
+          <span class="type-badge tb-post">Post</span>
+          <div class="post-body">Going public soon?
+
+Analysts, institutional investors,
+and the public will ask hard questions.
+
+The smart move: ask them first.
+
+Bizvitals identifies every area
+where analysts are likely to question
+your financials — before you go live.
+
+So you walk into roadshows prepared.
+Not surprised.</div>
+          <div class="post-hashtags">#PreIPO #GoingPublic #Bizvitals #IPORoadshow #ListingPreparation</div>
+          <div class="post-contact"><span>📧</span> support@bizvitals.ai &nbsp;|&nbsp; <span>📞</span> 9353796081 &nbsp;|&nbsp; <span>🌐</span> bizvitals.ai</div>
+        </div>
+        <div class="content-panel" id="s3d16-short">
+          <span class="type-badge tb-short">Short / Reel</span>
+          <div class="post-body">[0-5s] "Planning an IPO? Know what questions you'll face."
+
+[5-20s] "Analysts will ask about:
+→ Your receivables trend
+→ Your debt coverage
+→ Your promoter holdings
+→ Your margin sustainability"
+
+[20-27s] "Bizvitals identifies these before you list.
+So you walk in prepared."
+
+[27-30s] "bizvitals.ai"</div>
+          <div class="post-contact"><span>🌐</span> bizvitals.ai &nbsp;|&nbsp; <span>📞</span> 9353796081</div>
+        </div>
+        <div class="content-panel" id="s3d16-video">
+          <span class="type-badge tb-video">Video (60 sec)</span>
+          <div class="post-body">[0-15s] "IPO roadshow day 1.
+Analyst asks: 'Your receivable days grew 48% in 3 years. Explain.'"
+Promoter caught off guard.
+
+[15-40s] "This question was predictable.
+Bizvitals would have flagged it before the roadshow."
+
+Show: Bizvitals pre-IPO report
+→ Likely analyst questions identified: 7
+→ Financial pressure points: 4
+→ Recommended explanations: Pre-drafted
+
+[40-55s] "Walk into every room prepared.
+Not reactive."
+
+[55-60s] "bizvitals.ai | 📞 9353796081"</div>
+          <div class="post-contact"><span>📧</span> support@bizvitals.ai &nbsp;|&nbsp; <span>📞</span> 9353796081 &nbsp;|&nbsp; <span>🌐</span> bizvitals.ai</div>
+        </div>
+      </div>
+
+      <!-- DAY 17 -->
+      <div class="day-card">
+        <div class="day-header"><div class="day-num">17</div><div><div class="day-theme">Risk Concentration</div><div class="day-date">Day 17 · Wed</div></div></div>
+        <div class="content-tabs"><div class="ct active" onclick="switchTab(this,'s3d17-post')">Post</div><div class="ct" onclick="switchTab(this,'s3d17-short')">Short</div><div class="ct" onclick="switchTab(this,'s3d17-video')">Video</div></div>
+        <div class="content-panel active" id="s3d17-post">
+          <div class="platforms"><span class="plat">LinkedIn</span><span class="plat">Twitter/X</span></div>
+          <span class="type-badge tb-post">Post</span>
+          <div class="post-body">A company with 3 customers
+contributing 70% of revenue
+is not a diversified business.
+
+It is a concentrated risk.
+
+One customer exits.
+Revenue drops 25%.
+The entire investment thesis changes.
+
+Bizvitals maps business risk concentration:
+→ Customer concentration
+→ Geography concentration
+→ Supplier dependency
+→ Product line dependency
+
+Before you invest. Not after.</div>
+          <div class="post-hashtags">#RiskConcentration #BusinessRisk #Bizvitals #IPORisk #ConcentrationRisk</div>
+          <div class="post-contact"><span>📧</span> support@bizvitals.ai &nbsp;|&nbsp; <span>📞</span> 9353796081 &nbsp;|&nbsp; <span>🌐</span> bizvitals.ai</div>
+        </div>
+        <div class="content-panel" id="s3d17-short">
+          <span class="type-badge tb-short">Short / Reel</span>
+          <div class="post-body">[0-5s] "3 customers. 70% of revenue. Is that a business or a risk?"
+
+[5-20s] "One customer exits.
+Revenue falls 25%.
+Your investment thesis collapses."
+
+[20-27s] "Bizvitals maps every concentration risk.
+Before you allocate."
+
+[27-30s] "bizvitals.ai"</div>
+          <div class="post-contact"><span>🌐</span> bizvitals.ai &nbsp;|&nbsp; <span>📞</span> 9353796081</div>
+        </div>
+        <div class="content-panel" id="s3d17-video">
+          <span class="type-badge tb-video">Video (60 sec)</span>
+          <div class="post-body">[0-15s] "The prospectus says: 'Strong client relationships.'
+What it means: '3 clients = 71% revenue.'"
+
+[15-40s] Bizvitals risk concentration map:
+Customer A: 34% revenue
+Customer B: 22% revenue
+Customer C: 15% revenue
+Top 3 total: 71%
+
+Sensitivity analysis: "If Customer A exits → revenue impact: -34%"
+
+[40-55s] "That's not a relationship. That's a dependency.
+You needed to know before you invested."
+
+[55-60s] "bizvitals.ai | 📞 9353796081"</div>
+          <div class="post-contact"><span>📧</span> support@bizvitals.ai &nbsp;|&nbsp; <span>📞</span> 9353796081 &nbsp;|&nbsp; <span>🌐</span> bizvitals.ai</div>
+        </div>
+      </div>
+
+      <!-- DAY 18 -->
+      <div class="day-card">
+        <div class="day-header"><div class="day-num">18</div><div><div class="day-theme">Promoter Signals</div><div class="day-date">Day 18 · Thu</div></div></div>
+        <div class="content-tabs"><div class="ct active" onclick="switchTab(this,'s3d18-post')">Post</div><div class="ct" onclick="switchTab(this,'s3d18-short')">Short</div><div class="ct" onclick="switchTab(this,'s3d18-video')">Video</div></div>
+        <div class="content-panel active" id="s3d18-post">
+          <div class="platforms"><span class="plat">LinkedIn</span><span class="plat">Instagram</span></div>
+          <span class="type-badge tb-post">Post</span>
+          <div class="post-body">Promoter behaviour tells you
+more than any financial ratio.
+
+Watch for:
+→ Promoter stake declining pre-IPO
+→ High promoter pledge percentage
+→ Promoter salary disproportionate to profits
+→ Promoter selling in OFS vs fresh issue
+
+These are alignment signals.
+When promoters don't have skin in the game —
+you should question yours.</div>
+          <div class="post-hashtags">#PromoterSignals #InsiderActivity #Bizvitals #IPOInsights #InvestorAlerts</div>
+          <div class="post-contact"><span>📧</span> support@bizvitals.ai &nbsp;|&nbsp; <span>📞</span> 9353796081 &nbsp;|&nbsp; <span>🌐</span> bizvitals.ai</div>
+        </div>
+        <div class="content-panel" id="s3d18-short">
+          <span class="type-badge tb-short">Short / Reel</span>
+          <div class="post-body">[0-5s] "Before you invest — check what the promoters are doing."
+
+[5-20s] Warning signals:
+"Stake declining pre-IPO ⚠️"
+"OFS heavy, fresh issue light ⚠️"
+"Pledge: 31% of holding 🔴"
+"Salary: 4.2% of profits 🔴"
+
+[20-27s] "When promoters don't believe in the stock —
+why should you?"
+
+[27-30s] "bizvitals.ai"</div>
+          <div class="post-contact"><span>🌐</span> bizvitals.ai &nbsp;|&nbsp; <span>📞</span> 9353796081</div>
+        </div>
+        <div class="content-panel" id="s3d18-video">
+          <span class="type-badge tb-video">Video (60 sec)</span>
+          <div class="post-body">[0-15s] "The promoter is raising ₹500Cr in this IPO.
+But how much is fresh issue vs OFS?"
+
+[15-40s] Bizvitals promoter analysis:
+Total IPO: ₹500Cr
+Fresh issue (grows the company): ₹120Cr
+OFS (promoter cashing out): ₹380Cr
+
+"₹380Cr goes to the promoter's pocket.
+₹120Cr goes to the business."
+
+[40-55s] "That's not a growth IPO.
+That's an exit IPO."
+
+[55-60s] "bizvitals.ai | 📞 9353796081"</div>
+          <div class="post-contact"><span>📧</span> support@bizvitals.ai &nbsp;|&nbsp; <span>📞</span> 9353796081 &nbsp;|&nbsp; <span>🌐</span> bizvitals.ai</div>
+        </div>
+      </div>
+
+      <!-- DAY 19 -->
+      <div class="day-card">
+        <div class="day-header"><div class="day-num">19</div><div><div class="day-theme">Valuation vs Reality</div><div class="day-date">Day 19 · Fri</div></div></div>
+        <div class="content-tabs"><div class="ct active" onclick="switchTab(this,'s3d19-post')">Post</div><div class="ct" onclick="switchTab(this,'s3d19-short')">Short</div><div class="ct" onclick="switchTab(this,'s3d19-video')">Video</div></div>
+        <div class="content-panel active" id="s3d19-post">
+          <div class="platforms"><span class="plat">LinkedIn</span><span class="plat">Twitter/X</span></div>
+          <span class="type-badge tb-post">Post</span>
+          <div class="post-body">P/E of 62x sounds reasonable
+in a bull market.
+
+Until you discover:
+→ The E in P/E includes one-time items
+→ Industry peers trade at 28x
+→ Growth is decelerating
+→ Margins are under pressure
+
+Bizvitals calculates adjusted valuation.
+Not the headline P/E.
+The one that actually matters.</div>
+          <div class="post-hashtags">#Valuation #AdjustedPE #Bizvitals #IPOValuation #FairValue</div>
+          <div class="post-contact"><span>📧</span> support@bizvitals.ai &nbsp;|&nbsp; <span>📞</span> 9353796081 &nbsp;|&nbsp; <span>🌐</span> bizvitals.ai</div>
+        </div>
+        <div class="content-panel" id="s3d19-short">
+          <span class="type-badge tb-short">Short / Reel</span>
+          <div class="post-body">[0-5s] "P/E of 62x. Expensive or fair?"
+
+[5-20s] "Headline P/E: 62x
+Adjusted for one-time items: 94x
+Industry average: 28x
+
+That's not premium pricing.
+That's overvaluation."
+
+[20-27s] "Bizvitals calculates
+the P/E that actually matters."
+
+[27-30s] "bizvitals.ai"</div>
+          <div class="post-contact"><span>🌐</span> bizvitals.ai &nbsp;|&nbsp; <span>📞</span> 9353796081</div>
+        </div>
+        <div class="content-panel" id="s3d19-video">
+          <span class="type-badge tb-video">Video (60 sec)</span>
+          <div class="post-body">[0-15s] "IPO priced at 62x earnings.
+The banker says: in line with peers."
+
+[15-40s] Bizvitals valuation analysis:
+→ Reported PAT: ₹84Cr
+→ One-time items removed: -₹29Cr
+→ Adjusted PAT: ₹55Cr
+→ Adjusted P/E: 94x
+→ Industry median P/E: 31x
+
+"You're paying 3x the industry multiple.
+On adjusted earnings."
+
+[40-55s] "That's not in line with peers.
+That's a significant premium — with risk."
+
+[55-60s] "bizvitals.ai | 📞 9353796081"</div>
+          <div class="post-contact"><span>📧</span> support@bizvitals.ai &nbsp;|&nbsp; <span>📞</span> 9353796081 &nbsp;|&nbsp; <span>🌐</span> bizvitals.ai</div>
+        </div>
+      </div>
+
+      <!-- DAY 20 -->
+      <div class="day-card">
+        <div class="day-header"><div class="day-num">20</div><div><div class="day-theme">The Analyst Preparation Edge</div><div class="day-date">Day 20 · Sat</div></div></div>
+        <div class="content-tabs"><div class="ct active" onclick="switchTab(this,'s3d20-post')">Post</div><div class="ct" onclick="switchTab(this,'s3d20-short')">Short</div><div class="ct" onclick="switchTab(this,'s3d20-video')">Video</div></div>
+        <div class="content-panel active" id="s3d20-post">
+          <div class="platforms"><span class="plat">LinkedIn</span><span class="plat">Instagram</span></div>
+          <span class="type-badge tb-post">Post</span>
+          <div class="post-body">If you're offering shares to the public —
+
+Analysts will question:
+→ Every margin dip
+→ Every receivable spike
+→ Every related party transaction
+→ Every promoter action
+
+Our system identifies all the pressure points
+in your own financials — before analysts do.
+
+So you walk into every Q&A
+with prepared, data-backed answers.
+
+Be the most prepared person in the room.</div>
+          <div class="post-hashtags">#AnalystPrep #IPOReadiness #Bizvitals #FinancialPreparation #PublicListing</div>
+          <div class="post-contact"><span>📧</span> support@bizvitals.ai &nbsp;|&nbsp; <span>📞</span> 9353796081 &nbsp;|&nbsp; <span>🌐</span> bizvitals.ai</div>
+        </div>
+        <div class="content-panel" id="s3d20-short">
+          <span class="type-badge tb-short">Short / Reel</span>
+          <div class="post-body">[0-5s] "Analysts will find every weakness in your financials."
+
+[5-18s] "The question is: do you find them first?
+Bizvitals identifies every pressure point
+analysts are likely to target.
+Before your roadshow."
+
+[18-27s] "Walk in prepared.
+Not surprised."
+
+[27-30s] "bizvitals.ai"</div>
+          <div class="post-contact"><span>🌐</span> bizvitals.ai &nbsp;|&nbsp; <span>📞</span> 9353796081</div>
+        </div>
+        <div class="content-panel" id="s3d20-video">
+          <span class="type-badge tb-video">Video (60 sec)</span>
+          <div class="post-body">[0-15s] "IPO roadshow. Day 2. Institutional investor Q&A."
+Analyst: "Your EBITDA margins fell 320bps last year. Walk me through that."
+
+[15-40s] Two versions:
+Version A: Promoter stutters. "We had some supply chain issues..."
+Version B: Promoter opens Bizvitals pre-analysis.
+"Yes — here's the breakdown: raw material inflation contributed 210bps,
+one-time plant relocation cost 110bps. Both are non-recurring."
+
+[40-55s] "Same question. Very different answer.
+Preparation is everything."
+
+[55-60s] "bizvitals.ai | 📞 9353796081"</div>
+          <div class="post-contact"><span>📧</span> support@bizvitals.ai &nbsp;|&nbsp; <span>📞</span> 9353796081 &nbsp;|&nbsp; <span>🌐</span> bizvitals.ai</div>
+        </div>
+      </div>
+
+      <!-- DAY 21 -->
+      <div class="day-card">
+        <div class="day-header"><div class="day-num">21</div><div><div class="day-theme">Week 3 Push — Demo CTA</div><div class="day-date">Day 21 · Sun</div></div></div>
+        <div class="content-tabs"><div class="ct active" onclick="switchTab(this,'s3d21-post')">Post</div><div class="ct" onclick="switchTab(this,'s3d21-short')">Short</div><div class="ct" onclick="switchTab(this,'s3d21-video')">Video</div></div>
+        <div class="content-panel active" id="s3d21-post">
+          <div class="platforms"><span class="plat">All platforms</span></div>
+          <span class="type-badge tb-post">Post</span>
+          <div class="post-body">3 weeks. One message.
+
+Capital deserves rigour.
+Every investment deserves analysis.
+Every allocation deserves justification.
+
+Bizvitals delivers all three.
+40+ parameters. Under 10 minutes.
+Completely data-backed.
+
+Ready to see it on a real IPO?
+
+Book a free demo.
+📞 9353796081
+📧 support@bizvitals.ai
+🌐 bizvitals.ai</div>
+          <div class="post-hashtags">#DataBackedInvesting #Bizvitals #IPOAnalysis #BookADemo #SmartCapital</div>
+          <div class="post-contact"><span>📧</span> support@bizvitals.ai &nbsp;|&nbsp; <span>📞</span> 9353796081 &nbsp;|&nbsp; <span>🌐</span> bizvitals.ai</div>
+        </div>
+        <div class="content-panel" id="s3d21-short">
+          <span class="type-badge tb-short">Short / Reel</span>
+          <div class="post-body">[0-5s] "Capital deserves rigour."
+
+[5-20s] "40 parameters.
+10 minutes.
+Every IPO. Every time.
+Data-backed. Fact-driven."
+
+[20-27s] "See it on a real IPO.
+Book a free demo."
+
+[27-30s] "📞 9353796081 | bizvitals.ai"</div>
+          <div class="post-contact"><span>🌐</span> bizvitals.ai &nbsp;|&nbsp; <span>📞</span> 9353796081</div>
+        </div>
+        <div class="content-panel" id="s3d21-video">
+          <span class="type-badge tb-video">Video (60 sec)</span>
+          <div class="post-body">[0-15s] "You deploy capital. You take risk.
+You deserve every possible advantage."
+
+[15-40s] "Bizvitals gives you:
+→ 40 parameter analysis in 10 minutes
+→ Quality of profit assessment
+→ Risk concentration mapping
+→ Valuation sanity check
+→ Analyst question preparation"
+
+[40-55s] "This is what institutional investors have.
+Now it's available to you."
+
+[55-60s] "📞 9353796081 | support@bizvitals.ai | bizvitals.ai"</div>
+          <div class="post-contact"><span>📧</span> support@bizvitals.ai &nbsp;|&nbsp; <span>📞</span> 9353796081 &nbsp;|&nbsp; <span>🌐</span> bizvitals.ai</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ═══════ WEEK 4 ═══════ -->
+  <div class="week-content" id="week-4">
+    <div class="theme-strip">
+      <div class="ts-week">Week 4</div>
+      <div class="ts-theme">Action & Authority — "The standard for informed investing"</div>
+      <div class="ts-focus">Goal: Convert. Position Bizvitals as the non-negotiable tool for any serious investor.</div>
+    </div>
+    <div class="day-grid">
+
+      <!-- DAY 22 -->
+      <div class="day-card">
+        <div class="day-header"><div class="day-num">22</div><div><div class="day-theme">The New Standard</div><div class="day-date">Day 22 · Mon</div></div></div>
+        <div class="content-tabs"><div class="ct active" onclick="switchTab(this,'s4d22-post')">Post</div><div class="ct" onclick="switchTab(this,'s4d22-short')">Short</div><div class="ct" onclick="switchTab(this,'s4d22-video')">Video</div></div>
+        <div class="content-panel active" id="s4d22-post">
+          <div class="platforms"><span class="plat">LinkedIn</span><span class="plat">Twitter/X</span></div>
+          <span class="type-badge tb-post">Post</span>
+          <div class="post-body">Investing without financial analysis
+is speculation.
+
+Not investing.
+
+The new standard for IPO evaluation:
+
+→ 40+ parameter data analysis ✅
+→ Profit quality assessment ✅
+→ Risk concentration mapping ✅
+→ Peer benchmarking ✅
+→ Valuation sanity check ✅
+
+Under 10 minutes. Every IPO.
+
+Bizvitals is the new standard.</div>
+          <div class="post-hashtags">#NewStandard #InvestingWithData #Bizvitals #IPOStandard #FactsNotFaith</div>
+          <div class="post-contact"><span>📧</span> support@bizvitals.ai &nbsp;|&nbsp; <span>📞</span> 9353796081 &nbsp;|&nbsp; <span>🌐</span> bizvitals.ai</div>
+        </div>
+        <div class="content-panel" id="s4d22-short">
+          <span class="type-badge tb-short">Short / Reel</span>
+          <div class="post-body">[0-5s] "Investing without analysis is speculation."
+
+[5-20s] "The new standard:
+→ 40 parameter analysis ✅
+→ Profit quality check ✅
+→ Risk mapping ✅
+→ Peer benchmark ✅
+→ Valuation check ✅
+Under 10 minutes."
+
+[20-27s] "Bizvitals is the new standard."
+
+[27-30s] "bizvitals.ai"</div>
+          <div class="post-contact"><span>🌐</span> bizvitals.ai &nbsp;|&nbsp; <span>📞</span> 9353796081</div>
+        </div>
+        <div class="content-panel" id="s4d22-video">
+          <span class="type-badge tb-video">Video (60 sec)</span>
+          <div class="post-body">[0-15s] "There are two types of investors.
+Those who analyse. And those who speculate."
+
+[15-40s] "The difference is not intelligence.
+The difference is tools.
+Institutional investors have always had the tools.
+Now every investor does."
+
+Show Bizvitals dashboard:
+40 parameters loading on a live IPO.
+
+[40-55s] "This is the new standard.
+10 minutes. Every IPO. No exceptions."
+
+[55-60s] "bizvitals.ai | 📞 9353796081"</div>
+          <div class="post-contact"><span>📧</span> support@bizvitals.ai &nbsp;|&nbsp; <span>📞</span> 9353796081 &nbsp;|&nbsp; <span>🌐</span> bizvitals.ai</div>
+        </div>
+      </div>
+
+      <!-- DAY 23 -->
+      <div class="day-card">
+        <div class="day-header"><div class="day-num">23</div><div><div class="day-theme">The 10-Minute Decision</div><div class="day-date">Day 23 · Tue</div></div></div>
+        <div class="content-tabs"><div class="ct active" onclick="switchTab(this,'s4d23-post')">Post</div><div class="ct" onclick="switchTab(this,'s4d23-short')">Short</div><div class="ct" onclick="switchTab(this,'s4d23-video')">Video</div></div>
+        <div class="content-panel active" id="s4d23-post">
+          <div class="platforms"><span class="plat">LinkedIn</span><span class="plat">Instagram</span></div>
+          <span class="type-badge tb-post">Post</span>
+          <div class="post-body">The IPO closes in 3 days.
+You have a decision to make.
+
+10 minutes with Bizvitals:
+
+Minute 1–3: Financial health overview
+Minute 4–6: Risk and debt analysis
+Minute 7–8: Growth quality assessment
+Minute 9–10: Peer comparison and valuation
+
+Decision made. Backed by data.
+Time is money. Use it wisely.</div>
+          <div class="post-hashtags">#10MinuteDecision #IPOWindow #Bizvitals #FastAnalysis #InvestWithData</div>
+          <div class="post-contact"><span>📧</span> support@bizvitals.ai &nbsp;|&nbsp; <span>📞</span> 9353796081 &nbsp;|&nbsp; <span>🌐</span> bizvitals.ai</div>
+        </div>
+        <div class="content-panel" id="s4d23-short">
+          <span class="type-badge tb-short">Short / Reel</span>
+          <div class="post-body">[0-5s] "IPO closes in 3 days. 10 minutes is all you need."
+
+[5-22s] Timeline:
+"Min 1-3: Financial health ✅"
+"Min 4-6: Risk & debt ✅"
+"Min 7-8: Growth quality ✅"
+"Min 9-10: Valuation & peers ✅"
+
+[22-27s] "Decision made. Data-backed.
+Time is money."
+
+[27-30s] "bizvitals.ai"</div>
+          <div class="post-contact"><span>🌐</span> bizvitals.ai &nbsp;|&nbsp; <span>📞</span> 9353796081</div>
+        </div>
+        <div class="content-panel" id="s4d23-video">
+          <span class="type-badge tb-video">Video (60 sec)</span>
+          <div class="post-body">[0-10s] Phone notification: "IPO closes in 72 hours."
+Investor opens Bizvitals.
+
+[10-45s] Real-time walkthrough:
+0:00 — Upload annual report
+2:30 — Financial health score: 74
+4:00 — Debt risk: Low. Interest coverage: 3.2x ✅
+6:30 — Growth: Sustained 4 years, volume-driven ✅
+8:00 — Working capital: Stable ✅
+9:30 — Peer P/E: Slight premium, justified by growth
+
+[45-55s] Investor: "Apply."
+Types in application. Submits.
+"Decision made. With confidence."
+
+[55-60s] "bizvitals.ai | 📞 9353796081"</div>
+          <div class="post-contact"><span>📧</span> support@bizvitals.ai &nbsp;|&nbsp; <span>📞</span> 9353796081 &nbsp;|&nbsp; <span>🌐</span> bizvitals.ai</div>
+        </div>
+      </div>
+
+      <!-- DAY 24 -->
+      <div class="day-card">
+        <div class="day-header"><div class="day-num">24</div><div><div class="day-theme">For Family Offices</div><div class="day-date">Day 24 · Wed</div></div></div>
+        <div class="content-tabs"><div class="ct active" onclick="switchTab(this,'s4d24-post')">Post</div><div class="ct" onclick="switchTab(this,'s4d24-short')">Short</div><div class="ct" onclick="switchTab(this,'s4d24-video')">Video</div></div>
+        <div class="content-panel active" id="s4d24-post">
+          <div class="platforms"><span class="plat">LinkedIn</span><span class="plat">Twitter/X</span></div>
+          <span class="type-badge tb-post">Post</span>
+          <div class="post-body">Family offices evaluate dozens of
+investment opportunities every quarter.
+
+Each one deserves rigour.
+Not all of them get it.
+
+Bizvitals makes deep analysis
+scalable:
+
+→ Evaluate 10 IPOs in the time it took to do 1
+→ Consistent 40-parameter framework every time
+→ Comparable scores across opportunities
+→ Full data-backed report for every committee meeting</div>
+          <div class="post-hashtags">#FamilyOffice #InvestmentOffice #Bizvitals #ScalableAnalysis #IPOEvaluation</div>
+          <div class="post-contact"><span>📧</span> support@bizvitals.ai &nbsp;|&nbsp; <span>📞</span> 9353796081 &nbsp;|&nbsp; <span>🌐</span> bizvitals.ai</div>
+        </div>
+        <div class="content-panel" id="s4d24-short">
+          <span class="type-badge tb-short">Short / Reel</span>
+          <div class="post-body">[0-5s] "Evaluating 10 IPOs this quarter? Here's how to do it properly."
+
+[5-20s] "Consistent 40-parameter framework.
+Every opportunity. Every time.
+Comparable scores.
+Committee-ready reports."
+
+[20-27s] "10 IPOs. 100 minutes.
+Bizvitals."
+
+[27-30s] "bizvitals.ai"</div>
+          <div class="post-contact"><span>🌐</span> bizvitals.ai &nbsp;|&nbsp; <span>📞</span> 9353796081</div>
+        </div>
+        <div class="content-panel" id="s4d24-video">
+          <span class="type-badge tb-video">Video (60 sec)</span>
+          <div class="post-body">[0-15s] "Family office. 12 IPOs in the pipeline this quarter.
+Analyst capacity: 2 people.
+Time: Not enough."
+
+[15-40s] Show Bizvitals processing 3 IPOs:
+IPO 1: Health 78, Risk: Low → Recommend
+IPO 2: Health 51, Risk: High → Pass
+IPO 3: Health 69, Risk: Medium → Watch
+
+"Three decisions. 30 minutes.
+With the same rigour as a 10-day analysis."
+
+[40-55s] "Scale your investment process.
+Without scaling your team."
+
+[55-60s] "bizvitals.ai | 📞 9353796081"</div>
+          <div class="post-contact"><span>📧</span> support@bizvitals.ai &nbsp;|&nbsp; <span>📞</span> 9353796081 &nbsp;|&nbsp; <span>🌐</span> bizvitals.ai</div>
+        </div>
+      </div>
+
+      <!-- DAY 25 -->
+      <div class="day-card">
+        <div class="day-header"><div class="day-num">25</div><div><div class="day-theme">The Report That Speaks</div><div class="day-date">Day 25 · Thu</div></div></div>
+        <div class="content-tabs"><div class="ct active" onclick="switchTab(this,'s4d25-post')">Post</div><div class="ct" onclick="switchTab(this,'s4d25-short')">Short</div><div class="ct" onclick="switchTab(this,'s4d25-video')">Video</div></div>
+        <div class="content-panel active" id="s4d25-post">
+          <div class="platforms"><span class="plat">LinkedIn</span><span class="plat">Instagram</span></div>
+          <span class="type-badge tb-post">Post</span>
+          <div class="post-body">When your committee asks for a report —
+
+Not a summary.
+Not a slide deck.
+A complete, data-backed analysis.
+
+Bizvitals generates a full
+investment analysis report:
+
+→ Executive summary
+→ 40-parameter scorecard
+→ Risk flag summary
+→ Peer comparison
+→ Investment thesis with supporting data
+
+Fact. Figures. Professional.</div>
+          <div class="post-hashtags">#InvestmentReport #CommitteeReady #Bizvitals #DataReport #ProfessionalAnalysis</div>
+          <div class="post-contact"><span>📧</span> support@bizvitals.ai &nbsp;|&nbsp; <span>📞</span> 9353796081 &nbsp;|&nbsp; <span>🌐</span> bizvitals.ai</div>
+        </div>
+        <div class="content-panel" id="s4d25-short">
+          <span class="type-badge tb-short">Short / Reel</span>
+          <div class="post-body">[0-5s] "Your committee needs a report. Here's what it should contain:"
+
+[5-22s] Report sections appear:
+"Executive summary ✅"
+"40-parameter scorecard ✅"
+"Risk flag summary ✅"
+"Peer comparison ✅"
+"Investment thesis with data ✅"
+
+[22-27s] "Bizvitals generates it.
+In 10 minutes."
+
+[27-30s] "bizvitals.ai"</div>
+          <div class="post-contact"><span>🌐</span> bizvitals.ai &nbsp;|&nbsp; <span>📞</span> 9353796081</div>
+        </div>
+        <div class="content-panel" id="s4d25-video">
+          <span class="type-badge tb-video">Video (60 sec)</span>
+          <div class="post-body">[0-15s] "The meeting is tomorrow.
+The committee wants a full analysis."
+
+[15-40s] Show Bizvitals generating the report:
+→ Page 1: Executive Summary — 3 lines, verdict clear
+→ Page 2: Scorecard — 40 parameters, colour coded
+→ Page 3: Risk flags — 4 identified, ranked by impact
+→ Page 4: Peer comparison — 5 companies benchmarked
+→ Page 5: Investment thesis — data-backed, 2 pages
+
+"10 minutes. 5 pages. Board-ready."
+
+[40-55s] "That's how you walk into tomorrow's meeting."
+
+[55-60s] "bizvitals.ai | 📞 9353796081"</div>
+          <div class="post-contact"><span>📧</span> support@bizvitals.ai &nbsp;|&nbsp; <span>📞</span> 9353796081 &nbsp;|&nbsp; <span>🌐</span> bizvitals.ai</div>
+        </div>
+      </div>
+
+      <!-- DAY 26 -->
+      <div class="day-card">
+        <div class="day-header"><div class="day-num">26</div><div><div class="day-theme">Sector Intelligence</div><div class="day-date">Day 26 · Fri</div></div></div>
+        <div class="content-tabs"><div class="ct active" onclick="switchTab(this,'s4d26-post')">Post</div><div class="ct" onclick="switchTab(this,'s4d26-short')">Short</div><div class="ct" onclick="switchTab(this,'s4d26-video')">Video</div></div>
+        <div class="content-panel active" id="s4d26-post">
+          <div class="platforms"><span class="plat">LinkedIn</span><span class="plat">Twitter/X</span></div>
+          <span class="type-badge tb-post">Post</span>
+          <div class="post-body">Manufacturing IPO.
+Fintech IPO.
+Healthcare IPO.
+
+Each sector has different benchmarks.
+Different risk profiles.
+Different parameters that matter most.
+
+Bizvitals is calibrated
+for Indian business data —
+across manufacturing, services,
+trading, and technology sectors.
+
+Sector-aware. India-native.
+Data-backed.</div>
+          <div class="post-hashtags">#SectorAnalysis #IndiaIPO #Bizvitals #SectorBenchmarks #InvestmentIntelligence</div>
+          <div class="post-contact"><span>📧</span> support@bizvitals.ai &nbsp;|&nbsp; <span>📞</span> 9353796081 &nbsp;|&nbsp; <span>🌐</span> bizvitals.ai</div>
+        </div>
+        <div class="content-panel" id="s4d26-short">
+          <span class="type-badge tb-short">Short / Reel</span>
+          <div class="post-body">[0-5s] "Manufacturing IPO vs Fintech IPO — same metrics?"
+
+[5-20s] "No. Completely different benchmarks.
+Manufacturing: Inventory, capex, margins.
+Fintech: CAC, NPA, growth.
+Healthcare: Regulatory, R&D, capacity."
+
+[20-27s] "Bizvitals is sector-calibrated.
+India-native."
+
+[27-30s] "bizvitals.ai"</div>
+          <div class="post-contact"><span>🌐</span> bizvitals.ai &nbsp;|&nbsp; <span>📞</span> 9353796081</div>
+        </div>
+        <div class="content-panel" id="s4d26-video">
+          <span class="type-badge tb-video">Video (60 sec)</span>
+          <div class="post-body">[0-15s] "A 30% gross margin is excellent for retail.
+It's a disaster for pharma.
+Context is everything."
+
+[15-40s] Bizvitals sector comparison:
+Switch between sectors — benchmarks update automatically.
+Retail → Manufacturing → Technology → Healthcare
+
+Each shows: sector median, top quartile, this company's position.
+
+[40-55s] "Bizvitals is benchmarked on real Indian company data.
+Sector by sector.
+So your analysis is always contextually accurate."
+
+[55-60s] "bizvitals.ai | 📞 9353796081"</div>
+          <div class="post-contact"><span>📧</span> support@bizvitals.ai &nbsp;|&nbsp; <span>📞</span> 9353796081 &nbsp;|&nbsp; <span>🌐</span> bizvitals.ai</div>
+        </div>
+      </div>
+
+      <!-- DAY 27 -->
+      <div class="day-card">
+        <div class="day-header"><div class="day-num">27</div><div><div class="day-theme">The Cost of Not Knowing</div><div class="day-date">Day 27 · Sat</div></div></div>
+        <div class="content-tabs"><div class="ct active" onclick="switchTab(this,'s4d27-post')">Post</div><div class="ct" onclick="switchTab(this,'s4d27-short')">Short</div><div class="ct" onclick="switchTab(this,'s4d27-video')">Video</div></div>
+        <div class="content-panel active" id="s4d27-post">
+          <div class="platforms"><span class="plat">All platforms</span></div>
+          <span class="type-badge tb-post">Post</span>
+          <div class="post-body">The cost of a bad IPO investment:
+
+→ Capital locked for 12+ months
+→ Listing losses on day one
+→ No exit at a reasonable price
+→ Opportunity cost of better allocations missed
+
+All of this was avoidable.
+With 10 minutes and the right analysis.
+
+The question is not whether
+Bizvitals is worth it.
+
+The question is whether
+your next IPO decision is.</div>
+          <div class="post-hashtags">#CostOfNotKnowing #IPOLoss #Bizvitals #CapitalProtection #SmartInvesting</div>
+          <div class="post-contact"><span>📧</span> support@bizvitals.ai &nbsp;|&nbsp; <span>📞</span> 9353796081 &nbsp;|&nbsp; <span>🌐</span> bizvitals.ai</div>
+        </div>
+        <div class="content-panel" id="s4d27-short">
+          <span class="type-badge tb-short">Short / Reel</span>
+          <div class="post-body">[0-5s] "What does a bad IPO actually cost you?"
+
+[5-20s] "Capital locked 12+ months.
+Day one listing loss.
+No exit at fair value.
+Better deals you couldn't take."
+
+[20-27s] "10 minutes with Bizvitals.
+That's all it takes to avoid this."
+
+[27-30s] "bizvitals.ai"</div>
+          <div class="post-contact"><span>🌐</span> bizvitals.ai &nbsp;|&nbsp; <span>📞</span> 9353796081</div>
+        </div>
+        <div class="content-panel" id="s4d27-video">
+          <span class="type-badge tb-video">Video (60 sec)</span>
+          <div class="post-body">[0-15s] "You invested ₹5L in that IPO.
+Listed at -18% day one.
+Today it's -34%. 14 months later."
+
+[15-40s] "The signals were there.
+Promoter OFS heavy. Working capital worsening.
+Adjusted P/E: 91x. Industry: 38x."
+
+"Ten minutes with Bizvitals would have caught all three."
+
+[40-55s] "The cost of Bizvitals is insignificant.
+The cost of not using it — is not."
+
+[55-60s] "bizvitals.ai | 📞 9353796081"</div>
+          <div class="post-contact"><span>📧</span> support@bizvitals.ai &nbsp;|&nbsp; <span>📞</span> 9353796081 &nbsp;|&nbsp; <span>🌐</span> bizvitals.ai</div>
+        </div>
+      </div>
+
+      <!-- DAY 28 -->
+      <div class="day-card">
+        <div class="day-header"><div class="day-num">28</div><div><div class="day-theme">Final Demo Push</div><div class="day-date">Day 28 · Sun</div></div></div>
+        <div class="content-tabs"><div class="ct active" onclick="switchTab(this,'s4d28-post')">Post</div><div class="ct" onclick="switchTab(this,'s4d28-short')">Short</div><div class="ct" onclick="switchTab(this,'s4d28-video')">Video</div></div>
+        <div class="content-panel active" id="s4d28-post">
+          <div class="platforms"><span class="plat">All platforms</span></div>
+          <span class="type-badge tb-post">Post</span>
+          <div class="post-body">28 days of investor intelligence.
+One ask.
+
+Let us run a live Bizvitals analysis
+on any IPO of your choice.
+
+You'll see every parameter.
+Every flag. Every benchmark.
+In real time. In 10 minutes.
+
+Free demo. No obligation.
+
+📞 9353796081
+📧 support@bizvitals.ai
+🌐 bizvitals.ai</div>
+          <div class="post-hashtags">#LiveDemo #Bizvitals #IPOAnalysis #FreeDemo #InvestWithData</div>
+          <div class="post-contact"><span>📧</span> support@bizvitals.ai &nbsp;|&nbsp; <span>📞</span> 9353796081 &nbsp;|&nbsp; <span>🌐</span> bizvitals.ai</div>
+        </div>
+        <div class="content-panel" id="s4d28-short">
+          <span class="type-badge tb-short">Short / Reel</span>
+          <div class="post-body">[0-5s] "Pick any IPO. We'll analyse it live."
+
+[5-20s] "40 parameters. 10 minutes.
+You watch. You decide.
+Free demo. No obligation."
+
+[20-27s] "Call: 📞 9353796081
+Visit: bizvitals.ai"
+
+[27-30s] "One session changes how you invest."</div>
+          <div class="post-contact"><span>🌐</span> bizvitals.ai &nbsp;|&nbsp; <span>📞</span> 9353796081</div>
+        </div>
+        <div class="content-panel" id="s4d28-video">
+          <span class="type-badge tb-video">Video (60 sec)</span>
+          <div class="post-body">[0-15s] "Four weeks ago, I asked one question:
+Are you investing — or are you speculating?"
+
+[15-40s] "Investing requires data.
+Bizvitals provides it.
+40 parameters. 10 minutes.
+Every IPO. Every time."
+
+"If you're serious about your capital —
+we want to show you what this looks like on a real IPO."
+
+[40-55s] "Free demo. Your IPO. Our analysis.
+10 minutes that will change your investment process."
+
+[55-60s] "📞 9353796081 | support@bizvitals.ai | bizvitals.ai"</div>
+          <div class="post-contact"><span>📧</span> support@bizvitals.ai &nbsp;|&nbsp; <span>📞</span> 9353796081 &nbsp;|&nbsp; <span>🌐</span> bizvitals.ai</div>
+        </div>
+      </div>
+
+      <!-- DAY 29 -->
+      <div class="day-card">
+        <div class="day-header"><div class="day-num">29</div><div><div class="day-theme">Investor Testimonial</div><div class="day-date">Day 29 · Mon</div></div></div>
+        <div class="content-tabs"><div class="ct active" onclick="switchTab(this,'s4d29-post')">Post</div><div class="ct" onclick="switchTab(this,'s4d29-short')">Short</div><div class="ct" onclick="switchTab(this,'s4d29-video')">Video</div></div>
+        <div class="content-panel active" id="s4d29-post">
+          <div class="platforms"><span class="plat">LinkedIn</span><span class="plat">Instagram</span></div>
+          <span class="type-badge tb-post">Post</span>
+          <div class="post-body">"I almost applied to that IPO.
+Everyone was saying it was a sure listing gain.
+
+I ran it through Bizvitals first.
+Promoter OFS: 76%. Debt/EBITDA: 5.1x.
+Adjusted P/E: 88x.
+
+I passed.
+It listed at -22%."
+
+— Early Bizvitals user, investor
+
+Data doesn't care about hype.
+Neither should you.</div>
+          <div class="post-hashtags">#InvestorStory #IPODecision #Bizvitals #DataSaved #SmartInvesting</div>
+          <div class="post-contact"><span>📧</span> support@bizvitals.ai &nbsp;|&nbsp; <span>📞</span> 9353796081 &nbsp;|&nbsp; <span>🌐</span> bizvitals.ai</div>
+        </div>
+        <div class="content-panel" id="s4d29-short">
+          <span class="type-badge tb-short">Short / Reel</span>
+          <div class="post-body">[0-5s] "He almost applied. He ran Bizvitals first."
+
+[5-18s] "Promoter OFS: 76% 🔴
+Debt/EBITDA: 5.1x 🔴
+Adjusted P/E: 88x 🔴
+
+He passed.
+It listed at -22%."
+
+[18-27s] "Data doesn't care about hype.
+Neither should you."
+
+[27-30s] "bizvitals.ai"</div>
+          <div class="post-contact"><span>🌐</span> bizvitals.ai &nbsp;|&nbsp; <span>📞</span> 9353796081</div>
+        </div>
+        <div class="content-panel" id="s4d29-video">
+          <span class="type-badge tb-video">Video (60 sec)</span>
+          <div class="post-body">[0-15s] Investor on camera:
+"Everyone in my network was applying.
+GMP was 35%. CNBC was covering it.
+I almost went in."
+
+[15-40s] "I ran the numbers on Bizvitals first.
+Three red flags immediately:
+Promoter selling 76% of their stake.
+Debt load too high to sustain.
+Valuation 2.8x the sector average."
+
+[40-55s] "I passed.
+It listed 22% below issue price.
+Still below issue price 8 months later."
+
+[55-60s] "bizvitals.ai | 📞 9353796081"</div>
+          <div class="post-contact"><span>📧</span> support@bizvitals.ai &nbsp;|&nbsp; <span>📞</span> 9353796081 &nbsp;|&nbsp; <span>🌐</span> bizvitals.ai</div>
+        </div>
+      </div>
+
+      <!-- DAY 30 -->
+      <div class="day-card">
+        <div class="day-header"><div class="day-num">30</div><div><div class="day-theme">Day 30 — The Grand Finale</div><div class="day-date">Day 30 · Tue</div></div></div>
+        <div class="content-tabs"><div class="ct active" onclick="switchTab(this,'s4d30-post')">Post</div><div class="ct" onclick="switchTab(this,'s4d30-short')">Short</div><div class="ct" onclick="switchTab(this,'s4d30-video')">Video</div></div>
+        <div class="content-panel active" id="s4d30-post">
+          <div class="platforms"><span class="plat">All platforms</span></div>
+          <span class="type-badge tb-post">Post</span>
+          <div class="post-body">30 days. One principle.
+
+Capital deserves more than gut feel.
+
+Every rupee you invest
+deserves analysis.
+Every IPO deserves scrutiny.
+Every allocation deserves justification.
+
+Bizvitals is built for investors
+who take that seriously.
+
+40 parameters. 10 minutes.
+Data-backed. Every time.
+
+📞 9353796081
+📧 support@bizvitals.ai
+🌐 bizvitals.ai</div>
+          <div class="post-hashtags">#Day30 #Bizvitals #CapitalDeservesRigour #IPOIntelligence #InvestWithData</div>
+          <div class="post-contact"><span>📧</span> support@bizvitals.ai &nbsp;|&nbsp; <span>📞</span> 9353796081 &nbsp;|&nbsp; <span>🌐</span> bizvitals.ai</div>
+        </div>
+        <div class="content-panel" id="s4d30-short">
+          <span class="type-badge tb-short">Short / Reel</span>
+          <div class="post-body">[0-5s] "30 days. One principle."
+
+[5-20s] "Capital deserves more than gut feel.
+40 parameters.
+10 minutes.
+Every IPO. Every time."
+
+[20-27s] "This is what informed investing looks like.
+Bizvitals."
+
+[27-30s] "bizvitals.ai | 📞 9353796081"</div>
+          <div class="post-contact"><span>🌐</span> bizvitals.ai &nbsp;|&nbsp; <span>📞</span> 9353796081</div>
+        </div>
+        <div class="content-panel" id="s4d30-video">
+          <span class="type-badge tb-video">Video (60 sec)</span>
+          <div class="post-body">[0-20s] "30 days ago, we started with one question:
+Are you investing — or are you speculating?
+
+The difference is not luck.
+The difference is not instinct.
+The difference is data."
+
+[20-45s] Montage: 30 days of investor intelligence
+→ IPO evaluation frameworks
+→ Profit quality analysis
+→ Risk concentration maps
+→ Valuation adjustments
+→ Analyst preparation tools
+
+[45-55s] "Bizvitals exists for one reason:
+Every rupee of capital deserves rigour.
+And now it can have it."
+
+[55-60s] "📞 9353796081
+support@bizvitals.ai
+bizvitals.ai"</div>
+          <div class="post-contact"><span>📧</span> support@bizvitals.ai &nbsp;|&nbsp; <span>📞</span> 9353796081 &nbsp;|&nbsp; <span>🌐</span> bizvitals.ai</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<script>
+function showWeek(n,btn){
+  document.querySelectorAll('.week-content').forEach(function(w){w.classList.remove('active');});
+  document.querySelectorAll('.week-btn').forEach(function(b){b.classList.remove('active');});
+  document.getElementById('week-'+n).classList.add('active');
+  btn.classList.add('active');
+  window.scrollTo({top:300,behavior:'smooth'});
+}
+function switchTab(tab,panelId){
+  var card=tab.closest('.day-card');
+  card.querySelectorAll('.ct').forEach(function(t){t.classList.remove('active');});
+  card.querySelectorAll('.content-panel').forEach(function(p){p.classList.remove('active');});
+  tab.classList.add('active');
+  document.getElementById(panelId).classList.add('active');
+}
+</script>
+</body>
+</html>
